@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://eloquent-dubinsky-af1a20.netlify.com/"
 languageCode = "en-us"
 title = "Adventures of a self-learning data scientist"
 theme = "hugo-lithium"
