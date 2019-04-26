@@ -1,4 +1,4 @@
-baseurl = "https://mitsuoxv.netlify.com/"
+baseurl = "https://mitsuoxv.rbind.io/"
 languageCode = "en-us"
 title = "Adventures of a self-learning data scientist"
 theme = "hugo-lithium"
