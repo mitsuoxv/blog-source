@@ -1,8 +1,8 @@
 ---
-title: For a starter, you had better not git clone, but download zip the themes
+title: For a starter, you had better not git clone the themes
 author: Mitsuo Shiota
 date: '2019-04-26'
-slug: for-a-starter-you-had-better-not-git-clone-but-download-zip-the-themes
+slug: for-a-starter-you-had-better-not-git-clone-the-themes
 categories:
   - personal
 tags:
