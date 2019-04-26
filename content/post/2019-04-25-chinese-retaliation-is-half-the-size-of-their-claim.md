@@ -1,8 +1,8 @@
 ---
-title: Chinese rataliation is half the size of their claim
+title: Chinese retaliation is half the size of their claim
 author: Mitsuo Shiota
 date: '2019-04-25'
-slug: chinese-rataliation-is-half-the-size-of-their-claim
+slug: chinese-retaliation-is-half-the-size-of-their-claim
 categories:
   - economics
 tags:
