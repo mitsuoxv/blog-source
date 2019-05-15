@@ -1,0 +1,12 @@
+---
+title: 'Update: China retaliation, even if less than claimed, hurt US exports'
+author: Mitsuo Shiota
+date: '2019-05-15'
+slug: update-china-retaliation-even-if-less-than-claimed-hurt-us-exports
+categories:
+  - economics
+tags:
+  - R
+---
+
+I added some findings to ["China-hits-back"](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md). I am now less sure, but still keep my guess that China calculated the retaliation size based on HS 6 digit codes, while they actually impose tariffs based on both 6 and 8 digit codes. And I added a chart to show US exports are hurt, more on retaliated items, less on non-retaliated items.
