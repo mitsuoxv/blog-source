@@ -9,7 +9,7 @@ tags:
   - R
 ---
 
-As a statics learner, I hate time series data, because it requires me to take more caution, like stationarity, than cross sectional data. As an R learner, I also hate time series data, because I have to learn other packages than tidyverse. As most economic data are time series, I have to find some way.
+As a statistics learner, I hate time series data, because it requires me to take more caution, like stationarity, than cross sectional data. As a R learner, I also hate time series data, because I have to learn other packages than tidyverse. As most economic data are time series, I have to find some way.
 
 Then I have found [tidyquant package](https://cran.r-project.org/web/packages/tidyquant/vignettes/TQ02-quant-integrations-in-tidyquant.html). I am attracted by the function to download economic data from [FRED](https://fred.stlouisfed.org/), and the concept of long format data frame with 3 columns, "date", "symbol" and "price".
 
