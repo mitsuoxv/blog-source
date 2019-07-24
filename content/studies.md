@@ -23,5 +23,10 @@ title: Studies
 * [The most (least) euro-ic country is Greece (Ireland)](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md), quarterly update
 * [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md), annual update
 
+## Past research
+
+* [Economic and Trade Policies of the Trump
+Administration and Their Effects](http://www.hitachi-hri.com/english/journal/__icsFiles/afieldfile/2017/03/28/vol11_04_3.pdf), March 2017
+* [Future of Japanese-style management](http://www.hitachi-hri.com/journal/vol05_03.html), Japanese only, October 2010
 
 
