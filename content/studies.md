@@ -15,13 +15,13 @@ title: Studies
 
 ## Research
 
-* [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md)
-* [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md)
-* [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md)
-* [US exports to China by tariff schecule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md)
-* [Chinese shares in US imports by tariff schedule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/README.md)
-* [The most (least) euro-ic country is Greece (Ireland)](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md)
-* [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md)
+* [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md), monthly update
+* [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md), quarterly update
+* [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md), no update
+* [US exports to China by tariff schecule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md), monthly update
+* [Chinese shares in US imports by tariff schedule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/README.md), monthly update
+* [The most (least) euro-ic country is Greece (Ireland)](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md), quarterly update
+* [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md), annual update
 
 
 
