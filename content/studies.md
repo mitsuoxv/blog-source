@@ -5,9 +5,9 @@ title: Studies
 
 ## Shiny apps
 
-* [Japan international trade](https://mitsuoxv.shinyapps.io/jp-trade/), monthly update
-* [IMF World Economic Outlook Database](https://mitsuoxv.shinyapps.io/imf-weo/), twice a year update
-* [City competition to consume in Japan](https://mitsuoxv.shinyapps.io/jp-household/), annual update
+* [Japan international trade](https://mitsuoxv.shinyapps.io/jp-trade/) (monthly update)
+* [IMF World Economic Outlook Database](https://mitsuoxv.shinyapps.io/imf-weo/)  (twice a year)
+* [City competition to consume in Japan](https://mitsuoxv.shinyapps.io/jp-household/) (annual)
 
 ## Package
 
@@ -15,13 +15,13 @@ title: Studies
 
 ## Research
 
-* [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md), monthly update
-* [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md), quarterly update
-* [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md), no update
-* [US exports to China by tariff schecule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md), monthly update
-* [Chinese shares in US imports by tariff schedule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/README.md), monthly update
-* [The most (least) euro-ic country is Greece (Ireland)](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md), quarterly update
-* [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md), annual update
+* [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md) (monthly)
+* [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md) (quarterly)
+* [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md)
+* [US exports to China by tariff schecule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md) (monthly)
+* [Chinese shares in US imports by tariff schedule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/README.md) (monthly)
+* [The most (least) euro-ic country is Greece (Ireland)](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md) (quarterly)
+* [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md) (annual)
 
 ## Past research
 
