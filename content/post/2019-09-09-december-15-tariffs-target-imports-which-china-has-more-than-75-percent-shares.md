@@ -1,0 +1,20 @@
+---
+title: December 15 tariffs target imports which China has more than 75 percent shares
+author: Mitsuo Shiota
+date: '2019-09-09'
+slug: december-15-tariffs-target-imports-which-china-has-more-than-75-percent-shares
+categories:
+  - economics
+tags:
+  - R
+---
+
+I have added the new tariff schedules "300b_a" (effective 10 percent on September 1, 2019, and 15 percent after October 1, 2019) and "300b_c" (will be effective 15 percent on December 15, 2019) to my study [Chinese shares in US imports by tariff schedule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/README.md).
+
+According to my caluculation, US imports from China in 2018 (CIF base) are 110.4 billion dollars for "300b_a", and 160.6 billion dollars for "300b_c". Combined 271.0 billion dollars is 0.90 ratio to claimed 300 billion dollars.
+
+I was surprised to see the Chinese shares in "300b_c", which includes smart phones and notebook PCs, are higher than 75 percent, and much much higer than other tariff schedules. However, I should not have been surprised, because USTR states they separate "300b_a" and "300b_c" by 75 percent share criteria in [this page](https://ustr.gov/sites/default/files/enforcement/301Investigations/Notice_of_Modification_%28List_4A_and_List_4B%29.pdf).
+
+So far, USTR granted product exclusion worth of 16.8 billion dollars. Excluded products tend to have higher Chinese shares, say around 20 percent, but much less than 75 percent. USTR will receive massive product exclusion requests, if  15 percent tariffs are imposed on "300b_c" on December 15, 2019.
+
+
