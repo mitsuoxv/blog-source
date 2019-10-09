@@ -17,7 +17,7 @@ title: Studies
 
 * [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md) (monthly)
 * [Who replaces China in US imports?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Trade-diversion.md) (quarterly)
-* [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md) (quarterly)
+* [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md) (monthly)
 * [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md)
 * [US exports to China by tariff schecule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md) (monthly)
 * [Chinese shares in US imports by tariff schedule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/README.md) (monthly)
