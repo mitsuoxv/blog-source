@@ -18,14 +18,14 @@ title: Studies
 * [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md) (monthly)
 * [Who replaces China in US imports?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Trade-diversion.md) (quarterly)
 * [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md) (monthly)
-* [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md)
-* [US exports to China by tariff schecule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md) (monthly)
 * [Chinese shares in US imports by tariff schedule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/README.md) (monthly)
 * [The most (least) euro-ic country is Greece (Ireland)](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md) (quarterly)
 * [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md) (annual)
 
 ## Past research
 
+* [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md)
+* [US exports to China by tariff schecule](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back.md)
 * [Economic and Trade Policies of the Trump
 Administration and Their Effects](http://www.hitachi-hri.com/english/journal/__icsFiles/afieldfile/2017/03/28/vol11_04_3.pdf), March 2017
 * [Future of Japanese-style management](http://www.hitachi-hri.com/journal/vol05_03.html), Japanese only, October 2010
