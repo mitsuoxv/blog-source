@@ -1,0 +1,15 @@
+---
+title: Coronavirus newly confirmed cases by each area
+author: Mitsuo Shiota
+date: '2020-03-07'
+slug: coronavirus-newly-confirmed-cases-by-each-area
+categories:
+  - economics
+tags:
+  - R
+---
+
+I scratched numbers from [the WHO situation reports](https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports/), and created [a shiny app](https://mitsuoxv.shinyapps.io/covid/) to show the time-series movement of the newly confirmed cases by each area, as I would like to know whether coronavirus is being contained in Japan, or other areas.
+
+The sites, like [Coronavirus Situation Dashboard by WHO](https://who.maps.arcgis.com/apps/opsdashboard/index.html#/c88e37cfc43b4ed3baf977d77e4a0667) and [Coronavirus Update by worldometer](https://www.worldometers.info/coronavirus/), utilize the WHO situation report numbers, but so far I could not find any API or csv files I can use. Scratching numbers from pdf files is a dirty work. I would like to update frequently, but I am not sure.
+
