@@ -9,7 +9,7 @@ title: About
 
 ## Job
 
-* Chief Economist at [Hitachi Research Institute](http://www.hitachi-hri.com/english/), a subsidiary of [Hitachi, Ltd.](https://www.hitachi.com/)
+* Chief Researcher at [Hitachi Research Institute](http://www.hitachi-hri.com/english/), a subsidiary of [Hitachi, Ltd.](https://www.hitachi.com/)
 
 ## Education
 
