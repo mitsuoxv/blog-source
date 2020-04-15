@@ -7,6 +7,7 @@ categories:
   - economics
 tags:
   - R
+  - Shiny
 ---
 
 I managed to finish scratching numbers from WHO situation reports (pdf) from #1 to #50, added [README.md](https://github.com/mitsuoxv/covid), and updated [my shiny app](https://mitsuoxv.shinyapps.io/covid/). China is succeeding to contain the virus, and now the areas outside China face the challenge.
