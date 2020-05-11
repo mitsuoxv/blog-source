@@ -24,6 +24,7 @@ title: Studies
 * [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md) (annual)
 * [Tf-idf analysis of the economic report of the president](https://github.com/mitsuoxv/erp/blob/master/README.md) (annual)
 * [Sentiment analysis of the economic report of the president](https://github.com/mitsuoxv/erp/blob/master/Sentiment.md) (annual)
+* [Herfindahl-Hirschman Index of world export by product](https://github.com/mitsuoxv/wto-export/blob/master/README.md) (annually)
 
 ## Past research
 
