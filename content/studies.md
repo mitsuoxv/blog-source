@@ -8,7 +8,7 @@ title: Studies
 * [Japan international trade](https://mitsuoxv.shinyapps.io/jp-trade/) (monthly update)
 * [IMF World Economic Outlook Database](https://mitsuoxv.shinyapps.io/imf-weo/)  (twice a year)
 * [City competition to consume in Japan](https://mitsuoxv.shinyapps.io/jp-household/) (annual)
-* [WHO, Covid-19 situation report](https://mitsuoxv.shinyapps.io/covid/) (hopefully daily)
+* [WHO, Covid-19 situation report](https://mitsuoxv.shinyapps.io/covid/) (daily)
 
 ## Package
 
@@ -16,6 +16,8 @@ title: Studies
 
 ## Research
 
+* [WHO, Covid-19 situation report](https://github.com/mitsuoxv/covid/blob/master/README.md) (daily)
+* [USA, Covid-19 situation by state](https://github.com/mitsuoxv/covid/blob/master/USA.md) (daily)
 * [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md) (monthly)
 * [Who replaces China in US imports?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Trade-diversion.md) (quarterly)
 * [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md) (monthly)
