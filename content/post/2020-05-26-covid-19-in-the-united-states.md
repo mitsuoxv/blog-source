@@ -11,7 +11,7 @@ tags:
 ---
 
 I added "In the United States" page to [my shiny app on Covid-19](https://mitsuoxv.shinyapps.io/covid/), using [USAFacts data](https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/).
-I also added "U.S. deaths (new) by red or blue states" to [README.md](https://github.com/mitsuoxv/covid).
+I also added ["USA, Covid-19 situation by state"](https://github.com/mitsuoxv/covid/blob/master/USA.md) to [Covid repository](https://github.com/mitsuoxv/covid) in GitHub.
 
 The epicenter of Covid-19 has moved from China to Europe, and now to Americas. I am worrying that too vigorous "reopen economy" movements in the United States may trigger the second big wave of infections in autumn.
 
