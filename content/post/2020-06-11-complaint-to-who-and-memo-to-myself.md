@@ -18,5 +18,5 @@ This morning, WHO situation report was No. 142, which I downloaded at 7:43 am, J
 1. Kosovo and Puerto Rico are missing.
 1. French Guiana and Jersey are duplicated.
 
-From the grand total, I know total num_conf of Kosovo and Puerto Rico is 139. I speculate 69 for Kosovo, and 70 for Puerto Rico. I have to correct them later.
+From the grand total, I know total new_conf of Kosovo and Puerto Rico is 139. I speculate 69 for Kosovo, and 70 for Puerto Rico. I have to correct them later.
 
