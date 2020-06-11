@@ -20,3 +20,6 @@ This morning, WHO situation report was No. 142, which I downloaded at 7:43 am, J
 
 From the grand total, I know total new_conf of Kosovo and Puerto Rico is 139. I speculate 69 for Kosovo, and 70 for Puerto Rico. I have to correct them later.
 
+Update:
+I re-downloaded No. 142 at 7:37 am, June 12, Japan Time, and found it was corrected. Thank you, WHO. It turned out that new_conf was 0 for Kosovo, and 139 for Puerto Rico.
+
