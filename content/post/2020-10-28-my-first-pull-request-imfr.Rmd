@@ -16,7 +16,7 @@ output:
 
 [Package 'imfr'](https://cran.r-project.org/web/packages/imfr/) is the first package which merged my very small pull request. Thank you, creator Christopher Gandrud. I would like to show a usage example below.
 
-```{r libraries}
+```{r libraries, results="hide", message=FALSE}
 library(tidyverse)
 library(imfr)
 ```
@@ -25,9 +25,10 @@ library(imfr)
 
 Package 'imfr' provides some functions to help us explore IMF database. First, I use 'imf_ids' function to get database IDs.
 
-```{r get_database_ids}
+```{r get_database_ids, results="hide"}
 id_list <- imf_ids()
-
+```
+```{r get_database_ids2}
 nrow(id_list)
 ```
 
@@ -55,9 +56,10 @@ id_list %>%
 
 I use 'imf_codelist' function to retrieve the code list of the database whose id is HPDD.
 
-```{r get_codelist}
+```{r get_codelist, results="hide"}
 code_list <- imf_codelist(database_id = "HPDD")
-
+```
+```{r get_codelist2}
 code_list
 ```
 
@@ -65,14 +67,14 @@ code_list
 
 Next, I use 'imf_codes' function to retrieve codes in a code list. As I use 'map' function from tidyverse for loop, I get 5 lists.
 
-```{r get_codes}
+```{r get_codes, results="hide"}
 meta <- map(code_list$codelist, imf_codes)
 ```
 
 1st list is codes on scale.
 
 ```{r codes_scale}
-meta[[1]]
+meta[[1]] %>% head()
 ```
 
 2nd list is codes on frequency.
@@ -84,7 +86,7 @@ meta[[2]]
 3rd list is codes on geographical areas. They are two-letter country codes defined in ISO 3166-1.
 
 ```{r codes_geographical_areas}
-meta[[3]]
+meta[[3]] %>% head()
 ```
 
 4th list is codes on indicator. In this case, I get only one indicator GGXWDG_GDP, which describes Debt to GDP Ratio.
@@ -103,15 +105,13 @@ meta[[5]]
 
 Now I am ready to download data. I use 'imf_data' function. I specify HPDD as 'database_id', and select 'indicator', 'country' and 'freq' in the code list. In this case, I don't select two-letter country codes, instead select "all" to get all available countries.
 
-```{r download}
+```{r download, results="hide"}
 debt_gdp_ratio <- imf_data(database_id = "HPDD",
                            indicator = "GGXWDG_GDP",
                            country = "all",
                            freq = "A",
                            start = 1700, end = current_year()
 )
-
-head(debt_gdp_ratio)
 ```
 
 I change 'year' from character to integer, and add 'country' by utilizing the 3rd list.
@@ -123,7 +123,7 @@ debt_gdp_ratio <- debt_gdp_ratio %>%
   left_join(meta[[3]], by = c("iso2c"="codes")) %>% 
   rename(country = description)
 
-debt_gdp_ratio
+head(debt_gdp_ratio)
 ```
 
 Some countries have data as old as 1800. They are U.K., U.S. and Sweden. Most recent year is 2015.
