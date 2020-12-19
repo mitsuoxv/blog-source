@@ -16,6 +16,7 @@ title: Studies
 
 ## Research
 
+* [Japan suicide cases reported by National Police Agency](https://github.com/mitsuoxv/jp-suicide) (monthly)
 * [WHO, Covid-19 situation report](https://github.com/mitsuoxv/covid/blob/master/README.md) (daily)
 * [USA, Covid-19 situation by state](https://github.com/mitsuoxv/covid/blob/master/USA.md) (daily)
 * [Yellen dashboard](https://github.com/mitsuoxv/yellen-dashboard/blob/master/README.md) (monthly)
