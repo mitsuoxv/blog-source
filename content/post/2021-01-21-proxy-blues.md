@@ -35,6 +35,17 @@ http_proxy=http://MYID:MYPW@PROXY
 https_proxy=http://MYID:MYPW@PROXY
 ```
 
+`.Rprofile` in `Documents`
+
+I have to set `download.file.method` as "libcurl".
+
+```
+# Start-up options
+options(internet.info = 0)
+
+options(download.file.method = "libcurl")
+```
+
 `.bash_profile` in (a kind of) Home (in my case, one stage upper of `Documents`)
 
 Don' forget to [escape special characters](https://www.oreilly.com/library/view/learning-the-bash/1565923472/ch01s09.html) in MYPW, if any.
