@@ -7,9 +7,9 @@ title: About
 
 * Mitsuo Shiota
 
-## Job
+## Occupation
 
-* Chief Researcher at [Hitachi Research Institute](http://www.hitachi-hri.com/english/), a subsidiary of [Hitachi, Ltd.](https://www.hitachi.com/)
+* an economist and data scientist
 
 ## Education
 
