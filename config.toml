@@ -41,7 +41,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
 
     [params.logo]
     url = "https://avatars.githubusercontent.com/mitsuoxv"
-    width = 500
-    height = 500
+    width = 217
+    height = 217
     alt = "Logo"
 
