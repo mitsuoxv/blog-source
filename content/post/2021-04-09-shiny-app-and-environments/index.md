@@ -30,16 +30,21 @@ This experiment suggests that the usual way, Ctl + Shift + Enter in app.R, runs 
 Don't forget to restart R at each experiment. Note that `units` is a function name in Base Environment. As `birthstoneServer` function is defined in monthApp execution environment, it can find `units` there.
 
 - Module files: Ctl + Shift + Enter, and you will see "Error: object 'stones' not found"
-- Module files: Ctl + Enter, stones <- vroom:: line, and create `stones` in Global Environment. And then, Ctl + Shift + Enter, it works fine.
+- Module files: Ctl + Enter, `stones <- vroom::` line, and create `stones` in Global Environment. And then, Ctl + Shift + Enter, it works fine.
 - Module files: Change `stones` to `units`, Ctl + Shift + Enter, and you will see "Error: object of type 'closure' is not subsettable".
 - Module files: Then, create `units` in Global Environment, it works fine.
 
 Let us call the environment in which variables, such as `birthstoneServer` function, are defined, R directory environment: monthApp execution environment is its ephemeral child environment, and Global Environment is its parent environment. Look at the last figure in [Chapter 7.4.3 Namespaces in "Advanced R"](https://adv-r.hadley.nz/environments.html#namespaces), and insert R directory environment left to Global Environment. As there is no namespace: R directory environment, `birthstoneServer` function searches `stones` or `units` only in the lower row of the figure. If `stones` or `units` is in Global Environment, it can find there. If not, it can't find `stones`, or can find `units` as a function in Base Environment.
 
-- A package: Leave stones <- vroom:: line in monthApp: "Error: object 'stones' not found"
-- A package: Leave stones <- vroom:: line in monthApp: Then create `stones` in Global Environment, and it works fine.
-- A package: Leave stones <- vroom:: line in monthApp: Change `stones` to `units`, and "Error: object of type 'closure' is not subsettable"
-- A package: Leave stones <- vroom:: line in monthApp: Change `stones` to `units`, and create `units` in Global Environment. Still, "Error: object of type 'closure' is not subsettable"
+- Module files: Create a new file `stones.R` and move `stones <- vroom::` line there, and it works fine.
+- Module files: Change `stones` to `units`, create a new file `units.R` and move `units <- vroom::` line there, and it works fine.
+
+In this case, `stones` or `units` and `birthstoneServer` exist in the same R directory environment, so `birthstoneServer` can find `stones` or `units` there before searching Base Environment, or even Global Environment.
+
+- A package: Leave `stones <- vroom::` line in monthApp: "Error: object 'stones' not found"
+- A package: Leave `stones <- vroom::` line in monthApp: Then create `stones` in Global Environment, and it works fine.
+- A package: Leave `stones <- vroom::` line in monthApp: Change `stones` to `units`, and "Error: object of type 'closure' is not subsettable"
+- A package: Leave `stones <- vroom::` line in monthApp: Change `stones` to `units`, and create `units` in Global Environment. Still, "Error: object of type 'closure' is not subsettable"
 
 Now it is a package. Let us call it monthApp package. Insert `package: monthApp` right to Global Environment, and `namespace: monthApp` left to `namespace: stats` in the same last figure in [Chapter 7.4.3 Namespaces in "Advanced R"](https://adv-r.hadley.nz/environments.html#namespaces). `birthstoneServer` function searches from the top left. If `stones` is in Global Environment, it finds there, and if not, it can't find. Whether or not `units` is in Global Environment, it finds `units` as a function in `namespace: base` in the top right before searching Global Environment.
 
