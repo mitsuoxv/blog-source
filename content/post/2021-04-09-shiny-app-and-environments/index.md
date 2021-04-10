@@ -23,7 +23,7 @@ I transformed my Shiny app, [imfweo](https://mitsuoxv.shinyapps.io/imf-weo/), in
 - A single file: Ctl + Shift + Enter, it works fine, and Global Environment is empty.
 - A single file: Ctl + Enter, eack line works fine, and Global Environment is filled with function names like `birthstoneServer` and a data name like `stones` 
 
-This experiment suggests that the usual way, Ctl + Shift + Enter in app.R, runs in a function execution environment, not in Global Environment. Let us call this environment monthApp execution environment, even if monthApp is not yet here. I guess the file name `app.R` is so special that it creates a function which encloses all the codes.
+This experiment suggests that the usual way, Ctl + Shift + Enter in app.R, runs in a function execution environment, not in Global Environment. Let us call this environment monthApp execution environment, even if monthApp is not yet here. I guess the file which contains `shinyApp(ui, server)` is so special that it creates a function which encloses all the codes.
 
 - A single file: Change `stones` to `units`, and Ctl + Shift + Enter, it still works.
 
