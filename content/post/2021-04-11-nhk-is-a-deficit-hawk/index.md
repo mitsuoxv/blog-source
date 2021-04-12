@@ -15,6 +15,6 @@ Today's news is more annoying. NHK said "The U.S. changes its course to increase
 
 American Rescue Plan, which finances Covid-19 measures by deficits, is already enacted. The Biden Administration is now proposing [American Jobs Plan](https://www.whitehouse.gov/briefing-room/statements-releases/2021/03/31/fact-sheet-the-american-jobs-plan/) to invest in infrastructures and others for the future, and [Made in America Tax Plan](https://home.treasury.gov/news/featured-stories/made-in-america-tax-plan-report) alongside it to finance investments. NHK messed up all.
 
-NHK once made a documentary in which the members in the Ministry of Finance made enormous efforts to sell the Japanese Government Bonds, hinting how Japan is close to the debt crisis. I was surprised then.
+NHK once made a documentary in which the members in the Ministry of Finance made enormous efforts to sell the Japanese Government Bonds, hinting how Japan is close to the debt crisis. I was surprised then. They could publicly say it was hard to sell, as it was in fact easy to sell.
 
 Today, I am sad to know NHK is still a deficit hawk.
