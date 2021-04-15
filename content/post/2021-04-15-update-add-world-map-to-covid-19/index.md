@@ -10,6 +10,6 @@ tags:
   - Shiny
 ---
 
-I added "World (map)" panel to [my Shiny app](https://mitsuoxv.shinyapps.io/covid/). You can see where are the hot areas.
+I added "World (map)" panel to [my Shiny app](https://mitsuoxv.shinyapps.io/covid/). You can see where are the relatively hot areas.
 
 Under the hood, I moved preprocess out of Shiny to make start up quicker.
