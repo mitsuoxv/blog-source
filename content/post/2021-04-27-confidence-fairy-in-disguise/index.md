@@ -1,0 +1,20 @@
+---
+title: Confidence fairy in disguise
+author: Mitsuo Shiota
+date: '2021-04-27'
+slug: confidence-fairy-in-disguise
+categories:
+  - economics
+tags:
+  - Nikkei
+---
+
+Nikkei publishes guest essays named "Lecture on Economics" in its news paper. The guests are Hirohide Yamaguchi, an ex-central banker, and Hiroshi Yoshikawa, a widely respected economist and professor, and the theme is "Policy proposal for post-Covid-19" on April 26, 2021.
+
+They say, "Consumption is structurally weak, because people doubt the sustainability of the public pension system, to which the government contributes by deficits, and try to save more to prepare for the collapse of the public pension system." So, they propose, "Reduce the government deficits, and regain the confidence in the public pension system."
+
+They are not explicit about how to reduce the government deficits, but I guess, they are considering pension benefit reduction and tax increase. If so, their proposal is  [confidence fairy, the term Paul Krugman uses to critisize "expansionary austerity"](https://krugman.blogs.nytimes.com/2012/09/23/expectations-and-the-confidence-fairy/). Do people save less, if they see pension benefit reduced? No, I don't think so.
+
+I agree that the social security system, including the public pension system, should be reformed. People try to save more, as they are afraid of unexpectedly long old lives. I believe the social security system can be accommodated to provide life-long insurance to live with dignity.
+
+I don' agree that we should reduce government deficits to make the public pension system more sustainable, and to promote more consumption. It is confidence fairy in disguise.
