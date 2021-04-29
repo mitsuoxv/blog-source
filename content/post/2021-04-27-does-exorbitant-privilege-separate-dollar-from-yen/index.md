@@ -23,4 +23,4 @@ If he implies that the U.S. can continue to be in current account deficits, as t
 
 If he implies that the yen will lose investors' confidence once Japan falls into current account deficits, he suggests currency crisis can be the problem in Japan. Currency crisis starts from accumulated foreign currency denominated short-term debt. And it will take some time to accumulate. In the mean while, the yen depreciates, the current account balance increases, and debt stops to accumulate. Although the yen does not have exorbitant privileges, it is unlikely that Japan falls into currency crisis because of fiscal stimulus, however huge it is.
 
-After all, I don't understand why he proposes that we should watch out current account balance when we consider fiscal stimulus in Japan.
+After all, I don't understand why he proposes that we should watch out current account balance when we consider fiscal stimulus in Japan. I feel uneasy at his saying about current account balance deterioration without mentioning interest and exchange rates.
