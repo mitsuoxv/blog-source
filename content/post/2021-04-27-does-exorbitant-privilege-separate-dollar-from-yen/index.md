@@ -9,7 +9,7 @@ tags:
   - Nikkei
 ---
 
-I sometimes feel uneasy about the guest essays named "Lecture on Economics" in Nikkei news paper. The theme is the same as the previous one, "Policy proposal for post-Covid-19". The guest is Shumpei Takemori, a economics professor and a member of [Council on Economic and Fiscal Policy](https://www5.cao.go.jp/keizai-shimon/index_en.html) on April 27, 2021.
+I sometimes feel uneasy about the guest essays named "Lecture on Economics" in Nikkei news paper. The theme is the same as the previous one, "Policy proposal for post-Covid-19". The guest is Shumpei Takemori, an economics professor and a member of [Council on Economic and Fiscal Policy](https://www5.cao.go.jp/keizai-shimon/index_en.html), on April 27, 2021.
 
 I first felt uneasy about his proposal, "Watch out deterioration in net international investment position, if fiscal stimulus is excessive in Japan." Should we worry about international investment position, when its net asset is 65 percent of GDP at the end of 2019, and current account balance has been continuously positive since 1981? But, if fiscal stimulus is unimaginably huge, interest rates can go up, the yen can appreciate, and current account balance can be negative.
 
