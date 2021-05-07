@@ -1,0 +1,1042 @@
+---
+title: Gov't debt is savings of the workers for retirement
+author: Mitsuo Shiota
+date: '2021-05-06'
+slug: gov-t-debt-is-savings-of-the-workers-for-retirement
+categories:
+  - economics
+tags:
+  - Nikkei
+  - R
+output:
+  blogdown::html_page:
+    toc: false
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="is-govt-debt-a-morale-issue" class="section level2">
+<h2>Is gov’t debt a morale issue?</h2>
+<p>“Lecture on Economics” in Nikkei news paper on May 3 to 5, 2021 was titled “Think about the burden for future generations”. Lectures are <a href="https://www.nikkei.com/article/DGXZQOCD163O50W1A410C2000000/">here</a>, <a href="https://www.nikkei.com/article/DGXZQOCD1649E0W1A410C2000000/">here</a> and <a href="https://www.nikkei.com/article/DGXZQOCD225QK0S1A420C2000000/">here</a> (Japanese, subscription required). The authors think that lack of government morale causes government debt. They think politicians are not well disciplined, and are weak under the pressure from spend-demanding and tax-averse electorate.</p>
+<p>So the first proposes a debt rollover restriction rule, to which I have strong objection. Don’t forget <a href="https://en.wikipedia.org/wiki/United_States_debt-ceiling_crisis_of_2011">the U.S. debt ceiling crisis under the Obama administration and the Republican controlled House</a>. The second proposes independent fiscal institutions, of which effectiveness I doubt. The third proposes Covid-19 measures should be financed by taxes, not by deficits, because deficits divert resources from productive capital accumulation. He may be right, if the deficits crowd out investment by causing higher interest rates. But now I observe persistent zero interest rates, and no crowding-out.</p>
+<p>So I don’t think government debt is a morale issue.</p>
+</div>
+<div id="is-govt-debt-a-burden-for-the-future-generation" class="section level2">
+<h2>Is gov’t debt a burden for the future generation?</h2>
+<p>Nikkei title is “Think about the burden for future generations.” Is government debt a burden for future generations in the first place?</p>
+<p>Paul Krugman says no. “Debt is Money We Owe to Ourselves.” (<a href="https://krugman.blogs.nytimes.com/2015/02/06/debt-is-money-we-owe-to-ourselves/">here</a>) Dean Baker says no. “There is a distributional issue — Bill Gates’ children may own all the debt — but that is within generations, not between generations.” (<a href="https://krugman.blogs.nytimes.com/2011/12/28/debt-is-mostly-money-we-owe-to-ourselves/">here</a>)</p>
+<p>Simon Wren-Lewis says yes. “Government debt can be a burden on future generations.” (<a href="https://mainlymacro.blogspot.com/2012/10/the-burden-of-government-debt.html">here</a>)</p>
+</div>
+<div id="two-meanings-of-generation" class="section level2">
+<h2>Two meanings of “generation”</h2>
+<p>Which side is right? I think both sides are right. According to Oxford Languages via Google, “generation” meanings are:</p>
+<ol style="list-style-type: decimal">
+<li><p>the average period, generally considered to be about thirty years, in which children grow up, become adults, and have children of their own.</p></li>
+<li><p>all of the people born and living at about the same time, regarded collectively.</p></li>
+</ol>
+<p>Paul Krugman and Dean Baker are right if they use “generation” as 1, and Simon Wren-Lewis is right if he uses “generation” as 2.</p>
+<p>Let us call 1 as “Period” and 2 as “Generation,” then I can show Generation overlap as below. Every Generation lives in 2 Periods. For example, Generation 2 lives working in Period 1 and lives retired in Period 2.</p>
+<div class="figure">
+<img src="test.png" alt="" />
+<p class="caption">Fig.1 Period Generation Matrix</p>
+</div>
+</div>
+<div id="a-tiny-model" class="section level2">
+<h2>A tiny model</h2>
+<p>To clarify my understanding, I make a tiny model to replicate above table.</p>
+<p>Imagine a one factor (labor), three sector (Generation 1 and 2, Government), and closed economy. There is no capital, no business sector, no international trade, and no foreigner. Ignore financial sector as an intermediary. And imagine all goods and services produced in a Period are perishable, and must be consumed in that Period, like foodstuff and entertainment, care and medicine services. There is no stock, and no investment. And imagine the only role of Government is to issue and pay back bonds, of which duration is one Period, 30 years. There is no defense spending, and no taxes. The only method for Generation to save is to buy bonds.</p>
+<div id="constant-saving-rate-with-constant-population-and-productivity" class="section level3">
+<h3>Constant saving rate, with constant population and productivity</h3>
+<p>In Period 1, Generation 1 and Generation 2 lives, but only Generation 2 works. If the population in Generation 2 is 100 persons, and the productivity in Period 1 is 20 yen per person, 2000 yen worth goods and services are produced.</p>
+<p>From Period 2 and on, let us assume population by Generation is constant 100 persons, population by Period is constant 200 persons, and productivity is constant 20 yen per person. And let us assume working Generation and retired Generation in each Period agree to share the produced so that each person can consume equally. As each working Generation consume half of what they produce, the saving rate is 0.5.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 1: </span>Population by Period</caption>
+<colgroup>
+<col width="6%" />
+<col width="24%" />
+<col width="26%" />
+<col width="26%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">Population Total (persons)</th>
+<th align="right">Population Retired (persons)</th>
+<th align="right">Population Working (persons)</th>
+<th align="right">Ratio of Retired</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">200</td>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">200</td>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">200</td>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">200</td>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">200</td>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">200</td>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">0.5</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-3">Table 2: </span>Production and Consumption per person by Period</caption>
+<colgroup>
+<col width="6%" />
+<col width="24%" />
+<col width="34%" />
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">Productivity (yen/person)</th>
+<th align="right">Consumption by Working (yen/person)</th>
+<th align="right">Consumption by Retired (yea/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 3: </span>Production and Consumption by Period</caption>
+<colgroup>
+<col width="5%" />
+<col width="8%" />
+<col width="24%" />
+<col width="24%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">GDP (yen)</th>
+<th align="right">Consumption by Working (yen)</th>
+<th align="right">Consumption by Retired (yen)</th>
+<th align="right">Government debt to GDP ratio = Saving rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+</tbody>
+</table>
+<p>Each Generation n produces 20 yen per person in Period n-1 , and consumes 10 yen in Period n-1 and 10 yen in Period n, 20 yen in total. Note that every yen value is in real, denoted in Period 1 price level yen.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-5">Table 4: </span>Consumption per person by Generation</caption>
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="24%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Generation</th>
+<th align="right">Population (persons)</th>
+<th align="right">Consumption in Total (yen/person)</th>
+<th align="right">Consumption in Working (yen/person)</th>
+<th align="right">Consumption in Retired (yen/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">100</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">100</td>
+<td align="right">NA</td>
+<td align="right">10</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="unfunded-gift-and-its-reversal" class="section level3">
+<h3>Unfunded gift and its reversal</h3>
+<p>Now imagine, in Period 2, Generation 2 and 3 agree to change sharing ratio from 50:50 to 60:40 by Generation 3 buying additional bonds and Government giving the received money to Generation 2. Generation 3’s saving rate changes from 0.5 to 0.6. Generation 3 may have been persuaded, as consumption in life will be unchanged 20 yen per person if the same custom continues, that is Generation 4 will save 0.6 in Period 3. Generation 2 can benefit from this deal, as they can consume 22 yen per person more than 20 yen they produce in life.</p>
+<p>And imagine, in Period 5, Generation 5 and 6 agree to abolish this custom for some reason. Generation 5 can consume only 18 yen per person in life. Consumption of 2 yen per person is transferred to Generation 2 from Generation 5, a future generation.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-8">Table 5: </span>Production and Consumption by Period</caption>
+<colgroup>
+<col width="5%" />
+<col width="8%" />
+<col width="24%" />
+<col width="24%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">GDP (yen)</th>
+<th align="right">Consumption by Working (yen)</th>
+<th align="right">Consumption by Retired (yen)</th>
+<th align="right">Government debt to GDP ratio = Saving rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2000</td>
+<td align="right">800</td>
+<td align="right">1200</td>
+<td align="right">0.6</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">2000</td>
+<td align="right">800</td>
+<td align="right">1200</td>
+<td align="right">0.6</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2000</td>
+<td align="right">800</td>
+<td align="right">1200</td>
+<td align="right">0.6</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">2000</td>
+<td align="right">1000</td>
+<td align="right">1000</td>
+<td align="right">0.5</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-9">Table 6: </span>Consumption per person by Generation</caption>
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="24%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Generation</th>
+<th align="right">Population (persons)</th>
+<th align="right">Consumption in Total (yen/person)</th>
+<th align="right">Consumption in Working (yen/person)</th>
+<th align="right">Consumption in Retired (yen/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">100</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">100</td>
+<td align="right">22</td>
+<td align="right">10</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">8</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">8</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">100</td>
+<td align="right">18</td>
+<td align="right">8</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">100</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">100</td>
+<td align="right">NA</td>
+<td align="right">10</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p>But is this Generation 5 worse-off caused by the burden of government debt on future Generations?</p>
+<p>Now, suppose Government suddenly discovers a new way to transfer buying power across Generation other than issuing additional bonds. The new way is tax and transfer payment, like pay-go based pension system. You may cry foul, claiming this should also be counted as government debt, though this is not bond balance. You may be right in accounting, but you can feel the difference between government debt and government promise in pension system is not solid but fluid.</p>
+<p>From this thought experiment, I would like to say the burden on future Generations is not government debt per se, but legacy social contract on how to share. Social contract made between Generation 2 and 3 becomes a legacy. Because of this legacy, Generation 3 and 4 in Period 4, and Generation 4 and 5 in Period 5 agree to share 60:40. But Generation 5 and 6 fail to keep this legacy in Period 6. This legacy turns out to be the burden on Generation 5. Generation 6 is now free from this burdensome legacy.</p>
+</div>
+</div>
+<div id="population-bonus-and-onus" class="section level2">
+<h2>Population bonus and onus</h2>
+<p>In above simulation, Generation 2 is better off and Generation 5 is worse off. Is this kind of situation rare? No. If we assume population increases and decreases, there happens population bonus and onus.</p>
+<p>Below is a rough image of population changes in Japan. Period 4 is 2000-2030, Generation 4 is retired and Generation 5 is working. Although I am in the middle of Generation 4 and 5 in reality, let us read below as if we are Generation 5.</p>
+<p>I assume no productivity growth. And I assume Generation n and Generation n-1 agree to share the produced by population ratio so that each person can consume equally in each Period. So government debt to GDP ratio, which is the same as the saving rate and the ratio of consumption by the retired to total consumption by definition of this model, is exactly same as population ratio of the retired in each Period.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-11">Table 7: </span>Population by Generation</caption>
+<thead>
+<tr class="header">
+<th align="right">Generation</th>
+<th align="right">Population (persons)</th>
+<th align="right">Rebirth ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">100</td>
+<td align="right">1.30</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">130</td>
+<td align="right">1.30</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">169</td>
+<td align="right">1.30</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">220</td>
+<td align="right">0.80</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">176</td>
+<td align="right">0.65</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">114</td>
+<td align="right">0.65</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">74</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-12">Table 8: </span>Population by Period</caption>
+<colgroup>
+<col width="6%" />
+<col width="24%" />
+<col width="26%" />
+<col width="26%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">Population Total (persons)</th>
+<th align="right">Population Retired (persons)</th>
+<th align="right">Population Working (persons)</th>
+<th align="right">Ratio of Retired</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">230</td>
+<td align="right">100</td>
+<td align="right">130</td>
+<td align="right">0.43</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">299</td>
+<td align="right">130</td>
+<td align="right">169</td>
+<td align="right">0.43</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">389</td>
+<td align="right">169</td>
+<td align="right">220</td>
+<td align="right">0.43</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">395</td>
+<td align="right">220</td>
+<td align="right">176</td>
+<td align="right">0.56</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">290</td>
+<td align="right">176</td>
+<td align="right">114</td>
+<td align="right">0.61</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">189</td>
+<td align="right">114</td>
+<td align="right">74</td>
+<td align="right">0.61</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-13">Table 9: </span>Production and Consumption by Period</caption>
+<colgroup>
+<col width="4%" />
+<col width="7%" />
+<col width="20%" />
+<col width="20%" />
+<col width="30%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">GDP (yen)</th>
+<th align="right">Consumption by Working (yen)</th>
+<th align="right">Consumption by Retired (yen)</th>
+<th align="right">Government debt to GDP ratio = Saving rate</th>
+<th align="right">Interest rate (percent)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">2600</td>
+<td align="right">1470</td>
+<td align="right">1130</td>
+<td align="right">0.43</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">3380</td>
+<td align="right">1910</td>
+<td align="right">1470</td>
+<td align="right">0.43</td>
+<td align="right">0.88</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">4394</td>
+<td align="right">2484</td>
+<td align="right">1910</td>
+<td align="right">0.43</td>
+<td align="right">0.88</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">3515</td>
+<td align="right">1562</td>
+<td align="right">1953</td>
+<td align="right">0.56</td>
+<td align="right">0.07</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">2285</td>
+<td align="right">900</td>
+<td align="right">1385</td>
+<td align="right">0.61</td>
+<td align="right">-1.14</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1485</td>
+<td align="right">585</td>
+<td align="right">900</td>
+<td align="right">0.61</td>
+<td align="right">-1.43</td>
+</tr>
+</tbody>
+</table>
+<p>Generation 2 worked in Period 1 and saved 1130 yen, and can consume 1470 yen in Period 2. How come? We can interpret this as Generation 2 earned interest income from saving, and the interest rate of bonds is 0.88 percent annually.</p>
+<p>Generation 5 saved 1953 yen in Period 4, but can consume only 1385 in Period 5. We can interpret this as Generation 4 earned negative interest rate, -1.14 percent.</p>
+<p>As the yen value is denoted in real terms, at Period 1 price level, interest rate is real interest rate. In this model, safe real interest rate is endogenous. Positive interest rate is a bonus, and negative one is an onus from population changes.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-14">Table 10: </span>Consumption per person by Generation</caption>
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="24%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Generation</th>
+<th align="right">Population (persons)</th>
+<th align="right">Consumption in Total (yen/person)</th>
+<th align="right">Consumption in Working (yen/person)</th>
+<th align="right">Consumption in Retired (yen/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">100</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">130</td>
+<td align="right">22.6</td>
+<td align="right">11.3</td>
+<td align="right">11.3</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">169</td>
+<td align="right">22.6</td>
+<td align="right">11.3</td>
+<td align="right">11.3</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">220</td>
+<td align="right">20.2</td>
+<td align="right">11.3</td>
+<td align="right">8.9</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">176</td>
+<td align="right">16.8</td>
+<td align="right">8.9</td>
+<td align="right">7.9</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">114</td>
+<td align="right">15.8</td>
+<td align="right">7.9</td>
+<td align="right">7.9</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">74</td>
+<td align="right">NA</td>
+<td align="right">7.9</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p>Each Generation produces 20 yen per person. Generation 2 and 3 consumes more than 20 yen, Generation 4 consumes approximately 20 yen, and Generation 5 and 6 consumes less than 20 yen.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-15">Table 11: </span>Consumption and Income per person by Generation</caption>
+<colgroup>
+<col width="8%" />
+<col width="27%" />
+<col width="24%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Generation</th>
+<th align="right">Consumption in Total (yen/person)</th>
+<th align="right">Income in Working (yen/person)</th>
+<th align="right">Income in Retired (interest income) (yen/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">22.6</td>
+<td align="right">20</td>
+<td align="right">2.6</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">22.6</td>
+<td align="right">20</td>
+<td align="right">2.6</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">20.2</td>
+<td align="right">20</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">16.8</td>
+<td align="right">20</td>
+<td align="right">-3.2</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">15.8</td>
+<td align="right">20</td>
+<td align="right">-4.2</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">20</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p>We, Generation 5, can consume 16.8 yen per person, less than 20 yen we produce. Why is interest income from holding bonds negative? Isn’t this unfair? In theory, this is because we chose to have fewer children, Generation 6, who produce and share in Period 5. But as we, Generation 5, outnumber Generation 6, we may fight politically and get larger share in Period 5. This is so called “Silver Democracy.” If we do so, government debt to GDP ratio jumps from current 0.61. And this social contract on how to share may become the burdensome legacy for future Generations.</p>
+</div>
+<div id="add-productivity-growth-and-stagnation" class="section level2">
+<h2>Add productivity growth and stagnation</h2>
+<p>Next, I change the assumption of productivity from constant to growing by annual rate of 2, 8, 1, 0, 0 percent in Period 2 to 6 respectively.</p>
+<p>I assume Generation n and Generation n-1 agree to share the produced by population ratio so that each person can consume equally in each Period. No “Silver Democracy.”</p>
+<table>
+<caption><span id="tab:unnamed-chunk-17">Table 12: </span>Production and Consumption per person by Period</caption>
+<colgroup>
+<col width="6%" />
+<col width="24%" />
+<col width="34%" />
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">Productivity (yen/person)</th>
+<th align="right">Consumption by Working (yen/person)</th>
+<th align="right">Consumption by Retired (yea/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">20</td>
+<td align="right">11</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">36</td>
+<td align="right">20</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">365</td>
+<td align="right">206</td>
+<td align="right">206</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">491</td>
+<td align="right">218</td>
+<td align="right">218</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">491</td>
+<td align="right">194</td>
+<td align="right">194</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">491</td>
+<td align="right">194</td>
+<td align="right">194</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-18">Table 13: </span>Production and Consumption by Period</caption>
+<colgroup>
+<col width="4%" />
+<col width="7%" />
+<col width="20%" />
+<col width="20%" />
+<col width="30%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Period</th>
+<th align="right">GDP (yen)</th>
+<th align="right">Consumption by Working (yen)</th>
+<th align="right">Consumption by Retired (yen)</th>
+<th align="right">Government debt to GDP ratio = Saving rate</th>
+<th align="right">Interest rate (percent)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">2600</td>
+<td align="right">1470</td>
+<td align="right">1130</td>
+<td align="right">0.43</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">6122</td>
+<td align="right">3460</td>
+<td align="right">2662</td>
+<td align="right">0.43</td>
+<td align="right">2.90</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">80090</td>
+<td align="right">45268</td>
+<td align="right">34822</td>
+<td align="right">0.43</td>
+<td align="right">8.95</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">86359</td>
+<td align="right">38382</td>
+<td align="right">47977</td>
+<td align="right">0.56</td>
+<td align="right">1.07</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">56134</td>
+<td align="right">22113</td>
+<td align="right">34020</td>
+<td align="right">0.61</td>
+<td align="right">-1.14</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">36487</td>
+<td align="right">14374</td>
+<td align="right">22113</td>
+<td align="right">0.61</td>
+<td align="right">-1.43</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-19">Table 14: </span>Consumption per person by Generation</caption>
+<colgroup>
+<col width="7%" />
+<col width="15%" />
+<col width="24%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Generation</th>
+<th align="right">Population (persons)</th>
+<th align="right">Consumption in Total (yen/person)</th>
+<th align="right">Consumption in Working (yen/person)</th>
+<th align="right">Consumption in Retired (yen/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">100</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">130</td>
+<td align="right">32</td>
+<td align="right">11</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">169</td>
+<td align="right">227</td>
+<td align="right">20</td>
+<td align="right">206</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">220</td>
+<td align="right">424</td>
+<td align="right">206</td>
+<td align="right">218</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">176</td>
+<td align="right">412</td>
+<td align="right">218</td>
+<td align="right">194</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">114</td>
+<td align="right">387</td>
+<td align="right">194</td>
+<td align="right">194</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">74</td>
+<td align="right">NA</td>
+<td align="right">194</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-20">Table 15: </span>Consumption and Income per person by Generation</caption>
+<colgroup>
+<col width="8%" />
+<col width="27%" />
+<col width="24%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Generation</th>
+<th align="right">Consumption in Total (yen/person)</th>
+<th align="right">Income in Working (yen/person)</th>
+<th align="right">Income in Retired (interest income) (yen/person)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">32</td>
+<td align="right">20</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">227</td>
+<td align="right">36</td>
+<td align="right">190</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">424</td>
+<td align="right">365</td>
+<td align="right">60</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">412</td>
+<td align="right">491</td>
+<td align="right">-79</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">387</td>
+<td align="right">491</td>
+<td align="right">-104</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">NA</td>
+<td align="right">491</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p>Shocking result for us, Generation 5! We consume 412 yen per person, which is less than 491 yen we produce, and less than 424 yen Generation 4 consumes. Generation 5 is the first generation to become poorer than preceding Generation.</p>
+<p>This happens because I assume that productivity stops to grow from Period 5 when Generation 6 works, and that population rebirth ratio over Generation by Generation 4 and 5 is less than 1.</p>
+</div>
+<div id="multi-equilibrium-hypothesis-on-inflation" class="section level2">
+<h2>Multi-equilibrium hypothesis on inflation</h2>
+<p>Interest rate in Period 5, 2030-2060, is negative, -1.14 percent. That is the return by holding bonds for Generation 5 who live retired in Period 5. How can we get negative interest rate? The answer is inflation. Nominal interest rate can’t be much negative as long as paper money remains as an alternative way of saving. But real interest rate can be negative with inflation.</p>
+<p>This simulation suggests that it is possible for Bank of Japan to achieve 2 percent inflation target before long, as interest rate in Period 5 can be interpreted as a return rate we get by buying bonds in 2015 and selling in 2045 on average. Inflation is 2 percent, nominal interest rate is 0.86, and real interest rate is -1.14 on average from 2015 to 2045.</p>
+<p>Of course, this is a simulation, not a prediction. But I can say that aging and decreasing population and stagnant productivity growth leads to inflation eventually in this model. Is this model, which assumes one factor no business sector closed economy, too unrealistic? In reality, there is business and foreign sector, investment, international trade and wage negotiation. Aging and decreasing population prompts businesses to reduce investment. Stagnant productivity growth prompts businesses to be tough in wage negotiations. Balassa-Samuelson effect works in reverse. Does aging and decreasing population and stagnant productivity growth lead to deflation, instead of inflation, in reality?</p>
+<p>I am not sure whether I can and should expand this model by adding factors and sectors to make it closer to reality. So I would like to propose my thinking as a hypothesis. I think there exists multi-equilibrium on inflation. Although prospect for Generation 6 population is close to certain, prospect for productivity growth is still uncertain. We are often told we will be replaced by AI in the work place. If it is true, it will be a huge jump in productivity. Abundant production capacity can satisfy all the demands. As long as we believe so, there is no inflation pressure. This is the first equilibrium. But if productivity growth statistics continues to show otherwise and to disappoint us, we Generation 5 will someday accept the idea that we can’t consume as much as we saved, and that we must be poorer than Generation 4. On that day, we rush to consume by trying to get more share of consumption from each other in Generation 5 and/or from Generation 6. As buying power exceeds production capacity, inflation pressure mounts, and inflation will come. This is the second equilibrium. I am not hinting hyper-inflation. Modest inflation is enough.</p>
+<p>Thank you for reading a long thought experiment.</p>
+</div>
