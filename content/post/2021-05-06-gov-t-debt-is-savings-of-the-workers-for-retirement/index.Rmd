@@ -67,7 +67,7 @@ tiny_model <- function(population_growth, productivity_growth, saving_rate = NUL
   by_generation <- tibble(
     Generation = 1:7,
     population = 100 * c(1, cumprod(population_growth)),
-    rebirth_ratio = c(population_growth, NA)
+    reproduce_rate = c(population_growth, NA)
   )
   
   by_period <- tibble(
@@ -280,12 +280,12 @@ model3 <- tiny_model(population_growth, productivity_growth)
 
 ```{r}
 model3$by_generation %>% 
-  select(Generation, population, rebirth_ratio) %>% 
+  select(Generation, population, reproduce_rate) %>% 
   knitr::kable(
     caption = "Population by Generation",
     col.names = c(
       "Generation", "Population (persons)",
-      "Rebirth ratio"
+      "Reproduce rate"
     ),
     digits = c(rep(0, 2), 2)
   )
@@ -370,7 +370,7 @@ We, Generation 5, can consume 16.8 yen per person, less than 20 yen we produce. 
 
 ```{r}
 
-# Rebirth ratio over Generation, 30 years:
+# Reproduce rate over Generation, 30 years:
 population_growth <- c(rep(1.3, 3), 0.8, rep(0.65, 2))
 
 # Annual growth rates in percent from Period 2 to 6
@@ -452,7 +452,7 @@ model4$by_generation %>%
 
 Shocking result for us, Generation 5! We consume 412 yen per person, which is less than 491 yen we produce, and less than 424 yen Generation 4 consumes. Generation 5 is the first generation to become poorer than preceding Generation.
 
-This happens because I assume that productivity stops to grow from Period 5 when Generation 6 works, and that population rebirth ratio over Generation by Generation 4 and 5 is less than 1.
+This happens because I assume that productivity stops to grow from Period 5 when Generation 6 works, and that population Reproduce rate over Generation by Generation 4 and 5 is less than 1.
 
 ## Multi-equilibrium hypothesis on inflation
 
