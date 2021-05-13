@@ -99,8 +99,8 @@ tiny_model2 <- function(population_growth, productivity_growth, mobilize, tax_in
       income_from_interest = consump_retired + tax_retired - lag(bond_balance),
       # real interest rate per year
       annual_interest_rate = (((consump_retired + tax_retired) / (lag(bond_balance)))^(1/30) - 1) * 100,
-      debt_GDP_ratio = consump_retired / GDP,
-      after_tax_saving_rate = consump_retired / (GDP - tax_working)
+      debt_GDP_ratio = bond_balance / GDP,
+      after_tax_saving_rate = bond_balance / (GDP - tax_working)
     )
 
   by_generation <- by_generation %>% 
