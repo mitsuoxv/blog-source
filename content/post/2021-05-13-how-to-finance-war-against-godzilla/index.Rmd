@@ -677,7 +677,7 @@ From above simulations, what can I say?
 
 The reason why I expand the model, and to check the role of war bond is because I read briefly the book ["Look deep into the fiscal crisis" (Japanese)](https://www.amazon.co.jp/%E8%B2%A1%E6%94%BF%E5%8D%B1%E6%A9%9F%E3%81%AE%E6%B7%B1%E5%B1%A4-%E5%A2%97%E7%A8%8E%E3%83%BB%E5%B9%B4%E9%87%91%E3%83%BB%E8%B5%A4%E5%AD%97%E5%9B%BD%E5%82%B5%E3%82%92%E5%95%8F%E3%81%86-NHK%E5%87%BA%E7%89%88%E6%96%B0%E6%9B%B8-%E5%B0%8F%E9%BB%92-%E4%B8%80%E6%AD%A3/dp/4140884495), written by Kazumasa Oguro, a former Ministry of Finance officer, now a economics professor and a famous fiscal soundness advocate, and published by a subsidiary of NHK.
 
-He explains government debt situation by comparing to household debt. I feel uneasy, because government debt creates mostly both credit and debt in house (a country), while household debt creates, well, only debt in house.
+He explains government debt situation by comparing to household debt. I feel uneasy, because government debt creates mostly both bond holders' credit and Government's debt in house (a country), while household debt creates, well, only debt in house.
 
 He also teaches us a history lesson that Japanese Government Bond defaulted after Japan lost the World War II, when government debt, including war bonds, reached 200 percent of GDP. I suspect the cause of default is not high debt ratio to GDP but the government regime change brought by losing war and being occupied. [The man in the high castle](https://en.wikipedia.org/wiki/The_Man_in_the_High_Castle) may have not seen Japanese Government Bond default.
 
