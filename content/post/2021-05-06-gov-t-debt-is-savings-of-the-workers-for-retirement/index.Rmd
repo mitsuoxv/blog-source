@@ -160,7 +160,7 @@ model1$by_period %>%
     col.names = c(
       "Period", "Productivity (yen/person)",
       "Consumption by Working (yen/person)",
-      "Consumption by Retired (yea/person)"
+      "Consumption by Retired (yen/person)"
     )
   )
 ```
@@ -395,7 +395,7 @@ model4$by_period %>%
     col.names = c(
       "Period", "Productivity (yen/person)",
       "Consumption by Working (yen/person)",
-      "Consumption by Retired (yea/person)"
+      "Consumption by Retired (yen/person)"
     ),
     digits = c(rep(0, 4))
   )
