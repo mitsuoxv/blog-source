@@ -50,7 +50,7 @@ OK, I am ready to present his position and mine in the context of my model below
 
 - The U.K. employed "financial repression" to make interest rates artificially low by regulation and to make them less than inflation after the World War II ([Government debt to GDP ratio in the U.K. in my past post](https://mitsuoxv.rbind.io/2020/10/28/my-first-pull-request-imfr/)). This should be regarded as fiscal collapse.
 
-- As GDP other than defense spending, i.e. the pie to share, is likely to shrink in the next Period 5 (2030-60, according to [my previous post](https://mitsuoxv.rbind.io/2021/05/06/gov-t-debt-is-savings-of-the-workers-for-retirement/)), Generation 5, who is working in the current Period 4 (2000-30) and will be retired in the next Period 5, must save less to avoid negative interest rates in next Period 5. It is equivalent to say that Generation 4, who is retired now, must have less buying power in the current Period 4. So, tax Generation 4 and transfer receipts to Generation 5, now.
+- As GDP other than defense spending, i.e. the pie to share, is likely to shrink in the next Period 5 (2030-60, according to [my previous post](https://mitsuoxv.rbind.io/2021/05/06/gov-t-debt-is-savings-of-the-workers-for-retirement/)), Generation 5, who is working in the current Period 4 (2000-30) and will be retired in the next Period 5, must save less to avoid negative interest rates in next Period 5. It is equivalent to say that Generation 4, who is retired now, must consume less in the current Period 4 and/or Government have less deficits. So, tax Generation 4 and reduce Government deficits, now.
 
 - The Abe administration's decision to postpone the consumption tax increase scheduled in October, 2015 was a big mistake. It made fiscal collapse more likely.
 
