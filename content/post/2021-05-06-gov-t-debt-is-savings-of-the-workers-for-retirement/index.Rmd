@@ -53,7 +53,7 @@ Let us call 1 as "Period" and 2 as "Generation," then I can show Generation over
 
 ## A tiny model
 
-To clarify my understanding, I make a tiny model to replicate above table.
+To clarify my understanding, I make a tiny model to replicate above table. You can see my tiny model at tiny_model function in [the Rmarkdown format of this post](https://github.com/mitsuoxv/blog-source/blob/master/content/post/2021-05-06-gov-t-debt-is-savings-of-the-workers-for-retirement/index.Rmd).
 
 Imagine a one factor (labor), three sector (Generation 1 and 2, Government), and closed economy. There is no capital, no business sector, no international trade, and no foreigner. Ignore financial sector as an intermediary. And imagine all goods and services produced in a Period are perishable, and must be consumed in that Period, like foodstuff and entertainment, care and medicine services. There is no stock, and no investment. And imagine the only role of Government is to issue and pay back bonds, of which duration is one Period, 30 years. There is no defense spending, and no taxes. The only method for Generation to save is to buy bonds.
 
