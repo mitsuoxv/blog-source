@@ -47,6 +47,7 @@ The roles of Government are:
 
 - to collect tax.
 
+You can see my tiny model after expansion at tiny_model2 function in [the Rmarkdown format of this post](https://github.com/mitsuoxv/blog-source/blob/master/content/post/2021-05-13-how-to-finance-war-against-godzilla/index.Rmd).
 
 ```{r}
 
