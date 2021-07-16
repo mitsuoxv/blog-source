@@ -1,0 +1,31 @@
+---
+title: Launcher saved me from a pop shell bug
+author: Mitsuo Shiota
+date: '2021-07-16'
+slug: launcher-saved-me-from-a-pop-shell-bug
+categories:
+  - computer science
+tags:
+  - tips
+---
+
+I have been using Pop!_OS 20.04 since [I built my PC 14 months ago](https://mitsuoxv.rbind.io/2020/05/31/i-built-a-pc-installed-pop-os-and-am-running-rstudio/). It worked fine until it didn't yesterday.
+
+I pushed Super key, and clicked an application icon as usual, but an application didn't appear on the screen. Instead, icons didn't go away from the screen, even if I pushed Super key again.
+
+I thought it was a bug of pop shell, as this happened just after I upgraded pop shell, and was sure System 76 would fix this bug. The problem was how to upgrade to the fixed version under the current condition, in which I couldn't even launch an application.
+
+I checked [Pop!_OS Keyboard Shortcuts](https://support.system76.com/articles/pop-keyboard-shortcuts) on my iPad, and found Super key + `/` would activate a launcher. I tried it, and then typed `terminal` in the launcher and hit Enter. I could launch Terminal, so I felt at rest.
+
+This morning I launched Terminal, typed `sudo apt update` and `sudo apt dist-upgrade`, found pop shell was upgraded, and restarted my PC. Everything is fine now.
+
+What lessons should I learn from this experience?
+
+1. To have multiple devices helps. Without my iPad, I could not have found a solution.
+
+1. To learn multiple ways to do the same thing helps. `Activities` and `Launcher` both can launch an application.
+
+1. Frequent module upgrade may be a bad idea. I guess System 76 is too busy to finish up COSMIC on 21.04 and to backport some parts to older versions. Several days ago tile windows failed to work, and yesterday `Activities` never went away. Both bugs were fixed on the next day. It has been my habit to upgrade modules every day, but I may have to reconsider my habit.
+
+Anyway, I always appreciate System 76 for providing a very useful OS.
+
