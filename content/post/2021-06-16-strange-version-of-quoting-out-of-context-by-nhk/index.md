@@ -9,7 +9,7 @@ tags:
   - NHK
 ---
 
-I was watching News Center 9, an NHK nightly news program, on June 16, 2021. It told President Biden of the U.S. was about to meet President Putin of Russia, and it let us know there is some criticism in the U.S. that the meeting itself can be a reward to Russia.
+I was watching News Watch 9, an NHK nightly news program, on June 16, 2021. It told President Biden of the U.S. was about to meet President Putin of Russia, and it let us know there is some criticism in the U.S. that the meeting itself can be a reward to Russia.
 
 And then it quoted from [Fox News opinion by Mike Pompeo, the former Secretary of State in the Trump Administration](https://www.foxnews.com/opinion/biden-putin-meeting-cyber-energy-russia-mike-pompeo), "Biden has already signaled to Putin that he is timid and unprepared to confront the Russian challenge." NHK didn't mention his opinion was published on June 15, 2021.
 
