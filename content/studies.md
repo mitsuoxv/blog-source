@@ -16,6 +16,7 @@ title: Studies
 
 ## Research
 
+* [Compare US CPI and Euro HICP by excluding gasoline](https://github.com/mitsuoxv/cpi-inflation) (monthly)
 * [Japan suicide cases reported by National Police Agency](https://github.com/mitsuoxv/jp-suicide) (monthly)
 * [WHO, Covid-19 situation report](https://github.com/mitsuoxv/covid/blob/master/README.md) (daily)
 * [USA, Covid-19 situation by state](https://github.com/mitsuoxv/covid/blob/master/USA.md) (daily)
