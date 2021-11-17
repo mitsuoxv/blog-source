@@ -16,6 +16,7 @@ title: Studies
 
 ## Research
 
+* [Retail and wholesale gasoline prices in Japan](https://github.com/mitsuoxv/jp-gasoline) (monthly)
 * [Compare US CPI and Euro HICP by excluding gasoline](https://github.com/mitsuoxv/cpi-inflation) (monthly)
 * [Japan suicide cases reported by National Police Agency](https://github.com/mitsuoxv/jp-suicide) (monthly)
 * [WHO, Covid-19 situation report](https://github.com/mitsuoxv/covid/blob/master/README.md) (daily)
