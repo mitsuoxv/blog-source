@@ -55,3 +55,5 @@ Prof Sakuragawa published [a book titled "Japan can revive by internationalizing
 
 He is trying to create custom-made economics for Japan economy. I admire him, as I am just a believer of economics imported from America. He may sometimes fall in some pit holes in the way. I hope he is courageous enough to admit his mistakes, and will go on.
 
+P.S.
+He won [the Nikkei / Economic Book Culture Award (Japanese)](https://www.jcer.or.jp/about-jcer/bunka) for his new book, ["Economic Theory of bubbles" (Japanese)](https://www.jcer.or.jp/jcer_download_log.php?f=eyJwb3N0X2lkIjozNzQ4MiwiZmlsZV9wb3N0X2lkIjoiODQyMzEifQ==&post_id=37482&file_post_id=84231) on November 3, 2021.
