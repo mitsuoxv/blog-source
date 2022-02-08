@@ -1,0 +1,15 @@
+---
+title: 'Update: city competition to consume in 2021'
+author: Mitsuo Shiota
+date: '2022-02-08'
+slug: update-city-competition-to-consume-in-2021
+categories:
+  - economics
+tags:
+  - R
+  - Shiny
+---
+
+I have updated ["City competition to consume in Japan"](https://github.com/mitsuoxv/jp-household/blob/master/README.md). This is the third annual update. The latest year is now 2021.
+
+Shiny app is [here](https://mitsuoxv.shinyapps.io/jp-household/).
