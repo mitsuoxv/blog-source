@@ -103,6 +103,8 @@ He draws a scatter plot of government debts per GDP and economic growth rates fr
 
 Although he cautions that the relationship is correlation, not causation, he says that high government debts may reduce economic growth.
 
+Although he labels only Japan, Greece, Italy, France, Germany, United Kingdom and United States in the chart in his article, I label all countries here.
+
 ```{r chart1, echo=FALSE,warning=FALSE}
 gdp_growth %>% 
   left_join(ggd_gdp, by = "location") %>% 
