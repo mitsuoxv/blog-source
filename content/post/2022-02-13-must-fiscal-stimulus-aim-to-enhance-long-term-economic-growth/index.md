@@ -13,6 +13,6 @@ tags:
 
 He states that considering budget constraints, fiscal stimulus can be justified only if it also enhance long term economic growth path. As this article is the second in the series on government expenditures to enhance productivity, he writes those expenditures may be investment in R&D and education at the last paragraph very briefly. So I guess he basically denies economic stabilization policy by public works, tax cuts, and money filled bottles buried in disused coalmines proposed by Keynes.
 
-He also states that orthodox economists believe in budget constraints, though MMTers don't. I strongly disagrees. When we are in the liquidity trap, and real government bond yield rates are negative, the market is requesting the government to spend more. Orthodox economists including me ignore budget constraints in such a situation.
+He also states that orthodox economists believe in budget constraints, though MMTers don't. I strongly disagree. When we are in the liquidity trap, and real government bond yield rates are negative, the market is requesting the government to spend more. Orthodox economists including me ignore budget constraints in such a situation.
 
 The purpose of economic stabilization policy by fiscal stimulus is full employment. Period. If some spending in fiscal stimulus also enhances productivity in the long term, we are lucky, as most economists, including Prof Hori and me, don't know which spending will lead to enhanced productivity. 
