@@ -1,0 +1,24 @@
+---
+title: What is your specialty, Prof Kobayashi?
+author: Mitsuo Shiota
+date: '2022-02-15'
+slug: what-is-your-specialty-prof-kobayashi
+categories:
+  - economics
+tags:
+  - Nikkei
+---
+
+Dear [Prof Keiichiro Kobayashi of Keio University](https://k-ris.keio.ac.jp/html/100000402_en.html),
+
+I have read an article titled ["Government and people should be equal partners in policy making" (Japanese)](https://www.nikkei.com/article/DGKKZO80106700U2A210C2KE8000/) in "Economics Trend" in Nikkei news paper on February 15, 2022.
+
+You draw a recursive diagram, which I think shows Keynes's "beauty contest", and surprise me by calling it "economics of rational expectations theory." I think Keynes's "beauty contest" may destroy "efficient market hypothesis" and can't be a part of "rational expectation theory." You also draw a recursive diagram which I think shows "observer effect", and surprise me by calling it "quantum mechanics." Next you state the progress of rational expectation theory over Keynesian economics can be compared to the leap of quantum mechanics over classical physics. This statement doesn't make any sense.
+
+In the middle of your article, you write government and people are equally intellectual. I know this is an assumption of "rational expectations theory." You also attack paternalism by government. I know you belong to Chicago school.
+
+Next you state that such government officials fail to achieve policy goals, as they underestimate intellectual levels of people, and don't seriously consider how people will react to the enacted policy. Wait. If you assert only Chicago school can say "Policy makers fail, when they don't consider how people will react," you are wrong. It is a common sense that policy makers should consider reaction by people, regardless of whether it is rational or not.
+
+Next you list the government handling of banks which hold vast amount of bad loans in 1990s as an example of failures. I agree.
+
+Finally, you list restraints in Covid-19 testing as another example of policy failures. Maybe, as true positives can receive effective treatment earlier. Maybe not, due to social costs from false positives and false negatives, and capacity constraints of hospitals. Either way, you had better admit that you don't have any specialty in this field.
