@@ -26,7 +26,7 @@ library(ggrepel)
 
 ## Prof Morikawa's article in Nikkei
 
-[Prof Masayuki Morikawa at Hitotsubashi University](https://www.ier.hit-u.ac.jp/English/faculty/morikawa.html) published an anticle titled ["We should emphasize soft infrastructure in government expenditures to enhance productivity" (Japanese)](https://www.nikkei.com/article/DGXZQOCD275N90X20C22A1000000/) in "Lecture on Economics" in Nikkei news paper on February 10, 2022. In his article he shows the chart which I will soon replicate, and suggests that higher debt may reduce economic growth rates.
+[Prof Masayuki Morikawa at Hitotsubashi University](https://www.ier.hit-u.ac.jp/English/faculty/morikawa.html) published an article titled ["We should emphasize soft infrastructure in government expenditures to enhance productivity" (Japanese)](https://www.nikkei.com/article/DGXZQOCD275N90X20C22A1000000/) in "Lecture on Economics" in Nikkei news paper on February 10, 2022. In his article he shows the chart which I will soon replicate, and suggests that higher debt may reduce economic growth rates.
 
 ## Get data from OECD Stats
 

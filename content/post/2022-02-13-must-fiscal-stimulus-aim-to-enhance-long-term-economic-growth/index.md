@@ -9,7 +9,7 @@ tags:
   - Nikkei
 ---
 
-[Prof Masahiro Hori at Hitotsubashi University](https://hri.ad.hit-u.ac.jp/html/445_profile_en.html) published an anticle titled ["The effects of public spending on economy has been decreasing" (Japanese)](https://www.nikkei.com/article/DGXZQOCD311950R30C22A1000000/) in "Lecture on Economics" in Nikkei news paper on February 11, 2022.
+[Prof Masahiro Hori at Hitotsubashi University](https://hri.ad.hit-u.ac.jp/html/445_profile_en.html) published an article titled ["The effects of public spending on economy has been decreasing" (Japanese)](https://www.nikkei.com/article/DGXZQOCD311950R30C22A1000000/) in "Lecture on Economics" in Nikkei news paper on February 11, 2022.
 
 He states that considering budget constraints, fiscal stimulus can be justified only if it also enhance long term economic growth path. As this article is the second in the series on government expenditures to enhance productivity, he writes those expenditures may be investment in R&D and education at the last paragraph very briefly. So I guess he basically denies economic stabilization policy by public works, tax cuts, and money filled bottles buried in disused coalmines proposed by Keynes.
 
