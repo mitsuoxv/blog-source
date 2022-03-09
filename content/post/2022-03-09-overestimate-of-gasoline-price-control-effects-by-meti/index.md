@@ -1,0 +1,16 @@
+---
+title: Overestimate of gasoline price control effects by METI
+author: Mitsuo Shiota
+date: '2022-03-09'
+slug: overestimate-of-gasoline-price-control-effects-by-meti
+categories:
+  - economics
+tags:
+  - Nikkei
+---
+
+The Japanese government will increase its subsidy to gasoline wholesalers from 5 to 17.7 yen per liter on March 10, reports [the Nikkei article of March 9, 2022](https://www.nikkei.com/article/DGXZQOUA089YU0Y2A300C2000000/). The article also reports that METI estimated the gasoline retail price was reduced by 6.1 yen, thanks to its 5 yen per liter subsidy on March 7.
+
+I have searched, and found that [METI indeed published such estimates](https://nenryo-gekihenkanwa.jp/result_rev5.pdf). METI transforms Dubai crude oil prices from dollar per barrel to yen per liter based on yen-dollar exchange rates, and estimates the subsidy effect by comparing the weekly average of Dubai crude oil price in yen from February 22 to 28 with the gasoline retail price in yen on March 7. So, METI assumes Dubai spot crude oil will be sent to Japan, converted into gasoline, and sold to consumers in 10 days. I think it is too short. Looking at [spot prices and customs import prices of crude oil in this site](https://pps-net.org/statistics/crude-oil2), I guess it takes approximately one month for Dubai spot crude oil to be sent to Japan. If I am right, the costs for gasoline wholesalers didn't increase on March 7 by as much as METI estimated, and 6.1 yen per liter price reduction was overestimated.
+
+I will revisit this issue, when February 2022 customs data are available.
