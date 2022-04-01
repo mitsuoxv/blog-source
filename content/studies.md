@@ -26,12 +26,12 @@ title: Studies
 * [Who replaces China in US imports?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Trade-diversion.md) (quarterly)
 * [GDP movement in Europe by euro or not](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md) (quarterly)
 * [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md) (annual)
-* [Tf-idf analysis of the economic report of the president](https://github.com/mitsuoxv/erp/blob/master/README.md) (annual)
-* [Sentiment analysis of the economic report of the president](https://github.com/mitsuoxv/erp/blob/master/Sentiment.md) (annual)
-* [Herfindahl-Hirschman Index of world export by product](https://github.com/mitsuoxv/wto-export/blob/master/README.md) (by 5 years)
 
 ## Past research
 
+* [Tf-idf analysis of the economic report of the president](https://github.com/mitsuoxv/erp/blob/master/README.md) (annual)
+* [Sentiment analysis of the economic report of the president](https://github.com/mitsuoxv/erp/blob/master/Sentiment.md) (annual)
+* [Herfindahl-Hirschman Index of world export by product](https://github.com/mitsuoxv/wto-export/blob/master/README.md) (by 5 years)
 * [Compare US CPI and Euro HICP by excluding gasoline](https://github.com/mitsuoxv/cpi-inflation)
 * [Who pays tariffs?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Who-pays.md)
 * [China hits back as much as the size of its claim](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/China-hits-back3.md)
