@@ -1,0 +1,37 @@
+---
+title: Quick to raise, but slow to cut gas prices?
+author: Mitsuo Shiota
+date: '2022-04-07'
+slug: quick-to-raise-but-slow-to-cut-gas-prices
+categories:
+  - economics
+tags:
+  - Nikkei
+  - R
+---
+
+
+
+<div id="nikkei-article-on-gasoline-prices" class="section level2">
+<h2>Nikkei article on gasoline prices</h2>
+<p><a href="https://www.nikkei.com/article/DGXZQOUA022J80S2A400C2000000/">Nikkei reported on April 7, 2022</a> that the subsidy to wholesalers, which began in late January, led to less rapid rise of gasoline prices in Japan than the US, the UK, Germany and France, and that this price-control policy may distort the economy.</p>
+<p>Although I agree to the opposition to price-control, I think this Nikkei article has two problems.</p>
+</div>
+<div id="st-problem-prices-include-taxes" class="section level2">
+<h2>1st problem: Prices include taxes</h2>
+<p>Below left, I replicate the chart in the Nikkei article, though I add Brent crude oil prices, and omit Germany and France, as I can’t get those data.</p>
+<p>The problem of this chart is that prices include taxes. In the most recent week, taxes occupy 16 percent in the US, 49 percent in the UK, and 40 percent in Japan. The more shares taxes occupy, the less prices can change.</p>
+<p>Below right, I remove taxes. The US approaces to Brent, and the UK approaches to US. However, Japan still lags behind. Is this thanks to METI’s subsidy? No, I would like to claim Japan usually lags behind.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot_2022-1.png" width="672" /></p>
+<p>To support my claim, I must use weekly data of crude oil prices. As I can’t get Dubai prices, I use Brent prices. Basically crude oil prices are global, so it should not be a problem when I use Brent instead of Dubai.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot_crude_oil-1.png" width="672" /></p>
+</div>
+<div id="nd-problem-blindly-believing-metis-assertion" class="section level2">
+<h2>2nd problem: Blindly believing METI’s assertion</h2>
+<p>Nikkei states that price rise in Japan is suppressed, thanks to subsidies by METI. Really? I doubt it.</p>
+<p>When I compared wholesale gasoline prices with imported crude oil prices in February 2022, I could not find the evidence that the subsidy lowered wholesale prices. Refer to <a href="https://github.com/mitsuoxv/jp-gasoline">my GitHub page</a>.</p>
+<p>I even suspect the subsidy raised prices, as METI shows suggested retail prices, which is responsive to Dubai prices and incorporate historically high margin between Dubai prices and retail prices, every week. As METI’s counterfactual retail prices without sibsidy reflect Dubai prices of 2 weeks ago, they are as volatile as Dubai prices.</p>
+<p>As you see below, retail prices in Japan were less responsive to changes of crude oil prices than the US and the UK. Look at rise, fall and rise again from 2007 to 2009, you see Japan lags Brent both in rise and fall. You can see the same pattern in 2020. In rise of 2021, Japan still lags, though it catches up to Brent in the end.</p>
+<p>I can say wholesalers in Japan were slow to raise, and slow to cut prices in the past. I guess it’s because Japan imports crude oil mainly from Middle East, one month carrying distance away, while the US and the UK produce crude oil domestically. However, wholesalers are now quick to raise, thanks to METI’s subsidy, but slow to cut prices as usual, unless monitored by METI.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot_2004_2021-1.png" width="672" /></p>
+</div>
