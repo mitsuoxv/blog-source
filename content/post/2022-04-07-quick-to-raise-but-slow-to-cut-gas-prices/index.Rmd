@@ -199,3 +199,6 @@ p_charts + plot_layout(ncol = 3, guides = "collect")
 
 ```
 
+P.S.
+
+I learned the title of this post, "quick to raise, but slow to cut gas prices", is called "rockets and feathers" in the US from [Paul Krugman's blog post](https://www.nytimes.com/2022/07/08/opinion/inflation-oil-biden-monopoly.html). 
