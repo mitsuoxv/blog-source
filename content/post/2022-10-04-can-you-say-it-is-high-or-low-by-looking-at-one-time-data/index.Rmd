@@ -158,7 +158,7 @@ dat[27] <- read_dat3("https://www.e-stat.go.jp/stat-search/file-download?statInf
 
 ## Can you say 80% is high just by looking at FY 2020 data?
 
-Mr. Shunsuke Kobayashi, Chief Economist of Mizuho Securities, said that high cost of goods sold per sales ratio, 80 percent according to METI business activity survey, is the evidence that businesses could not transfer an increase in commodity and materials costs to sales price, in the evening NHK program "Close-up Gendai" on October 3.
+Mr. Shunsuke Kobayashi, Chief Economist of Mizuho Securities, said that high cost of goods sold per sales ratio, 80 percent according to METI business activity survey, is the evidence that businesses could not transfer an increase in commodity and materials costs to sales price, in the evening NHK program ["Close-up Gendai" on October 3](https://www.nhk.or.jp/gendai/articles/4708/).
 
 I was surprised that he says 80% is high. So I get METI business activity survey data from [e-stat](https://www.e-stat.go.jp/stat-search?page=1&toukei=00550100), and plot from fiscal year 1994 to 2020 as below. FY 2020 is the most recent one. As there is no upward trend, 80% in FY 2020 is not high compared to the past.
 
