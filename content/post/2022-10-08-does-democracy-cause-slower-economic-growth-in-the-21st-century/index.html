@@ -1,0 +1,46 @@
+---
+title: Does democracy cause slower economic growth in the 21st century?
+author: Mitsuo Shiota
+date: '2022-10-08'
+slug: does-democracy-cause-slower-economic-growth-in-the-21st-century
+categories:
+  - economics
+tags:
+  - R
+---
+
+
+
+<div id="curse-of-democracy" class="section level2">
+<h2>Curse of democracy?</h2>
+<p>I briefly read the article, <a href="https://arxiv.org/abs/2104.07617">“Curse of Democracy: Evidence from the 21st Century”, by Yusuke Narita and Ayumi Sudo, September 28, 2021</a>, which claims direct effect from democracy to economic growth was positive in the 1980s and 1990s, but was negative in the 2000s and 2010s. To claim this relationship is not just association but causal, the authors use instrumental variables, which are (1) mortality of European colonial settlers, (2) population density in the 1500s, (3) availability of crops and minerals, (4) fraction of the population speaking English and a Western European language and (5) legal origin.</p>
+<p>As I happen to be reading <a href="https://xcelab.net/rm/statistical-rethinking/">“Statistical Rethinking, 2nd Edition” by Richard McElreath, CRC Press, 2020</a>, I would like to show instrumental variable strategy in the DAG (Direct Acyclic Graph) as below.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/dag1-1.png" width="672" />
+V: Instrumental variable</p>
+<p>D: Democracy index</p>
+<p>G: GDP growth rate</p>
+<p>U: Unobserved confound on D and G</p>
+<p>This strategy aims to estimate the direct effect from D to G. It requires the only path from V to G is V -&gt; D -&gt; G.</p>
+<p>The authors do 2 stage least square regression on cross-country data, and find their claim.</p>
+</div>
+<div id="gdp-per-capita-as-a-confound" class="section level2">
+<h2>GDP per capita as a confound</h2>
+<p>However, if I add Per capita GDP as P to the DAG, it looks like below.
+<img src="{{< blogdown/postref >}}index_files/figure-html/dag2-1.png" width="672" />
+Here, the requirement is broken, as there are paths like V -&gt; P -&gt; G.</p>
+<p>V -&gt; P: The instrumental variables the authors use suggest higher per capita GDP.</p>
+<p>P -&gt; D: Higher per capita GDP leads to democracy, or democracy is luxury.</p>
+<p>P -&gt; G: Already high per capita GDP leads to lower productivity growth due to fewer low hanging fruits of growth, and leads to lower population growth due to higher opportunity cost of raising children.</p>
+<p>The authors may have expected this criticism, so they condition on P, and find little changes, and tell their claim is robust.</p>
+<p>Indeed, conditioning on P shuts the paths from V to G through P, so V cannot influence G except through D.</p>
+</div>
+<div id="resource-richness-as-a-confound" class="section level2">
+<h2>Resource richness as a confound</h2>
+<p>However, if I replace U with resource-richness as R to the DAG, it looks like below.
+<img src="{{< blogdown/postref >}}index_files/figure-html/dag3-1.png" width="672" />
+R -&gt; P: Resource-rich countries tend to have higher per capita GDP.</p>
+<p>R -&gt; D: Resource-rich countries tend to have concentration of power, as lower competitiveness of manufacturing sector due to higher exchange rate fails to create middle income class, and/or small number of people who hold resources try to monopolize politics.</p>
+<p>R -&gt; G: Resource-rich countries can grow rapidly by depleting resources, when resource prices are high.</p>
+<p>Here, conditioning P makes P a collider, and opens the path like V -&gt; P &lt;- R -&gt; G.</p>
+<p>So I suspect the estimates the authors get by conditioning on P (Per capita GDP) are not the direct effect from D to G, but reflect the resource price movements, which were lower in 1980s and 1990s, and higher in 2000s and 2010s.</p>
+</div>
