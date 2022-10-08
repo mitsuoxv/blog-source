@@ -73,7 +73,7 @@ The authors may have expected this criticism, so they condition on P, and find l
 
 Indeed, conditioning on P shuts the paths from V to G through P, so V cannot influence G except through D.
 
-## Resource richness as a confound
+## Resource (e.g. oil and gas) richness as a confound
 
 However, if I replace U with resource-richness as R to the DAG, it looks like below.
 ```{r dag3}
