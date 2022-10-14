@@ -1,0 +1,22 @@
+---
+title: Will higher interest rates increase high-return investments?
+author: Mitsuo Shiota
+date: '2022-10-14'
+slug: will-higher-interest-rates-increase-high-return-investments
+categories:
+  - economics
+tags:
+  - Nikkei
+---
+
+[Prof Keiichiro Kobayashi of Keio University](https://k-ris.keio.ac.jp/html/100000402_en.html) proposed a model, where higher interest rates prompt businesses to invest in high-risk high-return projects instead of low-risk low-return ones, in his ["Lecture on Economics" in Nikkei news paper on October 12, 2022 (Japanese)](https://www.nikkei.com/article/DGXZQOCD2931R0Z20C22A9000000/).
+
+His model is built in the following manner.
+
+1. Businesses must borrow money, invest in either always-1%-return project or half-negative-10%-half-positive-20%-return project, and pay back the principal and the required interest rate. If businesses fail to pay back full amount, they will be punished heavily.
+
+2. Businesses will choose always-1%-return project when the required interest rate is zero, and that they will choose half-negative-10%-half-positive-20%-return project when the rate is 3%. So higher interest rates prompt businesses to invest in high-risk high-return projects, instead of low-risk low-return ones.
+
+3. Low interest rates cause low rates of return of the whole economy, while high interest rates cause high rates of return of the whole economy.
+
+I think that the rates of return of the whole economy determine the interest rates , in the reversed causal direction of 3, in the real world. There must be a hidden and unrealistic assumption in his model. It turns out, at 2, he implicitly assumes that businesses are not allowed to make any contracts to share returns among them. If they can share their returns, they will choose half-negative-10%-half-positive-20%-return project even when the required interest rate is zero. Financial institutions usually intermediate flow of funds to bring about the same effect. I would like to say his model has no implications in the real world.
