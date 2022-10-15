@@ -1,0 +1,26 @@
+---
+title: Bond vigilantes or runners for cash in panic?
+author: Mitsuo Shiota
+date: '2022-10-15'
+slug: bond-vigilantes-or-runners-for-cash-in-panic
+categories:
+  - economics
+tags:
+  - Nikkei
+---
+
+Nikkei posted an article titled ["UK turmoil can be a lesson for Japan. Fiscal System Council unusually discussed policies by a foreign government." on October 14, 2022](https://www.nikkei.com/article/DGXZQOUA1335Q0T11C22A0000000/). Indeed, a working group in Fiscal System Council, which reports to Minister of Finance, looked at [the material (Japanese)](https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_fiscal_system/proceedings/material/zaiseia20221013/01.pdf) in the meeting on October 13. It showed UK 10-year government bond yields and UK sterling pound vs US dollar exchange rates, before and after Prime Minister Truss announced her growth plan on September 23.
+
+Nikkei writes, "Markets rang an alarming bell, as the proposed tax cuts, which are untargeted and massive, can damage fiscal position and economic growth." Nikkei thinks that sellers of bonds and sterling pounds are bond vigilantes, who punish governments that propose expansionary and inflationary fiscal policies.
+
+I doubt it. If they are bond vigilantes, they should have sold more sterling pounds, when the Bank of England intervened the bond market to buy bonds on September 28. They should have seen this intervention as a sign of fiscal dominance, in which the BoE would lose independence from the government, monetize fiscal deficits, and allow inflation to accelerate. But, they didn't.
+
+I suspect they are runners for cash in panic.
+
+First, we have to learn [what is LDI](https://www.reuters.com/markets/europe/what-is-ldi-liability-driven-investment-strategy-explained-2022-10-04/) (Liability-Driven Investment) strategy by defined benefit pension funds. As defined benefit pension funds have long-term fixed payment liability, they are vulnerable for interest rate changes. So they make an LDI derivative contract with financial institutions like Black Rock, which is basically an interest rate swap to have additional fixed income assets and variable payment liabilities in effect. With this contract, if interest rates go down, the present value of original long-term liabilities increases and that of new variable payment liabilities is unchanged, while, on the asset side, the present value of original and new fixed income assets increase. As both sides of asset and liability equally increase in the present value, balance is unchanged in total. If interest rates go up, both sides shrink, and balance is unchanged as well. LDI is a strategy to avoid exposure to interest rate change risks.
+
+Sounds good. But, a hitch is that an amount of cash, which pension funds must hand to derivative contractors as a collateral, changes in real time as interest rates move, as new asset and new liability created by a contract does not balance in the present value. On September 23, interest rates began to rise, as Prime Minister Truss's plan was bigger than the market had expected. Derivative contractors began to require more cash to pension funds. As pension funds didn't hold enough cash at hand, they began to sell some assets, mainly government bonds, to get cash. Prices of government bonds decreased, and interest rates rose. This positive feedback continued and people in the market got panic, until the BoE intervened the bond market. People in panic tend to buy US dollars, just as they did when Lehman Brothers collapsed in September 2008. They again bought US dollars, and sold UK sterling pounds.
+
+As pension funds are solvent, the BoE expects they have enough cash at hand by October 14. We shall see soon.
+
+What lesson should the Japanese government learn? If I am right, forget about bond vigilantes. Instead, watch out hidden vulnerabilities in the financial markets, which potentially make people run for cash.
