@@ -27,4 +27,5 @@ If the cause is an earthquake crisis, I would have agreed with them. However, wh
 
 How can zero yield of government bond crowd out capital investment in their model? It turns out there is a hidden and unrealistic assumption. They assume people can't take leverage to finance capital investment. If we assume people can take leverage, their logic 3 is wrong. When people can borrow government bonds from bond holders, sell them, and buy capital goods, they can invest in projects whose yield is higher than zero yield of government bonds. In other words, required rate of capital does not increase.
 
-If the government is expected to nationalize some of capital assets, so that return for investors will be negative when a sure-to-come crisis happens, investors can't invest in any projects. If the authors mean a revolution of this kind when they say a government debt crisis in their model, I have nothing to say.
+If the government is expected to nationalize some of capital assets, so that return for investors will be negative when a sure-to-come crisis happens, investors can't invest in any projects. If the authors mean a revolution of this kind when they say a government debt crisis in their model, it is hard to imagine government bond yield stays at zero, while people know regime change is coming.
+
