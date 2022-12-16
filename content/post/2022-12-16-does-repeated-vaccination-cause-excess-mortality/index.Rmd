@@ -1,0 +1,187 @@
+---
+title: Does repeated vaccination cause excess mortality?
+author: Mitsuo Shiota
+date: '2022-12-16'
+slug: does-repeated-vaccination-cause-excess-mortality
+categories:
+  - Covid-19
+tags:
+  - R
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(ggrepel)
+library(rethinking)
+library(dagitty)
+
+library(scales)
+theme_set(theme_light())
+```
+
+## Replication
+
+Seiji Kojima, Professor Emeritus of Nagoya University, suggests that the repeated vaccine shots, like the third or the fourth shots, may cause more excess mortality in the article of Shukan Shincho (December 22, 2022). He shows the chart like below, and asserts there is a correlation between additional shots in 2022 and excess deaths in the summer of 2022. The chart below is not the same with the chart in the article, but looks similar enough, I think. 
+
+```{r get_data, message=FALSE}
+excess_mortality_economist_estimates <- read_csv("https://github.com/owid/covid-19-data/raw/master/public/data/excess_mortality/excess_mortality_economist_estimates.csv")
+
+vaccinations <- read_csv("https://github.com/owid/covid-19-data/raw/master/public/data/vaccinations/vaccinations.csv")
+```
+
+```{r excess_deaths}
+excess_deaths_summer_2022 <- excess_mortality_economist_estimates %>% 
+  filter(date >= "2022-08-01", date <= "2022-10-24") %>% 
+  group_by(country) %>% 
+  summarize(excess_deaths = mean(estimated_daily_excess_deaths_per_100k) * 10 * 85) %>% 
+  ungroup()
+
+excess_deaths_upto_spring_2022 <- excess_mortality_economist_estimates %>% 
+  filter(date <= "2022-07-31") %>% 
+  group_by(country) %>% 
+  summarize(excess_deaths = mean(estimated_daily_excess_deaths_per_100k) * 10 * (365 * 2 + 30 * 7)) %>% 
+  ungroup()
+
+```
+
+```{r shots, warning=FALSE}
+shots_2022 <- vaccinations %>% 
+  filter(date >= "2022-01-01", date <= "2022-11-01") %>% 
+  group_by(location) %>% 
+  summarize(shots = max(total_vaccinations_per_hundred, na.rm = TRUE) - min(total_vaccinations_per_hundred, na.rm = TRUE)) %>% 
+  ungroup()
+
+shots_upto_2021 <- vaccinations %>% 
+  filter(date <= "2021-12-31") %>% 
+  group_by(location) %>% 
+  summarize(shots = max(total_vaccinations_per_hundred, na.rm = TRUE) - min(total_vaccinations_per_hundred, na.rm = TRUE)) %>% 
+  ungroup()
+```
+
+```{r replica, message=FALSE}
+picked <- c("Japan", "Taiwan", "Vietnam", "Germany", "Belgium",
+            "South Korea", "United Kingdom", "Spain", "Singapore",
+            "Albania", "Croatia", "Bosnia and Herzegovina",
+            "Pakistan","Bulgaria", "Indonesia", "Jordan")
+
+excess_deaths_shots <- excess_deaths_summer_2022 %>% 
+  filter(country != "World") %>% 
+  inner_join(shots_2022, by = c( "country" = "location")) %>% 
+  mutate(label = if_else(country %in% picked, country, NULL))
+
+excess_deaths_shots %>% 
+  filter(!is.na(label)) %>% # cherry-picked 16 countries
+  ggplot(aes(shots, excess_deaths)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  geom_text_repel(aes(label = label)) +
+  labs(x = "Vaccine shots per 100 persons, from 2022-01-01 to 2022-11-01",
+       y = "Excess deaths per 1 million persons,\nfrom 2022-08-01 to 2022-10-24",
+       caption = "Note: Excess deaths are estimated by the Economist\nSource: Our World In Data")
+```
+
+## Cherry picking?
+
+Although the chart above plots only 16 areas, there are 214 areas in the data. So, I plot all 214 areas in the chart below. Now, there is no apparent correlation between shots in 2022 and excess mortality in the summer of 2022.
+
+```{r cherry_picking, message=FALSE, warning=FALSE}
+excess_deaths_shots %>% # 214 countries
+  mutate(cherrypicked = if_else(!is.na(label), "Yes", "No")) %>% 
+  ggplot(aes(shots, excess_deaths)) +
+  geom_point(aes(color = cherrypicked)) +
+  geom_smooth(method = "lm") +
+  geom_text_repel(aes(label = country)) +
+  scale_color_manual(values = c("gray60", "red")) +
+  labs(x = "Vaccine shots per 100 persons, from 2022-01-01 to 2022-11-01",
+       y = "Excess deaths per 1 million persons,\nfrom 2022-08-01 to 2022-10-24",
+       caption = "Note: Excess deaths are estimated by the Economist\nSource: Our World In Data",
+       color = "Cherry-picked") +
+  theme(legend.position = "top")
+```
+
+## Confound?
+
+He may have thought Bangladesh, Cuba, Nepal, etc. can't be the repeated shots, and excluded them. However, even if there is some legitimate reasons to pick up his 16 areas, there is not necessarily a causal path from A (additional vaccine shots) to E (excess mortality in the summer of 2022). Below, I show S (vaccine shots up to the end of 2021) can be a confound.
+
+E: Excess mortality in the summer of 2022 
+
+C: Cumulative extra mortality up to the spring of 2022
+
+S: Vaccine shots up to the end of 2021
+
+A: Additional vaccine shots in 2022
+
+```{r dag_con}
+dag_con <- dagitty("dag{
+                  A <- S -> C -> E
+                  }")
+coordinates(dag_con) <- list(x = c(A = 0, S = 0, C = 1, E = 1),
+                               y = c(A = 1, S = 0, C = 0, E = 1))
+drawdag(dag_con)
+```
+
+S -> C: Eager shooters could reduce excess mortality up to the spring of 2022.
+
+```{r s_c, message=FALSE}
+excess_deaths_shots_2021 <- excess_deaths_upto_spring_2022 %>% 
+  filter(country != "World") %>% 
+  inner_join(shots_upto_2021, by = c( "country" = "location")) %>% 
+  mutate(label = if_else(country %in% picked, country, NULL))
+
+excess_deaths_shots_2021 %>% 
+  filter(!is.na(label)) %>% # cherry-picked 16 countries
+  ggplot(aes(shots, excess_deaths)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  geom_text_repel(aes(label = label)) +
+  scale_y_continuous(labels = comma) +
+  labs(x = "Vaccine shots per 100 persons, up to 2021-12-31",
+       y = "Excess deaths per 1 million persons,\nfrom 2020-01-01 to 2022-07-31",
+       caption = "Note: Excess deaths are estimated by the Economist\nSource: Our World In Data")
+```
+
+C -> E: So, the vulnerable people, who could survive up to the spring of 2022, remain vulnerable in the summer of 2022.
+
+```{r c_e, message=FALSE}
+excess_deaths_shots %>% 
+  filter(!is.na(label)) %>% 
+  bind_cols(
+    excess_deaths_shots_2021 %>% 
+      filter(!is.na(label)) %>% 
+      select(excess_deaths_upto_spring_2022 = excess_deaths,
+             shots_upto_2021 = shots)
+  ) %>% 
+  select(-label) %>% 
+  ggplot(aes(excess_deaths_upto_spring_2022, excess_deaths)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  geom_text_repel(aes(label = country)) +
+  scale_x_continuous(labels = comma) +
+  labs(x = "From 2020-01-01 to 2022-07-31",
+       y = "From 2022-08-01 to 2022-10-24",
+       title = "Excess deaths per 1 million persons",
+       caption = "Note: Excess deaths are estimated by the Economist\nSource: Our World In Data")
+```
+
+S -> A: Eager shooters tend to continue to shoot.
+
+```{r s_a, message=FALSE}
+shots_2022 %>% 
+  filter(location %in% picked) %>% 
+  bind_cols(
+    shots_upto_2021 %>% 
+  filter(location %in% picked) %>% 
+    select(-location, shots_upto_2021 = shots)
+  ) %>% 
+  ggplot(aes(shots_upto_2021, shots)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  geom_text_repel(aes(label = location)) +
+  labs(x = "Up to 2021-12-31",
+       y = "From 2022-01-01 to 2022-11-01",
+       title = "Vaccine shots per 100 persons",
+       caption = "Source: Our World In Data")
+```
+

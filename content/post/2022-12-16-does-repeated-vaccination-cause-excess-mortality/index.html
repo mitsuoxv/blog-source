@@ -1,0 +1,38 @@
+---
+title: Does repeated vaccination cause excess mortality?
+author: Mitsuo Shiota
+date: '2022-12-16'
+slug: does-repeated-vaccination-cause-excess-mortality
+categories:
+  - Covid-19
+tags:
+  - R
+---
+
+
+
+<div id="replication" class="section level2">
+<h2>Replication</h2>
+<p>Seiji Kojima, Professor Emeritus of Nagoya University, suggests that the repeated vaccine shots, like the third or the fourth shots, may cause more excess mortality in the article of Shukan Shincho (December 22, 2022). He shows the chart like below, and asserts there is a correlation between additional shots in 2022 and excess deaths in the summer of 2022. The chart below is not the same with the chart in the article, but looks similar enough, I think.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/replica-1.png" width="672" /></p>
+</div>
+<div id="cherry-picking" class="section level2">
+<h2>Cherry picking?</h2>
+<p>Although the chart above plots only 16 areas, there are 214 areas in the data. So, I plot all 214 areas in the chart below. Now, there is no apparent correlation between shots in 2022 and excess mortality in the summer of 2022.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/cherry_picking-1.png" width="672" /></p>
+</div>
+<div id="confound" class="section level2">
+<h2>Confound?</h2>
+<p>He may have thought Bangladesh, Cuba, Nepal, etc. can’t be the repeated shots, and excluded them. However, even if there is some legitimate reasons to pick up his 16 areas, there is not necessarily a causal path from A (additional vaccine shots) to E (excess mortality in the summer of 2022). Below, I show S (vaccine shots up to the end of 2021) can be a confound.</p>
+<p>E: Excess mortality in the summer of 2022</p>
+<p>C: Cumulative extra mortality up to the spring of 2022</p>
+<p>S: Vaccine shots up to the end of 2021</p>
+<p>A: Additional vaccine shots in 2022</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/dag_con-1.png" width="672" /></p>
+<p>S -&gt; C: Eager shooters could reduce excess mortality up to the spring of 2022.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/s_c-1.png" width="672" /></p>
+<p>C -&gt; E: So, the vulnerable people, who could survive up to the spring of 2022, remain vulnerable in the summer of 2022.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/c_e-1.png" width="672" /></p>
+<p>S -&gt; A: Eager shooters tend to continue to shoot.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/s_a-1.png" width="672" /></p>
+</div>
