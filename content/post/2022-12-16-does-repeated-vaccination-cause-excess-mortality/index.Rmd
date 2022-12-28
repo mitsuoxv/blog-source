@@ -185,3 +185,97 @@ shots_2022 %>%
        caption = "Source: Our World In Data")
 ```
 
+## Excess deaths in Japan are based on not age-adjusted projection (Added on 2022-12-28)
+
+Shukan Shincho continues to suggest causation from repeated vaccine shots to excess deaths in 3 weeks in a row, by showing Professor Kojima's line chart, whose x-axis is date from January to March 2022 and y-axis is cumulative excess deaths from the start of 2022 and cumulative third vaccine shots. So I decide to explore what are excess deaths and how they are calculated.
+
+Excess deaths are actual deaths minus projected deaths. It turns out projected deaths from 2020 are linear extrapolation from 2015-2019 deaths, as [Our World In Data](https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality) uses projections from World Mortality Dataset (WMD).
+
+> "Before 20 September 2021, we calculated P-scores using a different estimate of expected deaths: the five-year average from 2015–2019. We made this change because using the five-year average has an important limitation — it does not account for year-to-year trends in mortality and thus can misestimate excess mortality. The WMD projection we now use, on the other hand, does not suffer from this limitation because it accounts for these year-to-year trends."
+
+Although Prof Kojima warns against repeated vaccine shots by showing synchronized movement between third vaccine shots and excess deaths from January to March 2022 in his line chart, his warning does not sound persuasive, because it assumes immediate effects of vaccine shots on deaths, and it depends on just 3 months data. Instead, he should emphasize continuous excess deaths in 2022.
+
+```{r set_up2, include=FALSE}
+library(lubridate)
+library(tsibble)
+```
+
+```{r get_data2, message=FALSE}
+excess_mortality <- read_csv("https://github.com/owid/covid-19-data/raw/master/public/data/excess_mortality/excess_mortality.csv")
+
+excess_mortality_jp <- excess_mortality %>% 
+  filter(location == "Japan")
+```
+
+```{r actual_projection, message=FALSE, warning=FALSE}
+seasonality <- excess_mortality_jp %>% 
+  filter(!is.na(average_deaths_2015_2019_all_ages)) %>% 
+  mutate(month = month(date)) %>% 
+  select(month, average_deaths_2015_2019_all_ages) %>% 
+  mutate(seasonality = average_deaths_2015_2019_all_ages - mean(average_deaths_2015_2019_all_ages)) %>% 
+  select(month, seasonality)
+
+actual_2015_2019 <- excess_mortality_jp %>% 
+  filter(!is.na(deaths_2015_all_ages)) %>% 
+  select(date, deaths_2015_all_ages:deaths_2019_all_ages) %>% 
+  pivot_longer(-date, names_to = "year", values_to = "actual") %>% 
+  mutate(
+    month = month(date),
+    year = year %>% 
+      str_sub(8, 11) %>% 
+      as.integer()
+    ) %>% 
+  select(-date) %>% 
+  left_join(seasonality, by = "month") %>% 
+  mutate(
+    actual_sa = actual - seasonality,
+    date = make_yearmonth(year, month)
+    ) %>% 
+  select(-year, -month) %>% 
+  arrange(date)
+
+actual_2020_2022 <- excess_mortality_jp %>% 
+  filter(!is.na(deaths_2020_2022_all_ages)) %>% 
+  select(date, actual = deaths_2020_2022_all_ages) %>% 
+  mutate(month = month(date)) %>% 
+  left_join(seasonality, by = "month") %>% 
+  mutate(
+    actual_sa = actual - seasonality,
+    date = yearmonth(date)
+    ) %>% 
+  select(-month)
+
+projected_2020_2022 <- excess_mortality_jp %>% 
+  filter(!is.na(projected_deaths_2020_2022_all_ages)) %>% 
+  select(date, projected = projected_deaths_2020_2022_all_ages) %>% 
+  mutate(month = month(date)) %>% 
+  left_join(seasonality, by = "month") %>% 
+  mutate(
+    projected_sa = projected - seasonality,
+    date = yearmonth(date)
+    ) %>% 
+  select(-month)
+
+bind_rows(actual_2015_2019, actual_2020_2022) %>% 
+  ggplot(aes(date, actual_sa)) +
+  geom_line() +
+  geom_line(aes(date, projected_sa), data = projected_2020_2022,
+            color = "blue", size = 0.8) +
+  geom_smooth(method = "lm", data = actual_2015_2019, se = FALSE) +
+  scale_y_continuous(labels = comma) +
+  labs(x = NULL, y = "Monthly deaths in Japan\nseasonally adjusted\nby using 2015-2019 average additively",
+     title = "Actual deaths surpass projection in 2022",
+     subtitle = "Black is actual, and blue is projection; linear extrapolation from 2015-2019",
+     caption = "Source: Our World In Data")
+```
+
+However, it is more plausible that projection is too low than that actual deaths are too high in 2022. Projection is age-adjusted in below 35 locations. In other locations, including Japan, projection is not age-adjusted, and just linear extrapolation of total deaths in 2015-2019.
+
+```{r age_adusted_locations}
+excess_mortality %>% 
+  filter(!is.na(p_scores_15_64)) %>% 
+  distinct(location) %>% 
+  pull(location)
+```
+
+The oldest baby boomers in Japan were born in 1945, the end year of World War II. They were 70 years old in 2015, and 75 years old in 2020. And 75-79 person death rates are 1.66 times of 70-74 person in 2019, according to [Ministry of Health, Labour and Welfare (Japanese, PDF)](https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai19/dl/h5.pdf). I don't have enough data to make age-adjusted projection by myself, but I can safely say that not age-adjusted projection is too low.

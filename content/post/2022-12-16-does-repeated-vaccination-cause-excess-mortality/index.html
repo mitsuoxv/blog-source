@@ -36,3 +36,24 @@ tags:
 <p>S -&gt; A: Eager shooters tend to continue to shoot.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/s_a-1.png" width="672" /></p>
 </div>
+<div id="excess-deaths-in-japan-are-based-on-not-age-adjusted-projection-added-on-2022-12-28" class="section level2">
+<h2>Excess deaths in Japan are based on not age-adjusted projection (Added on 2022-12-28)</h2>
+<p>Shukan Shincho continues to suggest causation from repeated vaccine shots to excess deaths in 3 weeks in a row, by showing Professor Kojima’s line chart, whose x-axis is date from January to March 2022 and y-axis is cumulative excess deaths from the start of 2022 and cumulative third vaccine shots. So I decide to explore what are excess deaths and how they are calculated.</p>
+<p>Excess deaths are actual deaths minus projected deaths. It turns out projected deaths from 2020 are linear extrapolation from 2015-2019 deaths, as <a href="https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality">Our World In Data</a> uses projections from World Mortality Dataset (WMD).</p>
+<blockquote>
+<p>“Before 20 September 2021, we calculated P-scores using a different estimate of expected deaths: the five-year average from 2015–2019. We made this change because using the five-year average has an important limitation — it does not account for year-to-year trends in mortality and thus can misestimate excess mortality. The WMD projection we now use, on the other hand, does not suffer from this limitation because it accounts for these year-to-year trends.”</p>
+</blockquote>
+<p>Although Prof Kojima warns against repeated vaccine shots by showing synchronized movement between third vaccine shots and excess deaths from January to March 2022 in his line chart, his warning does not sound persuasive, because it assumes immediate effects of vaccine shots on deaths, and it depends on just 3 months data. Instead, he should emphasize continuous excess deaths in 2022.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/actual_projection-1.png" width="672" /></p>
+<p>However, it is more plausible that projection is too low than that actual deaths are too high in 2022. Projection is age-adjusted in below 35 locations. In other locations, including Japan, projection is not age-adjusted, and just linear extrapolation of total deaths in 2015-2019.</p>
+<pre><code>##  [1] &quot;Australia&quot;        &quot;Austria&quot;          &quot;Belgium&quot;          &quot;Bulgaria&quot;        
+##  [5] &quot;Chile&quot;            &quot;Croatia&quot;          &quot;Czechia&quot;          &quot;Denmark&quot;         
+##  [9] &quot;England &amp; Wales&quot;  &quot;Estonia&quot;          &quot;Finland&quot;          &quot;France&quot;          
+## [13] &quot;Germany&quot;          &quot;Greece&quot;           &quot;Hungary&quot;          &quot;Iceland&quot;         
+## [17] &quot;Israel&quot;           &quot;Italy&quot;            &quot;Latvia&quot;           &quot;Lithuania&quot;       
+## [21] &quot;Luxembourg&quot;       &quot;Netherlands&quot;      &quot;New Zealand&quot;      &quot;Northern Ireland&quot;
+## [25] &quot;Norway&quot;           &quot;Poland&quot;           &quot;Portugal&quot;         &quot;Scotland&quot;        
+## [29] &quot;Slovakia&quot;         &quot;Slovenia&quot;         &quot;South Korea&quot;      &quot;Spain&quot;           
+## [33] &quot;Switzerland&quot;      &quot;United Kingdom&quot;   &quot;United States&quot;</code></pre>
+<p>The oldest baby boomers in Japan were born in 1945, the end year of World War II. They were 70 years old in 2015, and 75 years old in 2020. And 75-79 person death rates are 1.66 times of 70-74 person in 2019, according to <a href="https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai19/dl/h5.pdf">Ministry of Health, Labour and Welfare (Japanese, PDF)</a>. I don’t have enough data to make age-adjusted projection by myself, but I can safely say that not age-adjusted projection is too low.</p>
+</div>
