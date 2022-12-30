@@ -36,16 +36,28 @@ tags:
 <p>S -&gt; A: Eager shooters tend to continue to shoot.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/s_a-1.png" width="672" /></p>
 </div>
+<div id="vaccine-shots-and-excess-deaths-in-japan-added-on-2022-12-30" class="section level2">
+<h2>Vaccine shots and excess deaths in Japan (Added on 2022-12-30)</h2>
+<p>Shukan Shincho continues to suggest causation from repeated vaccine shots to excess deaths in 3 weeks in a row, by showing Professor Kojima’s line chart like below. Prof Kojima warns against repeated vaccine shots by suggesting there is a synchronized movement between 3rd vaccine shots and cumulative excess deaths from January to March 2022. However, his warning does not sound persuasive, because it assumes immediate effects of vaccine shots on deaths, and it depends on just 3 months data.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/p1_p2-1.png" width="672" /></p>
+<p>When we broaden the time horizon, it is hard to notice synchronized movement between vaccine shots and cumulative excess deaths. Instead, we notice continuous excess deaths rise over Covid-19 deaths in 2022.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/p3_p4-1.png" width="672" /></p>
+</div>
+<div id="two-estimates-of-excess-deaths-by-the-economist-and-world-mortality-dataset-wmd-added-on-2022-12-30" class="section level2">
+<h2>Two estimates of excess deaths by The Economist and World Mortality Dataset (WMD) (Added on 2022-12-30)</h2>
+<p>There are two estimates of excess deaths by The Economist and World Mortality Dataset (WMD). So far I use the Economist, which estimates more excess deaths than WMD.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/two_estimates-1.png" width="672" /></p>
+</div>
 <div id="excess-deaths-in-japan-are-based-on-not-age-adjusted-projection-added-on-2022-12-28" class="section level2">
 <h2>Excess deaths in Japan are based on not age-adjusted projection (Added on 2022-12-28)</h2>
-<p>Shukan Shincho continues to suggest causation from repeated vaccine shots to excess deaths in 3 weeks in a row, by showing Professor Kojima’s line chart, whose x-axis is date from January to March 2022 and y-axis is cumulative excess deaths from the start of 2022 and cumulative third vaccine shots. So I decide to explore what are excess deaths and how they are calculated.</p>
-<p>Excess deaths are actual deaths minus projected deaths. It turns out projected deaths from 2020 are linear extrapolation from 2015-2019 deaths, as <a href="https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality">Our World In Data</a> uses projections from World Mortality Dataset (WMD).</p>
+<p>Excess deaths are actual deaths minus projected deaths. It turns out projected deaths from 2020 are linear extrapolation from 2015-2019 deaths in World Mortality Dataset (WMD) which <a href="https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality">Our World In Data</a> uses.</p>
 <blockquote>
 <p>“Before 20 September 2021, we calculated P-scores using a different estimate of expected deaths: the five-year average from 2015–2019. We made this change because using the five-year average has an important limitation — it does not account for year-to-year trends in mortality and thus can misestimate excess mortality. The WMD projection we now use, on the other hand, does not suffer from this limitation because it accounts for these year-to-year trends.”</p>
 </blockquote>
-<p>Although Prof Kojima warns against repeated vaccine shots by showing synchronized movement between third vaccine shots and excess deaths from January to March 2022 in his line chart, his warning does not sound persuasive, because it assumes immediate effects of vaccine shots on deaths, and it depends on just 3 months data. Instead, he should emphasize continuous excess deaths in 2022.</p>
+<p>The Economist <a href="https://github.com/TheEconomist/covid-19-the-economist-global-excess-deaths-model">claims it uses a model to estimate excess deaths</a>. As its estimates are larger than WMD in Japan, it is likely that the Economist does not age-adjust normal deaths projection either.</p>
+<p>As projection is not age-adjusted, it is more plausible that projection is too low than that actual deaths are too high in 2022.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/actual_projection-1.png" width="672" /></p>
-<p>However, it is more plausible that projection is too low than that actual deaths are too high in 2022. Projection is age-adjusted in below 35 locations. In other locations, including Japan, projection is not age-adjusted, and just linear extrapolation of total deaths in 2015-2019.</p>
+<p>Projection by WMD is age-adjusted in below 35 locations. In other locations, including Japan, projection is not age-adjusted, and just linear extrapolation of total deaths in 2015-2019.</p>
 <pre><code>##  [1] &quot;Australia&quot;        &quot;Austria&quot;          &quot;Belgium&quot;          &quot;Bulgaria&quot;        
 ##  [5] &quot;Chile&quot;            &quot;Croatia&quot;          &quot;Czechia&quot;          &quot;Denmark&quot;         
 ##  [9] &quot;England &amp; Wales&quot;  &quot;Estonia&quot;          &quot;Finland&quot;          &quot;France&quot;          

@@ -16,6 +16,9 @@ library(tidyverse)
 library(ggrepel)
 library(rethinking)
 library(dagitty)
+library(lubridate)
+library(tsibble)
+library(patchwork)
 
 library(scales)
 theme_set(theme_light())
@@ -35,13 +38,13 @@ vaccinations <- read_csv("https://github.com/owid/covid-19-data/raw/master/publi
 excess_deaths_summer_2022 <- excess_mortality_economist_estimates %>% 
   filter(date >= "2022-08-01", date <= "2022-10-24") %>% 
   group_by(country) %>% 
-  summarize(excess_deaths = mean(estimated_daily_excess_deaths_per_100k) * 10 * 85) %>% 
+  summarize(excess_deaths = (cumulative_estimated_daily_excess_deaths_per_100k[which.max(date)] - cumulative_estimated_daily_excess_deaths_per_100k[which.min(date)]) * 10) %>% 
   ungroup()
 
 excess_deaths_upto_spring_2022 <- excess_mortality_economist_estimates %>% 
   filter(date <= "2022-07-31") %>% 
   group_by(country) %>% 
-  summarize(excess_deaths = mean(estimated_daily_excess_deaths_per_100k) * 10 * (365 * 2 + 30 * 7)) %>% 
+  summarize(excess_deaths = (cumulative_estimated_daily_excess_deaths_per_100k[which.max(date)] - cumulative_estimated_daily_excess_deaths_per_100k[which.min(date)]) * 10) %>% 
   ungroup()
 
 ```
@@ -185,20 +188,89 @@ shots_2022 %>%
        caption = "Source: Our World In Data")
 ```
 
-## Excess deaths in Japan are based on not age-adjusted projection (Added on 2022-12-28)
+## Vaccine shots and excess deaths in Japan (Added on 2022-12-30)
 
-Shukan Shincho continues to suggest causation from repeated vaccine shots to excess deaths in 3 weeks in a row, by showing Professor Kojima's line chart, whose x-axis is date from January to March 2022 and y-axis is cumulative excess deaths from the start of 2022 and cumulative third vaccine shots. So I decide to explore what are excess deaths and how they are calculated.
+```{r get_data3, message=FALSE}
+vaccine_jp <- read_csv("https://data.vrs.digital.go.jp/vaccination/opendata/latest/summary_by_date.csv")
 
-Excess deaths are actual deaths minus projected deaths. It turns out projected deaths from 2020 are linear extrapolation from 2015-2019 deaths, as [Our World In Data](https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality) uses projections from World Mortality Dataset (WMD).
+vaccine_jp_ratio <- vaccine_jp %>% 
+  select(date:count_fifth_shot_general) %>% 
+  mutate(across(-date, ~ cumsum(.x) / 125918711)) %>% 
+  pivot_longer(-date, names_to = "order", values_to = "shots") %>% 
+  mutate(order = str_remove_all(order, "count_|_shot|_general")) %>% 
+  filter(shots != 0) %>% 
+  mutate(
+    order = factor(order,
+                        levels = c("first", "second", "third", "fourth", "fifth"),
+                        labels = c("1st", "2nd", "3rd", "4th", "5th"))
+    )
 
-> "Before 20 September 2021, we calculated P-scores using a different estimate of expected deaths: the five-year average from 2015–2019. We made this change because using the five-year average has an important limitation — it does not account for year-to-year trends in mortality and thus can misestimate excess mortality. The WMD projection we now use, on the other hand, does not suffer from this limitation because it accounts for these year-to-year trends."
+covid_deaths_jp <- read_csv("https://covid19.mhlw.go.jp/public/opendata/deaths_cumulative_daily.csv")%>% 
+  mutate(Date = as.Date(Date)) %>% 
+  select(date = Date, deaths = ALL)
 
-Although Prof Kojima warns against repeated vaccine shots by showing synchronized movement between third vaccine shots and excess deaths from January to March 2022 in his line chart, his warning does not sound persuasive, because it assumes immediate effects of vaccine shots on deaths, and it depends on just 3 months data. Instead, he should emphasize continuous excess deaths in 2022.
-
-```{r set_up2, include=FALSE}
-library(lubridate)
-library(tsibble)
+economist_estimates_jp <- excess_mortality_economist_estimates %>% 
+  filter(country == "Japan")
 ```
+
+Shukan Shincho continues to suggest causation from repeated vaccine shots to excess deaths in 3 weeks in a row, by showing Professor Kojima's line chart like below. Prof Kojima warns against repeated vaccine shots by suggesting there is a synchronized movement between 3rd vaccine shots and cumulative excess deaths from January to March 2022. However, his warning does not sound persuasive, because it assumes immediate effects of vaccine shots on deaths, and it depends on just 3 months data.
+
+```{r p1_p2, message=FALSE}
+p1 <- vaccine_jp_ratio %>% 
+  filter(order == "3rd", date >= "2022-01-01", date < "2022-04-01") %>% 
+  ggplot(aes(date, shots)) +
+  geom_line() +
+  scale_y_continuous(labels = percent) +
+  labs(x = NULL, y = "Cululative shots per population",
+       color = "Order of shots",
+       title = "3rd vaccine shots in Japan",
+       caption = "Source: Digital Agency")
+
+cum_end_of_2021 <- economist_estimates_jp %>% 
+  filter(date == "2021-12-27") %>% 
+  pull(cumulative_estimated_daily_excess_deaths)
+
+p2 <- economist_estimates_jp %>% 
+  filter(date >= "2022-01-01", date < "2022-04-01") %>% 
+  mutate(excess_deaths_2022 = cumulative_estimated_daily_excess_deaths - cum_end_of_2021) %>% 
+  ggplot(aes(date, excess_deaths_2022)) +
+  geom_line() +
+  scale_y_continuous(labels = comma) +
+  labs(x = NULL, y = "Cumulative deaths since 2022",
+       title = "Excess deaths in Japan",
+       caption = "Source: The Economist")
+
+p1 | p2
+```
+
+When we broaden the time horizon, it is hard to notice synchronized movement between vaccine shots and cumulative excess deaths. Instead, we notice continuous excess deaths rise over Covid-19 deaths in 2022.
+
+```{r p3_p4, message=FALSE}
+p3 <- vaccine_jp_ratio %>% 
+  ggplot(aes(date, shots)) +
+  geom_line(aes(color = order)) +
+  scale_y_continuous(labels = percent) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = NULL, y = "Cululative shots per population",
+       color = NULL,
+       title = "Vaccine shots in Japan",
+       caption = "Source: Digital Agency") +
+  theme(legend.position = "bottom")
+
+p4 <- economist_estimates_jp %>% 
+  ggplot(aes(date, cumulative_estimated_daily_excess_deaths)) +
+  geom_line() +
+  geom_line(aes(date, deaths), data = covid_deaths_jp, color = "red") +
+  geom_hline(yintercept = 0, color = "gray50") +
+  scale_y_continuous(labels = comma) +
+  labs(x = NULL, y = "Cumulative deaths",
+       title = "Excess deaths (black) and\nCovid-19 deaths (red) in Japan",
+       caption = "Source: The Economist and MHLW")
+
+p3 | p4
+```
+
+## Two estimates of excess deaths by The Economist and World Mortality Dataset (WMD) (Added on 2022-12-30)
 
 ```{r get_data2, message=FALSE}
 excess_mortality <- read_csv("https://github.com/owid/covid-19-data/raw/master/public/data/excess_mortality/excess_mortality.csv")
@@ -206,6 +278,37 @@ excess_mortality <- read_csv("https://github.com/owid/covid-19-data/raw/master/p
 excess_mortality_jp <- excess_mortality %>% 
   filter(location == "Japan")
 ```
+
+There are two estimates of excess deaths by The Economist and World Mortality Dataset (WMD). So far I use the Economist, which estimates more excess deaths than WMD.
+
+```{r two_estimates, message=FALSE, warning=FALSE}
+bind_rows(
+  economist_estimates_jp %>% 
+  select(date, cum_excess = cumulative_estimated_daily_excess_deaths) %>% 
+  mutate(source = "The Economist"),
+excess_mortality_jp %>% 
+  select(date, cum_excess = cum_excess_proj_all_ages) %>% 
+  mutate(source = "WMD")
+) %>% 
+  ggplot(aes(date, cum_excess)) +
+  geom_line(aes(color = source)) +
+  geom_hline(yintercept = 0, color = "gray50") +
+  scale_y_continuous(labels = comma) +
+  labs(x = NULL, y = "Cumulative excess deaths",
+       color = "Source",
+       title = "The Economist estimates more excess deaths than WMD",
+       caption = "Source: Our World In Data")
+```
+
+## Excess deaths in Japan are based on not age-adjusted projection (Added on 2022-12-28)
+
+Excess deaths are actual deaths minus projected deaths. It turns out projected deaths from 2020 are linear extrapolation from 2015-2019 deaths in World Mortality Dataset (WMD) which [Our World In Data](https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality) uses.
+
+> "Before 20 September 2021, we calculated P-scores using a different estimate of expected deaths: the five-year average from 2015–2019. We made this change because using the five-year average has an important limitation — it does not account for year-to-year trends in mortality and thus can misestimate excess mortality. The WMD projection we now use, on the other hand, does not suffer from this limitation because it accounts for these year-to-year trends."
+
+The Economist [claims it uses a model to estimate excess deaths](https://github.com/TheEconomist/covid-19-the-economist-global-excess-deaths-model). As its estimates are larger than WMD in Japan, it is likely that the Economist does not age-adjust normal deaths projection either.
+
+As projection is not age-adjusted, it is more plausible that projection is too low than that actual deaths are too high in 2022. 
 
 ```{r actual_projection, message=FALSE, warning=FALSE}
 seasonality <- excess_mortality_jp %>% 
@@ -260,16 +363,16 @@ bind_rows(actual_2015_2019, actual_2020_2022) %>%
   ggplot(aes(date, actual_sa)) +
   geom_line() +
   geom_line(aes(date, projected_sa), data = projected_2020_2022,
-            color = "blue", size = 0.8) +
+            color = "blue", linewidth = 0.8) +
   geom_smooth(method = "lm", data = actual_2015_2019, se = FALSE) +
   scale_y_continuous(labels = comma) +
   labs(x = NULL, y = "Monthly deaths in Japan\nseasonally adjusted\nby using 2015-2019 average additively",
      title = "Actual deaths surpass projection in 2022",
      subtitle = "Black is actual, and blue is projection; linear extrapolation from 2015-2019",
-     caption = "Source: Our World In Data")
+     caption = "Note: Excess deaths are estimated by WMD\nSource: Our World In Data")
 ```
 
-However, it is more plausible that projection is too low than that actual deaths are too high in 2022. Projection is age-adjusted in below 35 locations. In other locations, including Japan, projection is not age-adjusted, and just linear extrapolation of total deaths in 2015-2019.
+Projection by WMD is age-adjusted in below 35 locations. In other locations, including Japan, projection is not age-adjusted, and just linear extrapolation of total deaths in 2015-2019.
 
 ```{r age_adusted_locations}
 excess_mortality %>% 
