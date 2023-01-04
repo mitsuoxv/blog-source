@@ -24,6 +24,8 @@ library(scales)
 theme_set(theme_light())
 ```
 
+Updated: `r Sys.Date()`
+
 ## Replication
 
 Seiji Kojima, Professor Emeritus of Nagoya University, suggests that the repeated vaccine shots, like the third or the fourth shots, may cause more excess mortality in the article of Shukan Shincho (December 22, 2022). He shows the chart like below, and asserts there is a correlation between additional shots in 2022 and excess deaths in the summer of 2022. The chart below is not the same with the chart in the article, but looks similar enough, I think. 
@@ -188,7 +190,7 @@ shots_2022 %>%
        caption = "Source: Our World In Data")
 ```
 
-## Vaccine shots and excess deaths in Japan (Added on 2022-12-30)
+## Vaccine shots and excess deaths in Japan
 
 ```{r get_data3, message=FALSE}
 vaccine_jp <- read_csv("https://data.vrs.digital.go.jp/vaccination/opendata/latest/summary_by_date.csv")
@@ -270,7 +272,7 @@ p4 <- economist_estimates_jp %>%
 p3 | p4
 ```
 
-## Two estimates of excess deaths by The Economist and World Mortality Dataset (WMD) (Added on 2022-12-30)
+## Two estimates of excess deaths by The Economist and by World Mortality Dataset (WMD)
 
 ```{r get_data2, message=FALSE}
 excess_mortality <- read_csv("https://github.com/owid/covid-19-data/raw/master/public/data/excess_mortality/excess_mortality.csv")
@@ -279,7 +281,7 @@ excess_mortality_jp <- excess_mortality %>%
   filter(location == "Japan")
 ```
 
-There are two estimates of excess deaths by The Economist and World Mortality Dataset (WMD). So far I use the Economist, which estimates more excess deaths than WMD.
+There are two estimates of excess deaths by The Economist and by World Mortality Dataset (WMD). So far I use the Economist, which estimates more excess deaths than WMD.
 
 ```{r two_estimates, message=FALSE, warning=FALSE}
 bind_rows(
@@ -300,7 +302,7 @@ excess_mortality_jp %>%
        caption = "Source: Our World In Data")
 ```
 
-## Excess deaths in Japan are based on not age-adjusted projection (Added on 2022-12-28)
+## Excess deaths in Japan are based on not age-adjusted projection
 
 Excess deaths are actual deaths minus projected deaths. It turns out projected deaths from 2020 are linear extrapolation from 2015-2019 deaths in World Mortality Dataset (WMD) which [Our World In Data](https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality) uses.
 
@@ -381,4 +383,4 @@ excess_mortality %>%
   pull(location)
 ```
 
-The oldest baby boomers in Japan were born in 1945, the end year of World War II. They were 70 years old in 2015, and 75 years old in 2020. And 75-79 person death rates are 1.66 times of 70-74 person in 2019, according to [Ministry of Health, Labour and Welfare (Japanese, PDF)](https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai19/dl/h5.pdf). I don't have enough data to make age-adjusted projection by myself, but I can safely say that not age-adjusted projection is too low.
+The oldest baby boomers in Japan were born in 1947, two years after the end of World War II. They were 70 years old in 2017, and 75 years old in 2022. And 75-79 person death rates are 1.66 times of 70-74 person in 2019, according to [Ministry of Health, Labour and Welfare (Japanese, PDF)](https://www.mhlw.go.jp/toukei/saikin/hw/jinkou/geppo/nengai19/dl/h5.pdf). I don't have enough data to make age-adjusted projection by myself, but I can safely say that not age-adjusted projection is too low.
