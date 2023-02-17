@@ -1,0 +1,149 @@
+---
+title: Cross-country productivity analysis is orange to apple comparison
+author: Mitsuo Shiota
+date: '2023-02-17'
+slug: cross-country-productivity-analysis-is-orange-to-apple-comparison
+categories:
+  - economics
+tags:
+  - Nikkei
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(lubridate)
+library(patchwork)
+
+library(scales)
+theme_set(theme_light())
+```
+
+[Prof Tetsuji Okazaki of the University of Tokyo](https://www.e.u-tokyo.ac.jp/fservice/faculty/okazaki/okazaki-e/okazaki01-e.html) shows Japan lags the US in labor productivity level, and the gap is widening, in his ["Lecture on Economics" in Nikkei news paper on February 17, 2023 (Japanese)](https://www.nikkei.com/article/DGXZQOCD2515M0V20C23A1000000/).
+
+```{r get_data, message=FALSE}
+exchange_rate <- read_csv("data/SNA_TABLE4_17022023090831034.csv")
+
+gdp <- read_csv("data/SNA_TABLE1_17022023093422259.csv")
+
+labor <- read_csv("data/ALFS_SUMTAB_17022023094020931.csv")
+
+hours_worked <- read_csv("data/ANHRS_17022023113300702.csv")
+```
+
+```{r us_deflator}
+us_deflator <- gdp |> 
+  filter(LOCATION == "USA", MEASURE == "DOB") |> 
+  mutate(deflator = Value / 100) |> 
+  select(TIME, deflator)
+```
+
+```{r employment}
+employment <- labor |> 
+  filter(SUBJECT == "YGTT08L1_ST") |> 
+  select(LOCATION, TIME, employment = Value)
+```
+
+```{r ppp}
+ppp <- exchange_rate |> 
+  filter(TRANSACT == "PPPGDP") |> 
+  select(LOCATION, TIME, ppp = Value)
+```
+
+```{r ppp_method}
+real_prod_usd <- gdp |> 
+  filter(MEASURE == "C") |> 
+  left_join(employment, by = c("LOCATION", "TIME")) |> 
+  left_join(ppp, by = c("LOCATION", "TIME")) |> 
+  left_join(us_deflator, by = "TIME") |> 
+  mutate(
+    nominal_prod_loc = Value / employment,
+    nominal_prod_usd = nominal_prod_loc / ppp,
+    real_prod_usd = nominal_prod_usd / deflator
+    ) |> 
+  group_by(LOCATION) |> 
+  mutate(index = real_prod_usd / real_prod_usd[1] * 100) |> 
+  ungroup() |> 
+  filter(LOCATION %in% c("USA", "JPN")) |> 
+  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN")))
+
+p1 <- real_prod_usd |> 
+  ggplot(aes(TIME, real_prod_usd)) +
+  geom_line(aes(color = LOCATION)) +
+  labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP)",
+       color = "Country")
+
+p2 <- real_prod_usd |> 
+  ggplot(aes(TIME, index)) +
+  geom_line(aes(color = LOCATION)) +
+  scale_y_continuous(limits = c(85, 125)) +
+  labs(x = NULL, y = "Real productivity per person\n(2005 = 100)",
+       color = "Country")
+```
+
+```{r non_ppp_method}
+p3 <- gdp |> 
+  filter(MEASURE == "V") |> 
+  left_join(employment, by = c("LOCATION", "TIME")) |> 
+  mutate(real_prod_loc = Value / employment) |> 
+  group_by(LOCATION) |> 
+  mutate(index = real_prod_loc / real_prod_loc[1] * 100) |> 
+  ungroup() |> 
+  filter(LOCATION %in% c("USA", "JPN")) |> 
+  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
+  ggplot(aes(TIME, index)) +
+  geom_line(aes(color = LOCATION)) +
+  geom_line(aes(y = index), color = "gray80",
+            data = real_prod_usd |> filter(LOCATION == "JPN")) +
+  scale_y_continuous(limits = c(85, 125)) +
+  labs(x = NULL, y = "Real productivity per person\n(2005 = 100)",
+       color = "Country")
+```
+
+```{r per_hour}
+hours_worked_te <- hours_worked |> 
+  filter(EMPSTAT == "TE") |> 
+  select(COUNTRY, TIME, hours_worked = Value)
+
+p4 <- gdp |> 
+  filter(MEASURE == "V") |> 
+  left_join(employment, by = c("LOCATION", "TIME")) |> 
+  left_join(hours_worked_te, by = c("LOCATION" = "COUNTRY", "TIME")) |> 
+  mutate(
+    real_prod_loc = Value / employment,
+    real_prod_loc_hr = real_prod_loc / hours_worked
+    ) |> 
+  group_by(LOCATION) |> 
+  mutate(
+    prod_per_person = real_prod_loc / real_prod_loc[1] * 100,
+    prod_per_hour = real_prod_loc_hr / real_prod_loc_hr[1] * 100
+    ) |> 
+  ungroup() |> 
+  filter(LOCATION %in% c("USA", "JPN")) |> 
+  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
+  ggplot(aes(TIME, prod_per_hour)) +
+  geom_line(aes(color = LOCATION)) +
+  scale_y_continuous(limits = c(85, 125)) +
+  labs(x = NULL, y = "Real productivity per hour\n(2005 = 100)",
+       color = "Country")
+```
+
+He shows the chart which is not exactly same, but similar to the left chart below, and says the gap in labor productivity level between the US and Japan is widening. I have modified it to make the right chart so that 2005 = 100. He uses PPP method. I think it is very difficult or impossible to compare the productivity level, as Japan and the US produce very different products and services. It is only possible to compare productivity growth, then using PPP is unnecessary and inappropriate.
+
+```{r ppp_method_chart}
+p1 + p2 + plot_layout(ncol = 2, guides = "collect") + plot_annotation(
+  title = "PPP method: nominal GDP per employed person in JPY\nconverted to USD by PPP, then deflated to real by US GDP deflator",
+  caption = "Source: OECD stat"
+)
+```
+
+Below is the estimates of labor productivity growth without using PPP. Growth gap narrows in the left below. If we look at productivity per hour instead of per person in the right below, the gap narrows even further.
+
+```{r non_ppp_method_chart}
+p3 + p4 + plot_layout(ncol = 2, guides = "collect") + plot_annotation(
+  title = "Non PPP method: real GDP per employed person or per hour in JPY \nindexed at 2005 = 100",
+  subtitle = "Gray line in the left is JPN by PPP method, the same as above right",
+  caption = "Source: OECD stat"
+)
+```
