@@ -18,11 +18,19 @@ library(patchwork)
 
 library(scales)
 theme_set(theme_light())
+
+library(gghighlight)
 ```
+
+Updated: `r Sys.Date()`
+
+## Productivity comparison between the U.S. and Japan
 
 [Prof Tetsuji Okazaki of the University of Tokyo](https://www.e.u-tokyo.ac.jp/fservice/faculty/okazaki/okazaki-e/okazaki01-e.html) shows Japan lags the US in labor productivity level, and the gap is widening, in his ["Lecture on Economics" in Nikkei news paper on February 17, 2023 (Japanese)](https://www.nikkei.com/article/DGXZQOCD2515M0V20C23A1000000/).
 
 ```{r get_data, message=FALSE}
+# content/post/2023-02-17-cross-country-productivity-analysis-is-orange-to-apple-comparison/
+
 exchange_rate <- read_csv("data/SNA_TABLE4_17022023090831034.csv")
 
 gdp <- read_csv("data/SNA_TABLE1_17022023093422259.csv")
@@ -52,7 +60,7 @@ ppp <- exchange_rate |>
 ```
 
 ```{r ppp_method}
-real_prod_usd <- gdp |> 
+ppp_method <- gdp |> 
   filter(MEASURE == "C") |> 
   left_join(employment, by = c("LOCATION", "TIME")) |> 
   left_join(ppp, by = c("LOCATION", "TIME")) |> 
@@ -64,17 +72,19 @@ real_prod_usd <- gdp |>
     ) |> 
   group_by(LOCATION) |> 
   mutate(index = real_prod_usd / real_prod_usd[1] * 100) |> 
-  ungroup() |> 
+  ungroup()
+  
+p1 <- ppp_method |> 
   filter(LOCATION %in% c("USA", "JPN")) |> 
-  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN")))
-
-p1 <- real_prod_usd |> 
+  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
   ggplot(aes(TIME, real_prod_usd)) +
   geom_line(aes(color = LOCATION)) +
   labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP)",
        color = "Country")
 
-p2 <- real_prod_usd |> 
+p2 <- ppp_method |> 
+  filter(LOCATION %in% c("USA", "JPN")) |> 
+  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
   ggplot(aes(TIME, index)) +
   geom_line(aes(color = LOCATION)) +
   scale_y_continuous(limits = c(85, 125)) +
@@ -83,30 +93,11 @@ p2 <- real_prod_usd |>
 ```
 
 ```{r non_ppp_method}
-p3 <- gdp |> 
-  filter(MEASURE == "V") |> 
-  left_join(employment, by = c("LOCATION", "TIME")) |> 
-  mutate(real_prod_loc = Value / employment) |> 
-  group_by(LOCATION) |> 
-  mutate(index = real_prod_loc / real_prod_loc[1] * 100) |> 
-  ungroup() |> 
-  filter(LOCATION %in% c("USA", "JPN")) |> 
-  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
-  ggplot(aes(TIME, index)) +
-  geom_line(aes(color = LOCATION)) +
-  geom_line(aes(y = index), color = "gray80",
-            data = real_prod_usd |> filter(LOCATION == "JPN")) +
-  scale_y_continuous(limits = c(85, 125)) +
-  labs(x = NULL, y = "Real productivity per person\n(2005 = 100)",
-       color = "Country")
-```
-
-```{r per_hour}
 hours_worked_te <- hours_worked |> 
   filter(EMPSTAT == "TE") |> 
   select(COUNTRY, TIME, hours_worked = Value)
 
-p4 <- gdp |> 
+non_ppp_method <- gdp |> 
   filter(MEASURE == "V") |> 
   left_join(employment, by = c("LOCATION", "TIME")) |> 
   left_join(hours_worked_te, by = c("LOCATION" = "COUNTRY", "TIME")) |> 
@@ -119,7 +110,20 @@ p4 <- gdp |>
     prod_per_person = real_prod_loc / real_prod_loc[1] * 100,
     prod_per_hour = real_prod_loc_hr / real_prod_loc_hr[1] * 100
     ) |> 
-  ungroup() |> 
+  ungroup()
+
+p3 <- non_ppp_method |> 
+  filter(LOCATION %in% c("USA", "JPN")) |> 
+  mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
+  ggplot(aes(TIME, prod_per_person)) +
+  geom_line(aes(color = LOCATION)) +
+  geom_line(aes(y = index), color = "gray80",
+            data = ppp_method |> filter(LOCATION == "JPN")) +
+  scale_y_continuous(limits = c(85, 125)) +
+  labs(x = NULL, y = "Real productivity per person\n(2005 = 100)",
+       color = "Country")
+
+p4 <- non_ppp_method |> 
   filter(LOCATION %in% c("USA", "JPN")) |> 
   mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
   ggplot(aes(TIME, prod_per_hour)) +
@@ -144,6 +148,43 @@ Below is the estimates of labor productivity growth without using PPP. Growth ga
 p3 + p4 + plot_layout(ncol = 2, guides = "collect") + plot_annotation(
   title = "Non PPP method: real GDP per employed person or per hour in JPY \nindexed at 2005 = 100",
   subtitle = "Gray line in the left is JPN by PPP method, the same as above right",
+  caption = "Source: OECD stat"
+)
+```
+
+## Productivity comparison among G7 countries
+
+Although Japan looks like a loser in productivity per person in PPP dollars, it is not a loser in growth of productivity per hour.
+
+```{r g7, message=FALSE, warning=FALSE}
+p5 <- ppp_method |> 
+  filter(LOCATION %in% c("USA", "JPN", "GBR", "DEU", "FRA", "ITA", "CAN")) |> 
+  ggplot(aes(TIME, real_prod_usd)) +
+  geom_line(aes(color = LOCATION)) +
+  gghighlight(LOCATION == "JPN", use_group_by = FALSE) +
+  labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP)",
+       color = "Country")
+
+p6 <- non_ppp_method |> 
+  filter(LOCATION %in% c("USA", "JPN", "GBR", "DEU", "FRA", "ITA", "CAN")) |> 
+  ggplot(aes(TIME, prod_per_person)) +
+  geom_line(aes(color = LOCATION)) +
+  gghighlight(LOCATION == "JPN", use_group_by = FALSE) +
+  scale_y_continuous(limits = c(85, 125)) +
+  labs(x = NULL, y = "Real productivity per person (2005 = 100)",
+       color = "Country")
+
+p7 <- non_ppp_method |> 
+  filter(LOCATION %in% c("USA", "JPN", "GBR", "DEU", "FRA", "ITA", "CAN")) |> 
+  ggplot(aes(TIME, prod_per_hour)) +
+  geom_line(aes(color = LOCATION)) +
+  gghighlight(LOCATION == "JPN", use_group_by = FALSE) +
+  scale_y_continuous(limits = c(85, 125)) +
+  labs(x = NULL, y = "Real productivity per hour (2005 = 100)",
+       color = "Country")
+
+p5 + p6 + p7 + plot_layout(ncol = 3, guides = "collect") + plot_annotation(
+  title = "Japan is not a loser in growth of productivity per hour among G7 countries",
   caption = "Source: OECD stat"
 )
 ```
