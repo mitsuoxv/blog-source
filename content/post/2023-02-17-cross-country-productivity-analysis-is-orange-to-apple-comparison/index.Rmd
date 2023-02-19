@@ -79,7 +79,7 @@ p1 <- ppp_method |>
   mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
   ggplot(aes(TIME, real_prod_usd)) +
   geom_line(aes(color = LOCATION)) +
-  labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP)",
+  labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP, 2015 price)",
        color = "Country")
 
 p2 <- ppp_method |> 
@@ -162,7 +162,7 @@ p5 <- ppp_method |>
   ggplot(aes(TIME, real_prod_usd)) +
   geom_line(aes(color = LOCATION)) +
   gghighlight(LOCATION == "JPN", use_group_by = FALSE) +
-  labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP)",
+  labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP, 2015 price)",
        color = "Country")
 
 p6 <- non_ppp_method |> 
