@@ -19,6 +19,7 @@ library(patchwork)
 library(scales)
 theme_set(theme_light())
 
+library(OECD)
 library(gghighlight)
 ```
 
@@ -31,42 +32,70 @@ Updated: `r Sys.Date()`
 ```{r get_data, message=FALSE}
 # content/post/2023-02-17-cross-country-productivity-analysis-is-orange-to-apple-comparison/
 
-exchange_rate <- read_csv("data/SNA_TABLE4_17022023090831034.csv")
+countries <- c("USA", "JPN", "GBR", "DEU", "FRA", "ITA", "CAN")
 
-gdp <- read_csv("data/SNA_TABLE1_17022023093422259.csv")
+exchange_rate <- get_dataset(
+  "SNA_TABLE4",
+  filter = list(countries, c("PPPGDP")),
+  start_time = 2005, end_time = 2021
+) |> 
+  mutate(across(c(ObsValue, Time), as.numeric))
 
-labor <- read_csv("data/ALFS_SUMTAB_17022023094020931.csv")
+# exchange_rate <- read_csv("data/SNA_TABLE4_17022023090831034.csv")
 
-hours_worked <- read_csv("data/ANHRS_17022023113300702.csv")
+gdp <- get_dataset(
+  "SNA_TABLE1",
+  filter = list(countries, "B1_GE", c("DOB", "C", "V")),
+  start_time = 2005, end_time = 2021
+) |> 
+  mutate(across(c(ObsValue, Time), as.numeric))
+
+# gdp <- read_csv("content/post/2023-02-17-cross-country-productivity-analysis-is-orange-to-apple-comparison/data/SNA_TABLE1_17022023093422259.csv")
+
+labor <- get_dataset(
+  "ALFS_SUMTAB",
+  filter = list(countries, "YGTT08L1_ST"),
+  start_time = 2005, end_time = 2021
+) |> 
+  mutate(across(c(ObsValue, Time), as.numeric))
+
+# labor <- read_csv("content/post/2023-02-17-cross-country-productivity-analysis-is-orange-to-apple-comparison/data/ALFS_SUMTAB_17022023094020931.csv")
+
+hours_worked <- get_dataset(
+  "ANHRS",
+  filter = list(countries, "TE"),
+  start_time = 2005, end_time = 2021
+) |> 
+  mutate(across(c(ObsValue, Time), as.numeric))
+
+# hours_worked <- read_csv("content/post/2023-02-17-cross-country-productivity-analysis-is-orange-to-apple-comparison/data/ANHRS_17022023113300702.csv")
 ```
 
 ```{r us_deflator}
 us_deflator <- gdp |> 
   filter(LOCATION == "USA", MEASURE == "DOB") |> 
-  mutate(deflator = Value / 100) |> 
-  select(TIME, deflator)
+  mutate(deflator = ObsValue / 100) |> 
+  select(Time, deflator)
 ```
 
 ```{r employment}
 employment <- labor |> 
-  filter(SUBJECT == "YGTT08L1_ST") |> 
-  select(LOCATION, TIME, employment = Value)
+  select(LOCATION, Time, employment = ObsValue)
 ```
 
 ```{r ppp}
 ppp <- exchange_rate |> 
-  filter(TRANSACT == "PPPGDP") |> 
-  select(LOCATION, TIME, ppp = Value)
+  select(LOCATION, Time, ppp = ObsValue)
 ```
 
 ```{r ppp_method}
 ppp_method <- gdp |> 
   filter(MEASURE == "C") |> 
-  left_join(employment, by = c("LOCATION", "TIME")) |> 
-  left_join(ppp, by = c("LOCATION", "TIME")) |> 
-  left_join(us_deflator, by = "TIME") |> 
+  left_join(employment, by = c("LOCATION", "Time")) |> 
+  left_join(ppp, by = c("LOCATION", "Time")) |> 
+  left_join(us_deflator, by = "Time") |> 
   mutate(
-    nominal_prod_loc = Value / employment,
+    nominal_prod_loc = ObsValue / employment,
     nominal_prod_usd = nominal_prod_loc / ppp,
     real_prod_usd = nominal_prod_usd / deflator
     ) |> 
@@ -77,7 +106,7 @@ ppp_method <- gdp |>
 p1 <- ppp_method |> 
   filter(LOCATION %in% c("USA", "JPN")) |> 
   mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
-  ggplot(aes(TIME, real_prod_usd)) +
+  ggplot(aes(Time, real_prod_usd)) +
   geom_line(aes(color = LOCATION)) +
   labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP, 2015 price)",
        color = "Country")
@@ -85,7 +114,7 @@ p1 <- ppp_method |>
 p2 <- ppp_method |> 
   filter(LOCATION %in% c("USA", "JPN")) |> 
   mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
-  ggplot(aes(TIME, index)) +
+  ggplot(aes(Time, index)) +
   geom_line(aes(color = LOCATION)) +
   scale_y_continuous(limits = c(85, 125)) +
   labs(x = NULL, y = "Real productivity per person\n(2005 = 100)",
@@ -94,15 +123,14 @@ p2 <- ppp_method |>
 
 ```{r non_ppp_method}
 hours_worked_te <- hours_worked |> 
-  filter(EMPSTAT == "TE") |> 
-  select(COUNTRY, TIME, hours_worked = Value)
+  select(COUNTRY, Time, hours_worked = ObsValue)
 
 non_ppp_method <- gdp |> 
   filter(MEASURE == "V") |> 
-  left_join(employment, by = c("LOCATION", "TIME")) |> 
-  left_join(hours_worked_te, by = c("LOCATION" = "COUNTRY", "TIME")) |> 
+  left_join(employment, by = c("LOCATION", "Time")) |> 
+  left_join(hours_worked_te, by = c("LOCATION" = "COUNTRY", "Time")) |> 
   mutate(
-    real_prod_loc = Value / employment,
+    real_prod_loc = ObsValue / employment,
     real_prod_loc_hr = real_prod_loc / hours_worked
     ) |> 
   group_by(LOCATION) |> 
@@ -115,7 +143,7 @@ non_ppp_method <- gdp |>
 p3 <- non_ppp_method |> 
   filter(LOCATION %in% c("USA", "JPN")) |> 
   mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
-  ggplot(aes(TIME, prod_per_person)) +
+  ggplot(aes(Time, prod_per_person)) +
   geom_line(aes(color = LOCATION)) +
   geom_line(aes(y = index), color = "gray80",
             data = ppp_method |> filter(LOCATION == "JPN")) +
@@ -126,7 +154,7 @@ p3 <- non_ppp_method |>
 p4 <- non_ppp_method |> 
   filter(LOCATION %in% c("USA", "JPN")) |> 
   mutate(LOCATION = factor(LOCATION, levels = c("USA", "JPN"))) |> 
-  ggplot(aes(TIME, prod_per_hour)) +
+  ggplot(aes(Time, prod_per_hour)) +
   geom_line(aes(color = LOCATION)) +
   scale_y_continuous(limits = c(85, 125)) +
   labs(x = NULL, y = "Real productivity per hour\n(2005 = 100)",
@@ -158,16 +186,14 @@ Although Japan looks like a loser in productivity per person in PPP dollars, it 
 
 ```{r g7, message=FALSE, warning=FALSE}
 p5 <- ppp_method |> 
-  filter(LOCATION %in% c("USA", "JPN", "GBR", "DEU", "FRA", "ITA", "CAN")) |> 
-  ggplot(aes(TIME, real_prod_usd)) +
+  ggplot(aes(Time, real_prod_usd)) +
   geom_line(aes(color = LOCATION)) +
   gghighlight(LOCATION == "JPN", use_group_by = FALSE) +
   labs(x = NULL, y = "Real productivity per person\n(thousand dollars, PPP, 2015 price)",
        color = "Country")
 
 p6 <- non_ppp_method |> 
-  filter(LOCATION %in% c("USA", "JPN", "GBR", "DEU", "FRA", "ITA", "CAN")) |> 
-  ggplot(aes(TIME, prod_per_person)) +
+  ggplot(aes(Time, prod_per_person)) +
   geom_line(aes(color = LOCATION)) +
   gghighlight(LOCATION == "JPN", use_group_by = FALSE) +
   scale_y_continuous(limits = c(85, 125)) +
@@ -175,8 +201,7 @@ p6 <- non_ppp_method |>
        color = "Country")
 
 p7 <- non_ppp_method |> 
-  filter(LOCATION %in% c("USA", "JPN", "GBR", "DEU", "FRA", "ITA", "CAN")) |> 
-  ggplot(aes(TIME, prod_per_hour)) +
+  ggplot(aes(Time, prod_per_hour)) +
   geom_line(aes(color = LOCATION)) +
   gghighlight(LOCATION == "JPN", use_group_by = FALSE) +
   scale_y_continuous(limits = c(85, 125)) +
