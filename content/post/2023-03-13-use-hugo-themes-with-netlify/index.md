@@ -1,0 +1,12 @@
+---
+title: Use Hugo Themes with Netlify
+author: Mitsuo Shiota
+date: '2023-03-13'
+slug: use-hugo-themes-with-netlify
+categories:
+  - computer science
+tags:
+  - tips
+---
+
+Almost four years ago, I posted [For a starter, you had better not git clone the themes](https://mitsuoxv.rbind.io/2019/04/26/for-a-starter-you-had-better-not-git-clone-the-themes/). Then I wrote "don’t git clone the themes, instead download zip." As time passed, however, I felt it necessary to update the theme. So, I referred to [Host on Netlify](https://gohugo.io/hosting-and-deployment/hosting-on-netlify/) and followed the instruction in the section "Use Hugo Themes with Netlify." So far, I failed to replace a default icon with my face, but it is OK. I would like to say "don’t git clone the themes, instead git submodule add them."
