@@ -1,0 +1,49 @@
+question,res1,res2,Japan,US,China,Korea
+a,1,Agree,32.9,27.5,28.4,57.7
+a,2,Somewhat agree,47.8,40.1,45.6,31.3
+a,3,Somewhat disagree,14.4,20,20,8.2
+a,4,Disagree,4.5,10.7,5,2
+b,1,Agree,37.2,42.2,30.8,56.2
+b,2,Somewhat agree,41.3,29.6,36.1,29.2
+b,3,Somewhat disagree,14.7,17.2,23.8,11
+b,4,Disagree,6.3,9.3,8.3,2.9
+c,1,Agree,40.7,40.6,35.6,39.6
+c,2,Somewhat agree,42.1,35.3,49.1,39.7
+c,3,Somewhat disagree,12.7,12.1,10.9,16.3
+c,4,Disagree,3.9,9.3,3.4,3.7
+d,1,Agree,32.2,43.9,30.2,46.3
+d,2,Somewhat agree,43.4,34.2,46.9,38.1
+d,3,Somewhat disagree,17.3,13.6,16.1,12.4
+d,4,Disagree,6.6,4.9,5.8,2.5
+e,1,Agree,29.4,50.5,36.6,53.8
+e,2,Somewhat agree,43.3,32.4,38.5,32.6
+e,3,Somewhat disagree,19.1,10.2,16.9,9.8
+e,4,Disagree,7.6,4.7,7.1,3.1
+f,1,Agree,17.3,42.8,21.9,37.2
+f,2,Somewhat agree,42.8,30.7,44.7,38.4
+f,3,Somewhat disagree,28,13.2,24.1,19.8
+f,4,Disagree,11.2,11.4,8.4,4
+g,1,Agree,12,37.1,17.1,32.9
+g,2,Somewhat agree,24.2,25.1,30.1,33.7
+g,3,Somewhat disagree,36.2,17.6,35.4,24.4
+g,4,Disagree,27,18.3,16.4,8.2
+h,1,Agree,9.5,23.1,7.5,7.3
+h,2,Somewhat agree,26,32.3,24.4,17.8
+h,3,Somewhat disagree,41.8,24.8,41.9,52.5
+h,4,Disagree,22.2,17.8,25.1,21.7
+I,1,Agree,24.2,25.5,17.2,20.1
+I,2,Somewhat agree,37.4,26.3,37,36.9
+I,3,Somewhat disagree,24.9,20,30.4,30.6
+I,4,Disagree,12.9,25.9,14.1,11.4
+j,1,Agree,55.6,74,40.9,55.8
+j,2,Somewhat agree,37.6,18.4,47.5,37.8
+j,3,Somewhat disagree,4.9,3.4,7.8,4.4
+j,4,Disagree,1.2,1.6,2.5,1.2
+k,1,Agree,29,30.3,17.5,20
+k,2,Somewhat agree,42.3,33.2,29.3,37.8
+k,3,Somewhat disagree,22,18,32.2,28.8
+k,4,Disagree,6.3,16.3,19.8,12.7
+l,1,Agree,36.2,61.8,32.3,54.2
+l,2,Somewhat agree,43.6,23.1,52.5,34.1
+l,3,Somewhat disagree,14.6,8.2,10.9,8.5
+l,4,Disagree,5.2,5.3,3,2.4
