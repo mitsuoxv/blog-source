@@ -17,6 +17,8 @@ library(tidyverse)
 theme_set(theme_light())
 ```
 
+Updated: `r Sys.Date()`
+
 ## A surprise result from a survey
 
 I have found [a tweet](https://twitter.com/kodai_kusano/status/1635856303049555968) which refers to a survey result that high school students in the U.S. feel uneasy when they don't go along with their friends, more than those in Japan, China and Korea.
@@ -49,7 +51,7 @@ results |>
     res2 = factor(res2,
                   levels = c("Agree", "Somewhat agree",
                              "Somewhat disagree", "Disagree"))
-    ) |> 
+  ) |> 
   ggplot(aes(res2, value)) +
   geom_col(aes(fill = res2)) +
   scale_y_continuous(breaks = c(0, 50)) +
@@ -59,8 +61,9 @@ results |>
   theme(
     axis.text.x = element_text(angle = 90),
     strip.background = element_blank(),
-  strip.text = element_text(color = "black"),
+    strip.text = element_text(color = "black"),
+    strip.text.y = element_text(angle = 0),
     legend.position = "none"
-    )
+  )
 ```
 
