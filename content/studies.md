@@ -8,7 +8,7 @@ title: Studies
 * [Japan international trade](https://mitsuoxv.shinyapps.io/jp-trade/) (monthly update)
 * [IMF World Economic Outlook Database](https://mitsuoxv.shinyapps.io/imf-weo/)  (twice a year)
 * [City competition to consume in Japan](https://mitsuoxv.shinyapps.io/jp-household/) (annual)
-* [WHO, Covid-19 situation report](https://mitsuoxv.shinyapps.io/covid/) (daily)
+* [WHO, Covid-19 situation report](https://mitsuoxv.shinyapps.io/covid/) (weekly)
 
 ## Package
 
