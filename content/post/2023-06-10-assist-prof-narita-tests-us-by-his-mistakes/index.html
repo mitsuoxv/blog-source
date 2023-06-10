@@ -1,0 +1,175 @@
+---
+title: Assist Prof Narita tests us by his mistakes
+author: Mitsuo Shiota
+date: '2023-06-10'
+slug: assist-prof-narita-tests-us-by-his-mistakes
+categories:
+  - economics
+  - media
+tags:
+  - R
+---
+
+
+
+<div id="assist-prof-narita-did-a-meta-analysis-on-the-effectiveness-of-ebpm" class="section level2">
+<h2>Assist Prof Narita did a meta-analysis on the effectiveness of EBPM</h2>
+<p><a href="https://economics.yale.edu/people/yusuke-narita">Assistant Professor Narita of Yale University</a> wrote an article in <a href="https://www.amazon.co.jp/-/en/%E5%A4%A7%E7%AB%B9%E6%96%87%E9%9B%84/dp/429611526X">a book on EBPM (Evidence-Backed Policy-Making) which was published in Japan in December 2022</a>. In his article, he did a meta-analysis on the effectiveness of EBPM by checking whether <a href="https://www.pewtrusts.org/en/projects/archived-projects/results-first-initiative">RFI (Results First Initiative)</a>, which supported states in the U.S. from 2010 to 2023 by EBPM methods and is now concluded, really helped states reduce crimes. From his article, I quote two pages below:</p>
+<div class="float">
+<img src="images/image0.jpeg" alt="A part of meta-analysis" />
+<div class="figcaption">A part of meta-analysis</div>
+</div>
+<p>“***” in the right table means p-value is less than 0.01. This table looks too good to be true to me. So I try to reproduce his meta-analysis.</p>
+</div>
+<div id="this-is-not-a-natural-experiment-contrary-to-his-assertion" class="section level2">
+<h2>This is not a natural experiment, contrary to his assertion</h2>
+<p>He asserts this is a natural experiment, as some states joined RFI and others didn’t.</p>
+<p>If joining states are selected at random by some accidents, it is a natural experiment. In this case states voluntarily joins RFI, so this is not a natural experiment. Z (states’ willingness to join RFI) is a confound between X (RFI support) and Y (an outcome) like below. Even if X is associated with Y, it may be caused by Z.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/rfi_dag-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>X: RFI support based on EBPM</p>
+<p>Y: Outcome of crimes</p>
+<p>Z: Governor or State Congress</p>
+<p>For now, however, I pretend this is a natural experiment, and move on.</p>
+</div>
+<div id="which-states-joined-rfi-and-when" class="section level2">
+<h2>Which states joined RFI, and when?</h2>
+<p>I get the info on which states joined RFI and when from <a href="https://www.pewtrusts.org/en/projects/archived-projects/results-first-initiative/where-we-work">this page</a>. As there must be 27 states, I count Salt Lake County, Utah as Utah state. Although some California counties joined in 2013, I count California in 2016 when California state joined.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/states_join-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="replicate-the-quoted-figure" class="section level2">
+<h2>Replicate the quoted figure</h2>
+<p>Statistically significant at 0.01 items in the quoted table above are all U.S. prison data, like prisoners, sentenced prisoners, custody population, admissions and releases. So, I have prepared those data in <a href="https://github.com/mitsuoxv/us-prison">my GitHub repo</a>. For simplicity, I use only prisoners here.</p>
+<p>Judging from the quoted figure, I guess he regards 17 states which joined between 2011 and 2014 as treatment group, and the rest 33 states as control group. I replicate the quoted figure like below in the left, and plot both treatment and control groups in Y-axis including zero in the right.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/prisoners-1.png" width="50%" /><img src="{{< blogdown/postref >}}index_files/figure-html/prisoners-2.png" width="50%" /></p>
+</div>
+<div id="replicate-the-row-of-prisoners-in-the-quoted-table" class="section level2">
+<h2>Replicate the row of prisoners in the quoted table</h2>
+<p>He asserts he has used DiD (Difference-in-Difference) method to make the quoted table, writes standard errors are clustered by state with the two-way (state and year) fixed effect model equation in the footnote of the table.</p>
+<p>As he refers to the 4th chapter in <a href="https://www.amazon.co.jp/%E5%8A%B9%E6%9E%9C%E6%A4%9C%E8%A8%BC%E5%85%A5%E9%96%80%E3%80%9C%E6%AD%A3%E3%81%97%E3%81%84%E6%AF%94%E8%BC%83%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%9B%A0%E6%9E%9C%E6%8E%A8%E8%AB%96-%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6%E3%81%AE%E5%9F%BA%E7%A4%8E-%E5%AE%89%E4%BA%95-%E7%BF%94%E5%A4%AA/dp/4297111179">Primer for causal inference by Shota Yasui</a>, he must have used miceadds::lm.cluster() to get clustered standard errors. So I also use miceadds::lm.cluster().</p>
+<p>As the quoted figure shows -3 to 3 years from the joined year of the states which joined from 2011 to 2014, I use data from 2008 to 2017, and set “rfi” 0 in the years upto the joined year and 1 in the years beyond the joined year. Alaska, Delaware, Florida and Minnesota which joined in 2015 get 1 in “rfi” in 2016 and 2017, and California which joined in 2016 gets 1 in “rfi” in 2017. So the treatment group is now 22 states, and the control group is 28 states.</p>
+<p>Please look at the last line, “rfi”. Estimate is -248, and p-value is 0.709. This does not look like the quoted table.</p>
+<pre><code>## R^2= 0.99368 
+## 
+##                        Estimate   Std. Error       t value      Pr(&gt;|t|)
+## (Intercept)          31923.3747 6.991811e+02  4.565823e+01  0.000000e+00
+## stateAlaska         -25802.2944 1.328172e+02 -1.942692e+02  0.000000e+00
+## stateArizona         10057.4000 1.487777e-12  6.760019e+15  0.000000e+00
+## stateArkansas       -14498.7000 1.966152e-12 -7.374149e+15  0.000000e+00
+## stateCalifornia     114684.0028 6.640862e+01  1.726945e+03  0.000000e+00
+## stateColorado        -9724.6916 1.992258e+02 -4.881240e+01  0.000000e+00
+## stateConnecticut    -13424.7832 3.984517e+02 -3.369237e+01 7.476290e-249
+## stateDelaware       -24204.4944 1.328172e+02 -1.822391e+02  0.000000e+00
+## stateFlorida         71159.0056 1.328172e+02  5.357664e+02  0.000000e+00
+## stateGeorgia         23367.8000 1.227178e-12  1.904190e+16  0.000000e+00
+## stateHawaii         -25206.5000 1.255667e-12 -2.007420e+16  0.000000e+00
+## stateIdaho          -23041.7832 3.984517e+02 -5.782830e+01  0.000000e+00
+## stateIllinois        15627.1168 3.984517e+02  3.921960e+01  0.000000e+00
+## stateIndiana         -2929.6000 1.047151e-12 -2.797687e+15  0.000000e+00
+## stateIowa           -21948.9832 3.984517e+02 -5.508568e+01  0.000000e+00
+## stateKansas         -21413.9832 3.984517e+02 -5.374298e+01  0.000000e+00
+## stateKentucky        -9180.4000 8.989169e-13 -1.021273e+16  0.000000e+00
+## stateLouisiana        7031.5000 1.019358e-12  6.897970e+15  0.000000e+00
+## stateMaine          -28799.0000 1.141927e-12 -2.521966e+16  0.000000e+00
+## stateMaryland        -9552.5000 1.002529e-12 -9.528403e+15  0.000000e+00
+## stateMassachusetts  -20197.0860 3.320431e+02 -6.082670e+01  0.000000e+00
+## stateMichigan        12522.2000 7.231198e-13  1.731691e+16  0.000000e+00
+## stateMinnesota      -20785.3944 1.328172e+02 -1.564962e+02  0.000000e+00
+## stateMississippi    -10208.3860 3.320431e+02 -3.074416e+01 1.463507e-207
+## stateMissouri          402.3000 9.167230e-13  4.388458e+14  0.000000e+00
+## stateMontana        -27354.7000 8.805382e-13 -3.106589e+16  0.000000e+00
+## stateNebraska       -26094.4000 9.836896e-13 -2.652707e+16  0.000000e+00
+## stateNevada         -17987.4916 1.992258e+02 -9.028694e+01  0.000000e+00
+## stateNew Hampshire  -28205.4000 1.060271e-12 -2.660206e+16  0.000000e+00
+## stateNew Jersey      -8299.7000 9.678752e-13 -8.575176e+15  0.000000e+00
+## stateNew Mexico     -24025.3832 3.984517e+02 -6.029685e+01  0.000000e+00
+## stateNew York        23449.6168 3.984517e+02  5.885184e+01  0.000000e+00
+## stateNorth Carolina   6872.6000 8.552456e-13  8.035820e+15  0.000000e+00
+## stateNorth Dakota   -29440.0000 9.539832e-13 -3.086008e+16  0.000000e+00
+## stateOhio            20567.8000 9.439900e-13  2.178815e+16  0.000000e+00
+## stateOklahoma        -4037.6000 8.047779e-13 -5.017036e+15  0.000000e+00
+## stateOregon         -16019.7860 3.320431e+02 -4.824611e+01  0.000000e+00
+## statePennsylvania    19368.4000 8.598111e-13  2.252634e+16  0.000000e+00
+## stateRhode Island   -27564.4888 2.656345e+02 -1.037685e+02  0.000000e+00
+## stateSouth Carolina  -8765.2000 9.457691e-13 -9.267801e+15  0.000000e+00
+## stateSouth Dakota   -27428.1000 1.161717e-12 -2.360996e+16  0.000000e+00
+## stateTennessee       -2912.1000 1.584366e-12 -1.838022e+15  0.000000e+00
+## stateTexas          137164.6168 3.984517e+02  3.442440e+02  0.000000e+00
+## stateUtah           -24357.3000 1.022091e-12 -2.383085e+16  0.000000e+00
+## stateVermont        -28922.1832 3.984517e+02 -7.258642e+01  0.000000e+00
+## stateVirginia         6674.7000 9.630611e-13  6.930713e+15  0.000000e+00
+## stateWashington     -12764.0000 1.023506e-12 -1.247086e+16  0.000000e+00
+## stateWest Virginia  -24146.0916 1.992258e+02 -1.211996e+02  0.000000e+00
+## stateWisconsin       -7941.4888 2.656345e+02 -2.989630e+01 2.197942e-196
+## stateWyoming        -28767.8000 1.721087e-12 -1.671490e+16  0.000000e+00
+## year2009               -35.9400 1.595093e+02 -2.253160e-01  8.217335e-01
+## year2010              -102.6800 2.681415e+02 -3.829322e-01  7.017701e-01
+## year2011              -534.9600 5.592848e+02 -9.565073e-01  3.388160e-01
+## year2012             -1087.0350 9.278907e+02 -1.171512e+00  2.413931e-01
+## year2013              -946.2933 9.283719e+02 -1.019304e+00  3.080586e-01
+## year2014             -1078.8322 9.524076e+02 -1.132742e+00  2.573226e-01
+## year2015             -1496.0305 1.112525e+03 -1.344716e+00  1.787168e-01
+## year2016             -1700.4082 1.149240e+03 -1.479593e+00  1.389818e-01
+## year2017             -1951.5677 1.146616e+03 -1.702024e+00  8.875082e-02
+## rfi                   -248.0280 6.640862e+02 -3.734877e-01  7.087855e-01</code></pre>
+<p>So I try the one-way (state) fixed effect model. Now, estimate is -1415, and p-value is 0.019. Although p-value is still larger than 0.01, this looks similar to the quoted table.</p>
+<p>The problem is this is not DiD. Negative estimate merely reflects downward trend in nearly all states.</p>
+<pre><code>## R^2= 0.99338 
+## 
+##                       Estimate   Std. Error       t value      Pr(&gt;|t|)
+## (Intercept)          31030.000 1.274768e-12  2.434168e+16  0.000000e+00
+## stateAlaska         -25568.831 1.204804e+02 -2.122241e+02  0.000000e+00
+## stateArizona         10057.400 1.046282e-12  9.612514e+15  0.000000e+00
+## stateArkansas       -14498.700 1.581787e-12 -9.166026e+15  0.000000e+00
+## stateCalifornia     114800.734 6.024018e+01  1.905717e+03  0.000000e+00
+## stateColorado        -9374.497 1.807205e+02 -5.187289e+01  0.000000e+00
+## stateConnecticut    -12724.394 3.614411e+02 -3.520461e+01 1.699551e-271
+## stateDelaware       -23971.031 1.204804e+02 -1.989621e+02  0.000000e+00
+## stateFlorida         71392.469 1.204804e+02  5.925652e+02  0.000000e+00
+## stateGeorgia         23367.800 1.470479e-12  1.589128e+16  0.000000e+00
+## stateHawaii         -25206.500 1.244860e-12 -2.024846e+16  0.000000e+00
+## stateIdaho          -22341.394 3.614411e+02 -6.181199e+01  0.000000e+00
+## stateIllinois        16327.506 3.614411e+02  4.517335e+01  0.000000e+00
+## stateIndiana         -2929.600 1.225896e-12 -2.389763e+15  0.000000e+00
+## stateIowa           -21248.594 3.614411e+02 -5.878854e+01  0.000000e+00
+## stateKansas         -20713.594 3.614411e+02 -5.730835e+01  0.000000e+00
+## stateKentucky        -9180.400 1.154587e-12 -7.951242e+15  0.000000e+00
+## stateLouisiana        7031.500 1.164737e-12  6.036986e+15  0.000000e+00
+## stateMaine          -28799.000 1.391527e-12 -2.069597e+16  0.000000e+00
+## stateMaryland        -9552.500 1.188532e-12 -8.037229e+15  0.000000e+00
+## stateMassachusetts  -19613.428 3.012009e+02 -6.511743e+01  0.000000e+00
+## stateMichigan        12522.200 1.121592e-12  1.116466e+16  0.000000e+00
+## stateMinnesota      -20551.931 1.204804e+02 -1.705832e+02  0.000000e+00
+## stateMississippi     -9624.728 3.012009e+02 -3.195451e+01 4.676382e-224
+## stateMissouri          402.300 1.234470e-12  3.258888e+14  0.000000e+00
+## stateMontana        -27354.700 1.184257e-12 -2.309862e+16  0.000000e+00
+## stateNebraska       -26094.400 1.192896e-12 -2.187484e+16  0.000000e+00
+## stateNevada         -17637.297 1.807205e+02 -9.759431e+01  0.000000e+00
+## stateNew Hampshire  -28205.400 1.212822e-12 -2.325601e+16  0.000000e+00
+## stateNew Jersey      -8299.700 1.272355e-12 -6.523100e+15  0.000000e+00
+## stateNew Mexico     -23324.994 3.614411e+02 -6.453332e+01  0.000000e+00
+## stateNew York        24150.006 3.614411e+02  6.681588e+01  0.000000e+00
+## stateNorth Carolina   6872.600 1.317547e-12  5.216210e+15  0.000000e+00
+## stateNorth Dakota   -29440.000 1.212318e-12 -2.428406e+16  0.000000e+00
+## stateOhio            20567.800 1.154427e-12  1.781646e+16  0.000000e+00
+## stateOklahoma        -4037.600 1.235279e-12 -3.268574e+15  0.000000e+00
+## stateOregon         -15436.128 3.012009e+02 -5.124861e+01  0.000000e+00
+## statePennsylvania    19368.400 1.208408e-12  1.602803e+16  0.000000e+00
+## stateRhode Island   -27097.563 2.409607e+02 -1.124563e+02  0.000000e+00
+## stateSouth Carolina  -8765.200 1.296916e-12 -6.758495e+15  0.000000e+00
+## stateSouth Dakota   -27428.100 2.372818e-12 -1.155929e+16  0.000000e+00
+## stateTennessee       -2912.100 1.390341e-12 -2.094522e+15  0.000000e+00
+## stateTexas          137865.006 3.614411e+02  3.814315e+02  0.000000e+00
+## stateUtah           -24357.300 1.238320e-12 -1.966963e+16  0.000000e+00
+## stateVermont        -28221.794 3.614411e+02 -7.808131e+01  0.000000e+00
+## stateVirginia         6674.700 1.260354e-12  5.295892e+15  0.000000e+00
+## stateWashington     -12764.000 1.212093e-12 -1.053054e+16  0.000000e+00
+## stateWest Virginia  -23795.897 1.807205e+02 -1.316723e+02  0.000000e+00
+## stateWisconsin       -7474.563 2.409607e+02 -3.101984e+01 2.911957e-211
+## stateWyoming        -28767.800 1.504482e-12 -1.912140e+16  0.000000e+00
+## rfi                  -1415.343 6.024018e+02 -2.349500e+00  1.879864e-02</code></pre>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>While I try to reproduce his work, I find that he wrongly recognized the data came from a natural experiment, and that he failed to do DiD, probably due to a coding error. Is he so careless? Maybe. Or maybe not. I suspect he may have tested us. If we are easily deceived by statistical junks, EBPM can be harmful. After all, he titled his article as “Wish Death of EBPM!”</p>
+<p>This is my second post to criticize Assist. Prof. Narita’s work. First one is <a href="https://mitsuoxv.rbind.io/2022/10/08/does-democracy-cause-slower-economic-growth-in-the-21st-century/">here</a>.</p>
+</div>
