@@ -10,6 +10,8 @@ tags:
   - R
 ---
 
+Updated: `r Sys.Date()`
+
 ## Assist Prof Narita did a meta-analysis on the effectiveness of EBPM
 
 [Assistant Professor Narita of Yale University](https://economics.yale.edu/people/yusuke-narita) wrote an article in [a book on EBPM (Evidence-Backed Policy-Making) which was published in Japan in December 2022](https://www.amazon.co.jp/-/en/%E5%A4%A7%E7%AB%B9%E6%96%87%E9%9B%84/dp/429611526X). In his article, he did a meta-analysis on the effectiveness of EBPM by checking whether [RFI (Results First Initiative)](https://www.pewtrusts.org/en/projects/archived-projects/results-first-initiative), which supported states in the U.S. from 2010 to 2023 by EBPM methods and is now concluded, really helped states reduce crimes. From his article, I quote two pages below:
@@ -64,7 +66,7 @@ For now, however, I pretend this is a natural experiment, and move on.
 
 I get the info on which states joined RFI and when from [this page](https://www.pewtrusts.org/en/projects/archived-projects/results-first-initiative/where-we-work). As there must be 27 states, I count Salt Lake County, Utah as Utah state. Although some California counties joined in 2013, I count California in 2016 when California state joined.
 
-```{r states_join}
+```{r states_join, echo=TRUE}
 states_join <- tribble(
   ~state, ~year_join,
   "North Carolina", "December 2017",
@@ -97,7 +99,9 @@ states_join <- tribble(
 ) |> 
   mutate(year_join = parse_number(year_join)) |> 
   arrange(state)
+```
 
+```{r plot_states_join}
 states_join |> 
   mutate(state = state |> 
            fct_reorder(year_join) |> 
@@ -114,15 +118,18 @@ states_join |>
 
 Statistically significant at 0.01 items in the quoted table above are all U.S. prison data, like prisoners, sentenced prisoners, custody population, admissions and releases. So, I have prepared those data in [my GitHub repo](https://github.com/mitsuoxv/us-prison). For simplicity, I use only prisoners here.
 
-Judging from the quoted figure, I guess he regards 17 states which joined between 2011 and 2014 as treatment group, and the rest 33 states as control group. I replicate the quoted figure like below in the left, and plot both treatment and control groups in Y-axis including zero in the right.
-
-```{r prisoners, message=FALSE, out.width='50%', fig.align='default', fig.asp=1}
+```{r prisoners, echo=TRUE, message=FALSE, }
 prisoners <- read_csv("https://raw.githubusercontent.com/mitsuoxv/us-prison/main/prisoners.csv")
 
 prisoners_long <- prisoners |> 
   pivot_longer(-state, names_to = "year", values_to = "prisoners") |> 
   mutate(year = as.numeric(year)) |> 
   arrange(state, year)
+```
+
+Judging from the quoted figure, I guess he regards 17 states which joined between 2011 and 2014 as treatment group, and the rest 33 states as control group. I replicate the quoted figure like below in the left, and plot both treatment and control groups in Y-axis including zero in the right.
+
+```{r prisoners_long2, out.width='50%', fig.align='default', fig.asp=1}
 
 states_join_upto_2014 <- states_join |> 
   filter(year_join <= 2014)
@@ -165,15 +172,9 @@ prisoners_long2 |>
 
 ## Replicate the row of prisoners in the quoted table
 
-He asserts he has used DiD (Difference-in-Difference) method to make the quoted table, writes standard errors are clustered by state with the two-way (state and year) fixed effect model equation in the footnote of the table.
-
-As he refers to the 4th chapter in [Primer for causal inference by Shota Yasui](https://www.amazon.co.jp/%E5%8A%B9%E6%9E%9C%E6%A4%9C%E8%A8%BC%E5%85%A5%E9%96%80%E3%80%9C%E6%AD%A3%E3%81%97%E3%81%84%E6%AF%94%E8%BC%83%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%9B%A0%E6%9E%9C%E6%8E%A8%E8%AB%96-%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6%E3%81%AE%E5%9F%BA%E7%A4%8E-%E5%AE%89%E4%BA%95-%E7%BF%94%E5%A4%AA/dp/4297111179), he must have used miceadds::lm.cluster() to get clustered standard errors. So I also use miceadds::lm.cluster().
-
 As the quoted figure shows -3 to 3 years from the joined year of the states which joined from 2011 to 2014, I use data from 2008 to 2017, and set "rfi" 0 in the years upto the joined year and 1 in the years beyond the joined year. Alaska, Delaware, Florida and Minnesota which joined in 2015 get 1 in "rfi" in 2016 and 2017, and California which joined in 2016 gets 1 in "rfi" in 2017. So the treatment group is now 22 states, and the control group is 28 states.
 
-Please look at the last line, "rfi". Estimate is -248, and p-value is 0.709. This does not look like the quoted table.
-
-```{r 2fe, message=FALSE}
+```{r dat, echo=TRUE}
 dat <- prisoners_long |> 
   left_join(states_join, by = "state") |> 
   filter(between(year, 2008, 2017)) |> 
@@ -184,7 +185,15 @@ dat <- prisoners_long |>
     year = factor(year)
     ) |> 
   select(!year_join)
+```
 
+He asserts he has used DiD (Difference-in-Difference) method to make the quoted table, writes standard errors are clustered by state with the two-way (state and year) fixed effect model equation in the footnote of the table.
+
+As he refers to the 4th chapter in [Primer for causal inference by Shota Yasui](https://www.amazon.co.jp/%E5%8A%B9%E6%9E%9C%E6%A4%9C%E8%A8%BC%E5%85%A5%E9%96%80%E3%80%9C%E6%AD%A3%E3%81%97%E3%81%84%E6%AF%94%E8%BC%83%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%9B%A0%E6%9E%9C%E6%8E%A8%E8%AB%96-%E8%A8%88%E9%87%8F%E7%B5%8C%E6%B8%88%E5%AD%A6%E3%81%AE%E5%9F%BA%E7%A4%8E-%E5%AE%89%E4%BA%95-%E7%BF%94%E5%A4%AA/dp/4297111179), he must have used miceadds::lm.cluster() to get clustered standard errors. So I also use miceadds::lm.cluster().
+
+Please look at the last line, "rfi". Estimate is -248, and p-value is 0.709. This does not look like the quoted table.
+
+```{r 2fe, echo=TRUE, message=FALSE}
 miceadds::lm.cluster(formula = prisoners ~ state + year + rfi,
                      data = dat, cluster = "state") |> 
   summary()
@@ -194,7 +203,7 @@ So I try the one-way (state) fixed effect model. Now, estimate is -1415, and p-v
 
 The problem is this is not DiD. Negative estimate merely reflects downward trend in nearly all states.
 
-```{r 1fe}
+```{r 1fe, echo=TRUE}
 miceadds::lm.cluster(formula = prisoners ~ state + rfi,
                      data = dat, cluster = "state") |> 
   summary()
