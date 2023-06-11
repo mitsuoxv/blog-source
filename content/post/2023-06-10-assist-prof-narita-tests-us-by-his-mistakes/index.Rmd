@@ -14,7 +14,7 @@ Updated: `r Sys.Date()`
 
 ## Assist Prof Narita did a meta-analysis on the effectiveness of EBPM
 
-[Assistant Professor Narita of Yale University](https://economics.yale.edu/people/yusuke-narita) wrote an article in [a book on EBPM (Evidence-Backed Policy-Making) which was published in Japan in December 2022](https://www.amazon.co.jp/-/en/%E5%A4%A7%E7%AB%B9%E6%96%87%E9%9B%84/dp/429611526X). In his article, he did a meta-analysis on the effectiveness of EBPM by checking whether [RFI (Results First Initiative)](https://www.pewtrusts.org/en/projects/archived-projects/results-first-initiative), which supported states in the U.S. from 2010 to 2023 by EBPM methods and is now concluded, really helped states reduce crimes. From his article, I quote two pages below:
+[Assistant Professor Narita of Yale University](https://economics.yale.edu/people/yusuke-narita) wrote an article in [a book on EBPM (Evidence-Based Policy-Making) which was published in Japan in December 2022](https://www.amazon.co.jp/-/en/%E5%A4%A7%E7%AB%B9%E6%96%87%E9%9B%84/dp/429611526X). In his article, he did a meta-analysis on the effectiveness of EBPM by checking whether [RFI (Results First Initiative)](https://www.pewtrusts.org/en/projects/archived-projects/results-first-initiative), which supported states in the U.S. from 2010 to 2023 by EBPM methods and is now concluded, really helped states reduce crimes. From his article, I quote two pages below:
 
 ![A part of meta-analysis](images/image0.jpeg)
 
