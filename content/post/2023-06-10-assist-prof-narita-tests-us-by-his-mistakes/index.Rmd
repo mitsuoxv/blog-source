@@ -127,7 +127,7 @@ prisoners_long <- prisoners |>
   arrange(state, year)
 ```
 
-Judging from the quoted figure, I guess he regards 17 states which joined between 2011 and 2014 as treatment group, and the rest 33 states as control group. I replicate the quoted figure like below in the left, and plot both treatment and control groups in Y-axis including zero in the right.
+Judging from the quoted figure, I guess he regards 17 states which joined between 2011 and 2014 as treatment group, and the rest 33 states as control group. I replicate the quoted figure like below in the left, and plot both treatment and control groups in Y-axis including zero in the right. I set 2012 as 0 in X-axis in the control group.
 
 ```{r prisoners_long2, out.width='50%', fig.align='default', fig.asp=1}
 
