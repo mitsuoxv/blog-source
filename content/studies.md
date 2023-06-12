@@ -16,6 +16,7 @@ title: Studies
 
 ## Research
 
+* [US prison data from Bureau of Justice Statistics ](https://github.com/mitsuoxv/us-prison) (annual)
 * [Retail and wholesale gasoline prices in Japan](https://github.com/mitsuoxv/jp-gasoline) (monthly)
 * [Japan suicide cases reported by National Police Agency](https://github.com/mitsuoxv/jp-suicide) (monthly)
 * [WHO, Covid-19 situation report](https://github.com/mitsuoxv/covid/blob/master/README.md) (daily)
@@ -26,6 +27,10 @@ title: Studies
 * [Who replaces China in US imports?](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Trade-diversion.md) (quarterly)
 * [GDP movement in Europe by euro or not](https://github.com/mitsuoxv/euro-or-not-gdp/blob/master/README.md) (quarterly)
 * [Japan Family Income and Expenditure Survey, city competition](https://github.com/mitsuoxv/jp-household/blob/master/README.md) (annual)
+
+## Translation into Japanese
+
+* [Forecasting: Principles and Practice (3rd ed) by Rob J Hyndman and George Athanasopoulos](https://otexts.com/fppjp/)
 
 ## Past research
 
@@ -39,5 +44,3 @@ title: Studies
 * [Economic and Trade Policies of the Trump
 Administration and Their Effects](http://www.hitachi-hri.com/english/journal/__icsFiles/afieldfile/2017/03/28/vol11_04_3.pdf), March 2017
 * [Future of Japanese-style management](http://www.hitachi-hri.com/journal/vol05_03.html), Japanese only, October 2010
-
-
