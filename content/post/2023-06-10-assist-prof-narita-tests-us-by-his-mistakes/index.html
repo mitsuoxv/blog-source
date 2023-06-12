@@ -12,7 +12,7 @@ tags:
 
 
 
-<p>Updated: 2023-06-11</p>
+<p>Updated: 2023-06-12</p>
 <div id="assist-prof-narita-did-a-meta-analysis-on-the-effectiveness-of-ebpm" class="section level2">
 <h2>Assist Prof Narita did a meta-analysis on the effectiveness of EBPM</h2>
 <p><a href="https://economics.yale.edu/people/yusuke-narita">Assistant Professor Narita of Yale University</a> wrote an article in <a href="https://www.amazon.co.jp/-/en/%E5%A4%A7%E7%AB%B9%E6%96%87%E9%9B%84/dp/429611526X">a book on EBPM (Evidence-Based Policy-Making) which was published in Japan in December 2022</a>. In his article, he did a meta-analysis on the effectiveness of EBPM by checking whether <a href="https://www.pewtrusts.org/en/projects/archived-projects/results-first-initiative">RFI (Results First Initiative)</a>, which supported states in the U.S. from 2010 to 2023 by EBPM methods and is now concluded, really helped states reduce crimes. From his article, I quote two pages below:</p>
@@ -78,7 +78,7 @@ prisoners_long &lt;- prisoners |&gt;
   pivot_longer(-state, names_to = &quot;year&quot;, values_to = &quot;prisoners&quot;) |&gt; 
   mutate(year = as.numeric(year)) |&gt; 
   arrange(state, year)</code></pre>
-<p>Judging from the quoted figure, I guess he regards 17 states which joined between 2011 and 2014 as treatment group, and the rest 33 states as control group. I replicate the quoted figure like below in the left, and plot both treatment and control groups in Y-axis including zero in the right.</p>
+<p>Judging from the quoted figure, I guess he regards 17 states which joined between 2011 and 2014 as treatment group, and the rest 33 states as control group. I replicate the quoted figure like below in the left, and plot both treatment and control groups in Y-axis including zero in the right. I set 2012 as 0 in X-axis in the control group.</p>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/prisoners_long2-1.png" width="50%" /><img src="{{< blogdown/postref >}}index_files/figure-html/prisoners_long2-2.png" width="50%" /></p>
 </div>
 <div id="replicate-the-row-of-prisoners-in-the-quoted-table" class="section level2">
