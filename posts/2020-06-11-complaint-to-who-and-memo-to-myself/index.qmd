@@ -1,0 +1,23 @@
+---
+title: Complaint to WHO, and memo to myself
+author: Mitsuo Shiota
+date: '2020-06-11'
+categories:
+  - economics
+  - R
+  - Shiny
+---
+
+Every morning, I update [Covid-19, WHO situation report](https://github.com/mitsuoxv/covid), and [shiny app](https://mitsuoxv.shinyapps.io/covid/).
+
+This morning, WHO situation report was No. 142, which I downloaded at 7:43 am, June 11, Japan Time. And its Table 1 was a mess. Check sum alerted me something is wrong. I found:
+
+1. The numbers of Kosovo are not of Kosovo, but of Isle of Man.
+1. Kosovo and Puerto Rico are missing.
+1. French Guiana and Jersey are duplicated.
+
+From the grand total, I know total new_conf of Kosovo and Puerto Rico is 139. I speculate 69 for Kosovo, and 70 for Puerto Rico. I have to correct them later.
+
+Update:
+I re-downloaded No. 142 at 7:37 am, June 12, Japan Time, and found it was corrected. Thank you, WHO. It turned out that new_conf was 0 for Kosovo, and 139 for Puerto Rico.
+

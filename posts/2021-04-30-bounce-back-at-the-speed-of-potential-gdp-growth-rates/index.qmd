@@ -1,0 +1,20 @@
+---
+title: Bounce back at the speed of potential GDP growth rates?
+author: Mitsuo Shiota
+date: '2021-04-30'
+categories:
+  - economics
+  - Nikkei
+---
+
+This is the third consecutive post on my complaints about the guest essays "Policy proposal for post-Covid-19" on "Lecture on Economics" in Nikkei news paper. The guest is [Miho Takizawa, an economics professor,](https://www.univ.gakushuin.ac.jp/eco/en/education/professor/list/eco/takizawa.html) on April 28, 2021. [Japanese article is here (subscription required)](https://www.nikkei.com/article/DGXZQOCD1944Y0Z10C21A4000000/).
+
+I don't have any strong objections to her essay as a whole. She points out the need to enhance potential GDP, and proposes some policies on labor, capital and total factor productivity.
+
+The problem is just one sentence in the introductory part. She writes, "It is calculated to take surprisingly long 7 years for real GDP to recover to the 2019 level, if it grows at 0.7 percent annually, which Cabinet Office estimates as potential GDP growth rate."
+
+This calculation comes from 4.8 percent, by which 2020 annual level dropped compared to 2019, divided by 0.7 percent. But, how about if we think the fourth quarter as FRB usually does, not annual. As 2020 Oct.-Dec. is 1.4 percent lower on year-over-year basis, it will take 2 years to recover to the 2019 level. Is this my complaint? No, this is a small issue.
+
+My complaint is that it is meaningless to assume recovery speed at the potential GDP growth rate, as recovery starts from the lower-than-potential level, where we are not fully utilizing labor, capital and other factors under Covid-19 situation.
+
+I guess she would like to emphasize the importance of potential GDP growth rate, but this sentence is absurd. If I were an editor, I would have recommended her to delete this sentence.

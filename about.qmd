@@ -1,0 +1,22 @@
+---
+title: "Mitsuo Shiota"
+image: mitsuoxv.jpeg
+about:
+  template: trestles
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/mitsuoxv
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/mitsuoxv
+---
+
+## Occupation
+
+* an economist and data scientist
+
+## Education
+
+* 1991 MBA, economics major, NYU
+* 1983 Bachelor of Laws, University of Tokyo

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mitsuo Shiota">
+<meta name="dcterms.date" content="2020-05-31">
+
+<title>Adventures of a self-learning data scientist - I built a PC, installed Pop!_OS, and am running RStudio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-R04P6XVLCC"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+ 
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+gtag('config', 'G-R04P6XVLCC', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Adventures of a self-learning data scientist</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../studies.html" rel="" target="">
+ <span class="menu-text">Studies</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mitsuoxv" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/mitsuoxv" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">I built a PC, installed Pop!_OS, and am running RStudio</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">personal</div>
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">Shiny</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Mitsuo Shiota </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 31, 2020</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="why-need-a-new-pc" class="level2">
+<h2 class="anchored" data-anchor-id="why-need-a-new-pc">Why need a new PC?</h2>
+<p>I have been using my company PC, a Panasonic note PC (Intel Core i5-7200U), to build and maintain this site. When I retire early next year, I have to return it to the company. I have to prepare a new one.</p>
+</section>
+<section id="why-not-buy" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-buy">Why not buy?</h2>
+<p>At home, I am a long time Apple user (Mac SE, PowerBook 145B, iMac DV, iBook G4, iPad, iPad Retina, iPad Pro 12.9 inch). The natural choice is a Mac. However, no Mac is equipped with Nvidia GPU. I am planning to play with tensorflow for deep learning, and tensorflow practically requires Nvidia GPU. Mac is out.</p>
+<p>I usually copy the codes in the book, run them and experiment to learn coding. I have found most books on data science assume the readers use Unix-like OS. When I use a Windows PC, I have to change some parts in the codes, and it is annoying. Shift-JIS character code of Japanese version of Windows is also annoying. Windows is out.</p>
+<p>I considered to buy a used note PC with Nvidia GPU, and then to replace OS from Windows to Linux. I looked around used note PCs, but failed to find a resonably priced one. Used PCs tend to have less performance per cost than new PCs in Japan. Used PC is out.</p>
+<p>Should I buy a new note PC with Nvidia GPU, like DELL XPS 15, and replace OS? I am afraid I will fail to install Linux on a new PC, as it usually takes some time for Linux to support new chips. New PC is out.</p>
+<p>Eventually I decided to build a PC from parts which Linux is likely to have supported.</p>
+</section>
+<section id="build-a-pc" class="level2">
+<h2 class="anchored" data-anchor-id="build-a-pc">Build a PC</h2>
+<p>If I can transfer the work of maintaining this site from my company PC to my new home PC, it is a success. How probable is it? Will I successfully build a functional PC: prior probability 0.9. Will I successfully install a functional OS: probability 0.8. Will I run RStudio smoothly: probability 0.7. In total, as 0.9 x 0.8 x 0.7 equals 0.5, this project is a half/half bet. I can’t bet much money on this risky project. So I decided to go for a budget PC. But how much budget?</p>
+<p>The Japanese government happens to be distributing one hundred thousand JPY to every resident. I just yesterday received an application form by mail. One hundred thousand JPY is 843 USD, if I exclude 10 percent consumption tax and exchange at 107.80 JPY/USD.</p>
+<p>The parts I chose are below. I purchased all at Amazon. As I use my 49 inch Sony 4K TV, a monitor is not included. The total amounf of 829 USD is under the budget of 843 USD.</p>
+<div id="tbl-parts" class="anchored">
+<table class="table">
+<caption>Table&nbsp;1: Parts I purchased</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">#</th>
+<th style="text-align: left;">Parts</th>
+<th style="text-align: left;">Vendor</th>
+<th style="text-align: right;">Price (USD)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">CPU: Ryzen 5 1600 AF</td>
+<td style="text-align: left;">AMD</td>
+<td style="text-align: right;">94</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Mother board: B450M Pro</td>
+<td style="text-align: left;">Asrock</td>
+<td style="text-align: right;">69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">DRAM: 16GBx2</td>
+<td style="text-align: left;">Skhynix</td>
+<td style="text-align: right;">135</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">SSD: 500GB, M.2 NVMe</td>
+<td style="text-align: left;">Micron</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Graphic card: GeForce RTX 2060</td>
+<td style="text-align: left;">Kuroutoshikou</td>
+<td style="text-align: right;">307</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Case: Q300L</td>
+<td style="text-align: left;">Cooler Master</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Funs: 120mmx3</td>
+<td style="text-align: left;">Novonest</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">PSU: 80Plus Bronze, 550W</td>
+<td style="text-align: left;">Kuroutoshikou</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Wireless keyboard and mouse</td>
+<td style="text-align: left;">Elecom</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">HDMI cable</td>
+<td style="text-align: left;">Amazon</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">USB memory</td>
+<td style="text-align: left;">Toshiba</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">Ball grip driver</td>
+<td style="text-align: left;">Vessel</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-</td>
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">829</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a href="https://www.youtube.com/channel/UCvWWf-LYjaujE50iYai8WgQ">Paul’s Hardware</a> says Ryzen 5 1600 AF is a buy, if sold under 100 USD. <a href="https://www.youtube.com/channel/UCI8iQa1hv7oV_Z8D35vVuSg">Hardware Unboxed</a> selects Asrock B450M Pro as the best B450 Micro ATX mother board. I followed their recommendations.</p>
+<p>The hardest work in building a PC was to connect cables between the mother board and the PC case. I had to remove the graphic card to do so. That was the most dangerous moment. I nearly broke the mother board and/or the graphic card, as I didn’t know there is a lock mechanism in PCIe x16 slot. I should have connected cables, before I insert the graphic card into PCIe x16 slot, in the first place. Somehow I found how to unlock PCIe x16 slot, and could safely remove the graphic card. It took six hours for me to build a PC. When I restart and hit F2 button timely, I could enter UEFI settings. So far, so good.</p>
+</section>
+<section id="install-pop_os" class="level2">
+<h2 class="anchored" data-anchor-id="install-pop_os">Install Pop!_OS</h2>
+<p>Ubuntu 20.04 LTS is just released, and Ubuntu-based System 76 Pop!_OS 20.04 is now available. Which distro should I choose? Jay in <a href="https://www.learnlinux.tv/">LearnLinux.tv</a> is a fan of Pop!_OS, reviews Pop!_OS 20.04 positively, but has not yet confirmed its stability. In the pre-reseach, I have found Pop!_OS 20.04 has more polished user interface, and is easier to install Nvidia driver. So I chose Pop!_OS 20.04.</p>
+<section id="make-a-bootable-usb-memory" class="level3">
+<h3 class="anchored" data-anchor-id="make-a-bootable-usb-memory">Make a bootable USB memory</h3>
+<p>As connection to USB memory is disabled in my company PC for security reason, the only machine I can use is my old iBook G4, of which browser is TenFourFox. I downloaded an ISO file, Nvidia version, from <a href="https://pop.system76.com/">System 76</a>. Then, I followed the instructions in <a href="https://genjiapp.com/blog/2014/10/13/booting-and-installing-lubuntu-14.04-from-usb-flash-drive-on-ibook-g4.html">a seemingly promising page of how-to</a> (Japanese).</p>
+<ul>
+<li>Insert the USB memory to iBook G4</li>
+<li>In the Terminal, type <code>$ diskutil list</code>, and confirm the USB memory is recognized as <code>/dev/disk1</code></li>
+<li><code>$ diskutil unmountDisk /dev/disk1</code></li>
+<li><code>$ cd ~/Downloads</code></li>
+<li><code>$ sudo dd if=pop-os_20.04_amd64_nvidia_6.iso of=/dev/disk1 bs=1m</code></li>
+<li>When the writing is finished, pull out the USB memory</li>
+</ul>
+</section>
+<section id="boot-from-a-usb-memory" class="level3">
+<h3 class="anchored" data-anchor-id="boot-from-a-usb-memory">Boot from a USB memory</h3>
+<p>I inserted the USB memory to my new PC, restart, hit F2 button, and entered UEFI settings. In the Boot section, I selected the USB memory as Boot option priority. In the Exit section, I saved changes and exit. Reboot, and voila! Pop!_OS started.</p>
+</section>
+<section id="install-pop_os-1" class="level3">
+<h3 class="anchored" data-anchor-id="install-pop_os-1">Install Pop!_OS</h3>
+<p>It was pretty easy to install. I just followed the installer. Although I selected “Japanese” in keyboard layout, I selected “English” in language, as searching in English hits more helpful pages than in Japanese. Pop!_OS 20.04 is working. So far, so good.</p>
+</section>
+</section>
+<section id="install-git-and-set-up-ssh-connection-with-github" class="level2">
+<h2 class="anchored" data-anchor-id="install-git-and-set-up-ssh-connection-with-github">Install Git, and set up SSH connection with GitHub</h2>
+<p>Looking at <a href="https://support.system76.com/articles/terminal-basics/">Linux Terminal Basics</a>, I typed in the Terminal.</p>
+<pre><code>$ sudo apt update
+$ sudo apt full-upgrade</code></pre>
+<p>Taking some advice in <a href="https://qiita.com/kenji-miyake/items/06b8c3807bef0ba5c451">this page</a> (Japanese), I installed git and curl.</p>
+<pre><code>$ sudo apt install git curl</code></pre>
+<p>And I generated a new SSH key, and added it to the ssh-agent and to my GitHub account, basically following the instructions in the <a href="https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent">GitHub help page</a>.</p>
+</section>
+<section id="install-r-and-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="install-r-and-rstudio">Install R and RStudio</h2>
+<p>As I found <a href="https://linuxconfig.org/how-to-install-rstudio-on-ubuntu-20-04-focal-fossa-linux">“How to install RStudio on Ubuntu 20.04 Focal Fossa Linux”</a> in linuxconfig.org, I followed the instructions.</p>
+<p>But I failed to install “tidyverse”. I apt install nearly all modules in <a href="https://gist.github.com/luispuerto/a247301bc4337cccb04d9e4abd24fba8">this shell script</a>. Then I could install “tidyverse”.</p>
+<p>RStudio Version 1.3.959 sometimes hangs in my environment. Nothing appears in the panels, and the menu does not respond. <a href="https://www.reddit.com/r/pop_os/comments/adhqs4/how_to_force_quit_an_hanging_application_in_pop_os/">“How to force quit an hanging application in Pop OS”</a> helped me. I pushed alt+f2, and xkill.</p>
+<p>This is a known issue, and 1.3-patch will come, according to <a href="https://github.com/rstudio/rstudio/issues/6782">this page</a>. I added the line below to .bashrc as a workaround. Now I type <code>rstudio</code> in the Terminal to start RStudio.</p>
+<pre><code>export RSTUDIO_CHROMIUM_ARGUMENTS="--disable-seccomp-filter-sandbox"</code></pre>
+<p>Still, “Failed to load module appmenu-gtk-module” message appeared in the Terminal. So I apt install modules below, following <a href="https://askubuntu.com/questions/1074926/failed-to-load-module-appmenu-gtk-module-canberra-gtk-module">this page</a>.</p>
+<pre><code>$ sudo apt install appmenu-gtk2-module appmenu-gtk3-module</code></pre>
+<p>There always is a small issue. After I installed maps library, I was asked to install mapproj library.</p>
+<p>As a whole, it looks OK now.</p>
+<p>Yesterday and today, I successfully updated <a href="https://github.com/mitsuoxv/covid">my covid repository</a> and <a href="https://mitsuoxv.shinyapps.io/covid/">my related shiny app</a> from my new PC. And this is the first post from my new PC. So far, so good.</p>
+<p>I hope this machine will serve me long and well.</p>
+<p>PS <a href="https://mitsuoxv.rbind.io/2022/05/15/i-updated-bios-and-installed-a-new-cpu-in-my-pc/">I replaced Ryzen 5 1600 AF with Ryzen 5 5600 in May 2022.</a></p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> I built a PC, installed Pop!_OS, and am running RStudio</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Mitsuo Shiota</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> '2020-05-31'</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - personal</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - R</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - Shiny</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why need a new PC?</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>I have been using my company PC, a Panasonic note PC (Intel Core i5-7200U), to build and maintain this site. When I retire early next year, I have to return it to the company. I have to prepare a new one.</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why not buy?</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>At home, I am a long time Apple user (Mac SE, PowerBook 145B, iMac DV, iBook G4, iPad, iPad Retina, iPad Pro 12.9 inch). The natural choice is a Mac. However, no Mac is equipped with Nvidia GPU. I am planning to play with tensorflow for deep learning, and tensorflow practically requires Nvidia GPU. Mac is out.</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>I usually copy the codes in the book, run them and experiment to learn coding. I have found most books on data science assume the readers use Unix-like OS. When I use a Windows PC, I have to change some parts in the codes, and it is annoying. Shift-JIS character code of Japanese version of Windows is also annoying. Windows is out.</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>I considered to buy a used note PC with Nvidia GPU, and then to replace OS from Windows to Linux. I looked around used note PCs, but failed to find a resonably priced one. Used PCs tend to have less performance per cost than new PCs in Japan. Used PC is out.</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>Should I buy a new note PC with Nvidia GPU, like DELL XPS 15, and replace OS? I am afraid I will fail to install Linux on a new PC, as it usually takes some time for Linux to support new chips. New PC is out.</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>Eventually I decided to build a PC from parts which Linux is likely to have supported.</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Build a PC</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>If I can transfer the work of maintaining this site from my company PC to my new home PC, it is a success. How probable is it? Will I successfully build a functional PC: prior probability 0.9. Will I successfully install a functional OS: probability 0.8. Will I run RStudio smoothly: probability 0.7. In total, as 0.9 x 0.8 x 0.7 equals 0.5, this project is a half/half bet. I can't bet much money on this risky project. So I decided to go for a budget PC. But how much budget?</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>The Japanese government happens to be distributing one hundred thousand JPY to every resident. I just yesterday received an application form by mail. One hundred thousand JPY is 843 USD, if I exclude 10 percent consumption tax and exchange at 107.80 JPY/USD.</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>The parts I chose are below. I purchased all at Amazon. As I use my 49 inch Sony 4K TV, a monitor is not included. The total amounf of 829 USD is under the budget of 843 USD.</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>|#|Parts|Vendor|Price (USD)|</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>| ---: | :--- | :--- | ---: |</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>|1|CPU: Ryzen 5 1600 AF|AMD|94|</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>|2|Mother board: B450M Pro|Asrock|69|</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>|3|DRAM: 16GBx2|Skhynix|135|</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>|4|SSD: 500GB, M.2 NVMe|Micron|77|</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>|5|Graphic card: GeForce RTX 2060|Kuroutoshikou|307|</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>|6|Case: Q300L|Cooler Master|46|</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>|7|Funs: 120mmx3|Novonest|9|</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>|8|PSU: 80Plus Bronze, 550W|Kuroutoshikou|51|</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>|9|Wireless keyboard and mouse|Elecom|25|</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>|10|HDMI cable|Amazon|9|</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>|11|USB memory|Toshiba|4|</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>|12|Ball grip driver|Vessel|3|</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>|-|Total|-|829|</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>: Parts I purchased {#tbl-parts}</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Paul's Hardware</span><span class="co">](https://www.youtube.com/channel/UCvWWf-LYjaujE50iYai8WgQ)</span> says Ryzen 5 1600 AF is a buy, if sold under 100 USD. <span class="co">[</span><span class="ot">Hardware Unboxed</span><span class="co">](https://www.youtube.com/channel/UCI8iQa1hv7oV_Z8D35vVuSg)</span> selects Asrock B450M Pro as the best B450 Micro ATX mother board. I followed their recommendations.</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>The hardest work in building a PC was to connect cables between the mother board and the PC case. I had to remove the graphic card to do so. That was the most dangerous moment. I nearly broke the mother board and/or the graphic card, as I didn't know there is a lock mechanism in PCIe x16 slot. I should have connected cables, before I insert the graphic card into PCIe x16 slot, in the first place. Somehow I found how to unlock PCIe x16 slot, and could safely remove the graphic card. It took six hours for me to build a PC. When I restart and hit F2 button timely, I could enter UEFI settings. So far, so good.</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Install Pop!_OS</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>Ubuntu 20.04 LTS is just released, and Ubuntu-based System 76 Pop!_OS 20.04 is now available. Which distro should I choose? Jay in [LearnLinux.tv](https://www.learnlinux.tv/) is a fan of Pop!_OS, reviews Pop!_OS 20.04 positively, but has not yet confirmed its stability. In the pre-reseach, I have found Pop!_OS 20.04 has more polished user interface, and is easier to install Nvidia driver. So I chose Pop!_OS 20.04.</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Make a bootable USB memory</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>As connection to USB memory is disabled in my company PC for security reason, the only machine I can use is my old iBook G4, of which browser is TenFourFox. I downloaded an ISO file, Nvidia version, from <span class="co">[</span><span class="ot">System 76</span><span class="co">](https://pop.system76.com/)</span>. Then, I followed the instructions in <span class="co">[</span><span class="ot">a seemingly promising page of how-to</span><span class="co">](https://genjiapp.com/blog/2014/10/13/booting-and-installing-lubuntu-14.04-from-usb-flash-drive-on-ibook-g4.html)</span> (Japanese).</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Insert the USB memory to iBook G4</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In the Terminal, type <span class="in">`$ diskutil list`</span>, and confirm the USB memory is recognized as <span class="in">`/dev/disk1`</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`$ diskutil unmountDisk /dev/disk1`</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`$ cd ~/Downloads`</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`$ sudo dd if=pop-os_20.04_amd64_nvidia_6.iso of=/dev/disk1 bs=1m`</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When the writing is finished, pull out the USB memory</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="fu">### Boot from a USB memory</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>I inserted the USB memory to my new PC, restart, hit F2 button, and entered UEFI settings. In the Boot section, I selected the USB memory as Boot option priority. In the Exit section, I saved changes and exit. Reboot, and voila! Pop!_OS started.</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Install Pop!_OS</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>It was pretty easy to install. I just followed the installer. Although I selected "Japanese" in keyboard layout, I selected "English" in language, as searching in English hits more helpful pages than in Japanese. Pop!_OS 20.04 is working. So far, so good.</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Install Git, and set up SSH connection with GitHub</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>Looking at <span class="co">[</span><span class="ot">Linux Terminal Basics</span><span class="co">](https://support.system76.com/articles/terminal-basics/)</span>, I typed in the Terminal.</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="in">$ sudo apt update</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="in">$ sudo apt full-upgrade</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>Taking some advice in <span class="co">[</span><span class="ot">this page</span><span class="co">](https://qiita.com/kenji-miyake/items/06b8c3807bef0ba5c451)</span> (Japanese), I installed git and curl.</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="in">$ sudo apt install git curl</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>And I generated a new SSH key, and added it to the ssh-agent and to my GitHub account, basically following the instructions in the <span class="co">[</span><span class="ot">GitHub help page</span><span class="co">](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent)</span>.</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## Install R and RStudio</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>As I found <span class="co">[</span><span class="ot">"How to install RStudio on Ubuntu 20.04 Focal Fossa Linux "</span><span class="co">](https://linuxconfig.org/how-to-install-rstudio-on-ubuntu-20-04-focal-fossa-linux)</span> in linuxconfig.org, I followed the instructions.</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>But I failed to install "tidyverse". I apt install nearly all modules in <span class="co">[</span><span class="ot">this shell script</span><span class="co">](https://gist.github.com/luispuerto/a247301bc4337cccb04d9e4abd24fba8)</span>. Then I could install "tidyverse". </span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>RStudio Version 1.3.959 sometimes hangs in my environment. Nothing appears in the panels, and the menu does not respond. <span class="co">[</span><span class="ot">"How to force quit an hanging application in Pop OS"</span><span class="co">](https://www.reddit.com/r/pop_os/comments/adhqs4/how_to_force_quit_an_hanging_application_in_pop_os/)</span> helped me. I pushed alt+f2, and xkill.</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>This is a known issue, and 1.3-patch will come, according to <span class="co">[</span><span class="ot">this page</span><span class="co">](https://github.com/rstudio/rstudio/issues/6782)</span>. I added the line below to .bashrc as a workaround. Now I type <span class="in">`rstudio`</span> in the Terminal to start RStudio.</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="in">export RSTUDIO_CHROMIUM_ARGUMENTS="--disable-seccomp-filter-sandbox"</span></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>Still, "Failed to load module appmenu-gtk-module" message appeared in the Terminal. So I apt install modules below, following <span class="co">[</span><span class="ot">this page</span><span class="co">](https://askubuntu.com/questions/1074926/failed-to-load-module-appmenu-gtk-module-canberra-gtk-module)</span>.</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="in">$ sudo apt install appmenu-gtk2-module appmenu-gtk3-module</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>There always is a small issue. After I installed maps library, I was asked to install mapproj library.</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>As a whole, it looks OK now. </span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>Yesterday and today, I successfully updated <span class="co">[</span><span class="ot">my covid repository</span><span class="co">](https://github.com/mitsuoxv/covid)</span> and <span class="co">[</span><span class="ot">my related shiny app</span><span class="co">](https://mitsuoxv.shinyapps.io/covid/)</span> from my new PC. And this is the first post from my new PC. So far, so good.</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>I hope this machine will serve me long and well.</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>PS</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">I replaced Ryzen 5 1600 AF with Ryzen 5 5600 in May 2022.</span><span class="co">](https://mitsuoxv.rbind.io/2022/05/15/i-updated-bios-and-installed-a-new-cpu-in-my-pc/)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

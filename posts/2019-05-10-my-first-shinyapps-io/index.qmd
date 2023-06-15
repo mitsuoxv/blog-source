@@ -1,0 +1,13 @@
+---
+title: My first shinyapps.io
+author: Mitsuo Shiota
+date: '2019-05-10'
+categories:
+  - economics
+  - Shiny
+  - R
+---
+
+I have made my first [shinyapps.io](https://mitsuoxv.shinyapps.io/jp-household/), based on [my study on city competition to consume in Japan](https://github.com/mitsuoxv/jp-household).
+
+You can check which city consumed most in each item in each year from 2007 to 2018.

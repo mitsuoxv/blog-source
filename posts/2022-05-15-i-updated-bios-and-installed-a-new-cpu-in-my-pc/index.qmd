@@ -1,0 +1,17 @@
+---
+title: 'I updated BIOS, and installed a new CPU in my PC'
+author: Mitsuo Shiota
+date: '2022-05-15'
+categories:
+  - personal
+---
+
+My PC is 2 years old. [I built it myself](https://mitsuoxv.rbind.io/2020/05/31/i-built-a-pc-installed-pop-os-and-am-running-rstudio/), and it worked fine. As my motto is "Don't fix it, as long as it works," I had no plan to upgrade my CPU. However, I sometimes betray my motto, and do some risky fixes. This time was one of them.
+
+The story began when I read an annoying news, ["Rakuten Mobile raises fees for users of less than 1GB per month usage (Japanese)"](https://www.itmedia.co.jp/mobile/articles/2205/14/news046.html). I am one of such users. I accessed Rakuten Mobile app to get more information, and found an unrelated fact that I had 20,000 points, which were given to me when I changed my mobile carrier, and these points would expire in this month! Suddenly I felt obliged to buy something in Rakuten Market as soon as possible. And I decided to buy AMD Ryzen 5 5600, which was priced at 27,500 JPY. If I deduct 10 percent consumption tax and exchange by 130 JPY per USD, the price is 192 USD. As MSRP is 199 USD, this is not a bad deal. I used my 20,000 points, and paid 7,500 JPY, or 58 USD.
+
+To replace CPU, I must update BIOS, as BIOS in my 2 year old motherboard does not recognize Zen 3 architecture. I prepared a FAT formatted USB flash drive. To do so, I struggled with "Disks" app in Pop-os. Initially I thought the drive would be mountable, once formatted. I was wrong. To create new partition was also necessary. Then I downloaded BIOS zip file from the vendor (in my case, Asrock) site, and extracted a file into a USB flash drive. My CPU soon to be replaced was AMD Ryzen 5 1600 AF. Asrock does not recommend the updated BIOS to this old CPU. So once BIOS was updated, there would be no way of return.
+
+Today, a new CPU was delivered. Should I update BIOS before or after installing a new CPU? Definitely before. Otherwise BIOS screen would not appear. I updated BIOS, following the instructions in [this page](https://www.asrock.com/support/BIOSIG.asp?cat=BIOS10). Pop-os appeared with an old CPU and a new BIOS, and I powered off. Then I struggled with my hardware for nearly an hour. To remove an air cooler attached to CPU, I had to remove a part of the chassis beforehand. When I finished removing an air cooler, I heard a sound of a part falling in the opposite side of motherboard. I had to open the opposite side panel. While replacing CPU was easy, installing a new air cooler was hard. Anyway, I managed to finish CPU and air cooler replacement.
+
+The moment of truth came. I pushed power button. A message appeared, saying it detected new CPU, asked me to input either y or n, and I typed y. I waited a while, and found Pop-os appeared. Yes, I succeeded! I am writing this post on my updated PC. Whether the update worth the trouble remains to be seen. I hope my updated PC will work stable and serve me long.

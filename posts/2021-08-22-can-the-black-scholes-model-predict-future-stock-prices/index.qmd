@@ -1,0 +1,23 @@
+---
+title: Can the Black-Scholes model predict future stock prices?
+author: Mitsuo Shiota
+date: '2021-08-22'
+categories:
+  - economics
+  - NHK
+  - Nikkei
+---
+
+NHK and other media reported a supplement and cosmetics vendor listed on the first section of the Tokyo Stock Exchange demonstrated an air flight using biofuels it produced from euglena and used cook oil on [June 29, 2021 (Japanese)](https://www3.nhk.or.jp/news/html/20210629/k10013110281000.html).
+
+Nikkei didn't report this demonstration, I guess, as Nikkei Business had reported those biofuels were made mainly from used cook oil on [March 24, 2021 (Japanese, subscription required)](https://business.nikkei.com/atcl/NBD/19/depth/00987/). But one of its commentators praised its CEO for his performance on [July 28, 2021 (Japanese, subscription required)](https://www.nikkei.com/article/DGXZQOCD260KT0W1A720C2000000/).
+
+Its vice-president had admitted those biofuels were made mainly from used cook oil, as the production cost from euglena were currently too high, on [June 23, 2021 (Japanese)](https://www.businessinsider.jp/post-237366).
+
+Then, was that demonstration a company effort to shore up its stock prices? Did the CEO speak in good faith?
+
+Although development of biofuels from algae, including euglena, face criticism (reported [here](https://harvardpolitics.com/the-myth-of-algae-biofuels/) and [here](https://www.forbes.com/sites/rrapier/2018/11/02/algal-biofuels-dead-not-so-fast-says-algal-biofuel-researcher/?sh=3215644056c4)), I can't rule out their future possibilities. So I briefly read the books of both its CEO and CTO to check their good faith, and found some annoying writings.
+
+The CEO wrote he and the CTO won stock investment contests both in Sky Perfect TV and TV Tokyo using the Black-Scholes model in their university days in [his book (Japanese)](https://books.google.co.jp/books?id=See-3LkAF7IC&pg=RA1-PT24&lpg=RA1-PT24&dq=%E3%83%86%E3%83%AC%E3%83%93%E6%9D%B1%E4%BA%AC%E3%80%80%E6%8A%95%E8%B3%87%E3%80%80%E3%82%B3%E3%83%B3%E3%83%86%E3%82%B9%E3%83%88&source=bl&ots=V3Ma62XFc7&sig=ACfU3U3rUdvKh4ubXk5JjtYpfVpEqWcGaA&hl=en&sa=X&ved=2ahUKEwilwc3u8cPyAhUYA94KHYQ8BrEQ6AF6BAgLEAM#v=onepage&q=%E3%83%86%E3%83%AC%E3%83%93%E6%9D%B1%E4%BA%AC%E3%80%80%E6%8A%95%E8%B3%87%E3%80%80%E3%82%B3%E3%83%B3%E3%83%86%E3%82%B9%E3%83%88&f=false). He wrote the CTO could calculate the proper stock prices using the Black-Scholes model, and found the undervalued stocks. It is not possible, as [the Black-Scholes model is a mathematical model for pricing an options contract](https://www.investopedia.com/terms/b/blackscholes.asp). Did the CEO misunderstand the CTO doing?
+
+The CTO wrote he used the differential equation, on which the Black-Scholes model relies, in [his book publised by Nikkei BP](https://books.google.co.jp/books/about/%E3%83%9F%E3%83%89%E3%83%AA%E3%83%A0%E3%82%B7%E5%8D%9A%E5%A3%AB%E3%81%AE%E8%B6%85%E8%B5%B7%E6%A5%AD%E6%80%9D%E8%80%83.html?id=M2hvzgEACAAJ&redir_esc=y). That equation must be [here](https://www.quantstart.com/articles/Deriving-the-Black-Scholes-Equation/). For call option price, substitute C(S, T) = max(S - K, 0) in the last differential equation, and we get the Black-Scholes model. For stock price, substitute C = S in the last differential equation, and we get the identity equation rS - rS = 0. I don't know how this differential equation helped the CTO win the stock investment contest.

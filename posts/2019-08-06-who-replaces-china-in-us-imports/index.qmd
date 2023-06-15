@@ -1,0 +1,12 @@
+---
+title: Who replaces China in US imports?
+author: Mitsuo Shiota
+date: '2019-08-06'
+categories:
+  - economics
+  - R
+---
+
+US imports from China are decreasing in 2019. If trade diversion is goin on, other countries are replacing China. In [this study](https://github.com/mitsuoxv/us-tariffs-on-china/blob/master/Trade-diversion.md), I somewhat arbitrarily choose 4 candidate countries like Vietnam, Korea, Japan and Mexico, and check whether the US imports from these countries increase by HS 4 digit codes.
+
+

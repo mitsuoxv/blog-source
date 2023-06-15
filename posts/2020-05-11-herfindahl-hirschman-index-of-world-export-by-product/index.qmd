@@ -1,0 +1,12 @@
+---
+title: Herfindahl-Hirschman Index of world export by product
+author: Mitsuo Shiota
+date: '2020-05-11'
+categories:
+  - economics
+  - R
+---
+
+I calculated [Herfindahl-Hirschman Index of world export by product](https://github.com/mitsuoxv/wto-export/blob/master/README.md) by using [WTO Data](https://timeseries.wto.org/). According to [this page](https://www.investopedia.com/terms/h/hhi.asp), HHI is a commonly accepted measure of concentration. I calculated the shares of each exporting economy, square them, and sum up for each product. If one economy dominates 100 percent of the world export, then HHI is 10000, which is maximum.
+
+I have found China's rise in manufactured goods exports contributed to de-concentration up to 2005, and contributed to concentration thereafter. China's rise is partially driven by international division of labor by process. Smart phones and note PCs are mostly assembled in China, and exported from China, but their main components come from South Korea, Taiwan, Japan and others.

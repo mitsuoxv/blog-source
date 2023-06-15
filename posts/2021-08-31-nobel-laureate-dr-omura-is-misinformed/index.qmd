@@ -1,0 +1,18 @@
+---
+title: Nobel laureate Dr Omura is misinformed
+author: Mitsuo Shiota
+date: '2021-08-31'
+categories:
+  - Covid-19
+  - Media
+---
+
+I read [an interview (Japanese)](https://weekly-economist.mainichi.jp/articles/20210712/se1/00m/020/002000d) with [Dr Satoshi Omura](http://www.satoshi-omura.info/), who helped development of ivermectin and was awarded the Nobel Prize in Physiology or Medicine in 2015, in the weekly magazine, Sunday Mainichi, published on July 25 and August 1, 2021, and found a few points where his recognition is or may be wrong.
+
+1. He wrongly recognizes [Michael Capuzzo](https://en.wikipedia.org/wiki/Michael_Capuzzo) is a New York Times star reporter. He is not. He is a New York Times best-selling author.
+
+1. He wrongly recognizes the Indian Bar Association, which [served a legal notice to Chief Scientist at WHO](https://theprint.in/india/bar-association-serves-legal-notice-to-who-chief-scientist-over-ivermectin-guidelines/676672/), is comparable with [Japan Federation of Bar Associations (Japanese)](https://www.nichibenren.or.jp/jfba_info/bar_association/world/asia.html). Bar Council of India and the Bar Association of India, both located in New Dehli, are, but the Indian Bar Association is not. It is a private bar association located in Mumbai.
+
+1. He recognizes Michael Capuzzo writes "As WHO receives donations from big pharmaceutical companies, it should be regarded not as a public but as a private organization." I could not find this sentence in [this article of his](https://covid19criticalcare.com/wp-content/uploads/2021/05/The-Drug-that-Cracked-Covid-by-Michael-Capuzzo.pdf), though I could find the phrase "the FDA (the budget of which, as it happens, is 75 percent funded by big pharmaceutical companies)." Michael Capuzzo may have written this sentence in his other writings. If so, is he right? According to [the article by World Economic Forum](https://www.weforum.org/agenda/2020/04/who-funds-world-health-organization-un-coronavirus-pandemic-covid-trump/), the share of the private sector entities in WHO funding in 2018 is 2 percent. It is difficult to regard WHO as a private organization.
+
+Despite above, Dr Omura has not lost his mind as a scientist. He states, "I am not demanding ivermectin be hastily approved for Covid-19 treatment in Japan. I will wait for the outcome of the clinical test I helped to start. The truth shall prevail."

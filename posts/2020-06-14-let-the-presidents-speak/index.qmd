@@ -1,0 +1,34 @@
+---
+title: Let the Presidents speak
+author: Mitsuo Shiota
+date: '2020-06-14'
+categories:
+  - economics
+  - Python
+  - tensorflow
+---
+
+I added [Let the presidents speak on economic matters](https://github.com/mitsuoxv/erp/blob/master/let_pres_speak.ipynb) to the GitHub repository of [Economic Report of the President](https://github.com/mitsuoxv/erp).
+
+This is a text generation exercise using Python and tensorflow. 
+
+I first tried docker like below, but failed probably due to the incompatibility issues of the versions of tensorflow, cuda and cudnn. I tried both tf2-gpu.2-2 and tf2-gpu.2-0 in vain.
+
+```bash
+gcloud container images list \
+  --repository="gcr.io/deeplearning-platform-release"
+
+docker run --gpus all -p 8080:8080 -v `pwd`:/home \
+  gcr.io/deeplearning-platform-release/tf2-gpu.2-2
+```
+
+So I now use Google Colab. I may go back to docker, when I can find compatible version images.
+
+I input 523 sentences authored by Harry Truman from 3 files from 1947 to 1949, which I manually cleaned up to ensure that each line has one sentence. Fitting the model took nearly 4 hours. Then I started the text, "I have some proposals to the Congress". The model continued:
+
+"presented 1947 that i have included in the people and the policy for a few days i have a month earlier resources in a rate of prices and wages which more permanently sustainable rates of the vast public debt and to check year improved services to sustained economic situation to deal with the situation points up generally i evaluate it should should i evaluate i deal show i evaluate wholesale control of our program among as of deflationary pressures of living through hospitals and to savings and credit wages prosperity to reduce of low incomes health or strikes soon as"
+
+My ambition was to create some A. I. Presidents, like a Democrat President or a Republican President, and let them talk about health care, tax, trade, etc. However, the generated texts are not convincing.
+
+Anyway, I will continue to manually clean up text files from 1950 to 2020, and try again.
+

@@ -1,0 +1,126 @@
+---
+title: I built a PC, installed Pop!_OS, and am running RStudio
+author: Mitsuo Shiota
+date: '2020-05-31'
+categories:
+  - personal
+  - R
+  - Shiny
+---
+
+## Why need a new PC?
+
+I have been using my company PC, a Panasonic note PC (Intel Core i5-7200U), to build and maintain this site. When I retire early next year, I have to return it to the company. I have to prepare a new one.
+
+## Why not buy?
+
+At home, I am a long time Apple user (Mac SE, PowerBook 145B, iMac DV, iBook G4, iPad, iPad Retina, iPad Pro 12.9 inch). The natural choice is a Mac. However, no Mac is equipped with Nvidia GPU. I am planning to play with tensorflow for deep learning, and tensorflow practically requires Nvidia GPU. Mac is out.
+
+I usually copy the codes in the book, run them and experiment to learn coding. I have found most books on data science assume the readers use Unix-like OS. When I use a Windows PC, I have to change some parts in the codes, and it is annoying. Shift-JIS character code of Japanese version of Windows is also annoying. Windows is out.
+
+I considered to buy a used note PC with Nvidia GPU, and then to replace OS from Windows to Linux. I looked around used note PCs, but failed to find a resonably priced one. Used PCs tend to have less performance per cost than new PCs in Japan. Used PC is out.
+
+Should I buy a new note PC with Nvidia GPU, like DELL XPS 15, and replace OS? I am afraid I will fail to install Linux on a new PC, as it usually takes some time for Linux to support new chips. New PC is out.
+
+Eventually I decided to build a PC from parts which Linux is likely to have supported.
+
+## Build a PC
+
+If I can transfer the work of maintaining this site from my company PC to my new home PC, it is a success. How probable is it? Will I successfully build a functional PC: prior probability 0.9. Will I successfully install a functional OS: probability 0.8. Will I run RStudio smoothly: probability 0.7. In total, as 0.9 x 0.8 x 0.7 equals 0.5, this project is a half/half bet. I can't bet much money on this risky project. So I decided to go for a budget PC. But how much budget?
+
+The Japanese government happens to be distributing one hundred thousand JPY to every resident. I just yesterday received an application form by mail. One hundred thousand JPY is 843 USD, if I exclude 10 percent consumption tax and exchange at 107.80 JPY/USD.
+
+The parts I chose are below. I purchased all at Amazon. As I use my 49 inch Sony 4K TV, a monitor is not included. The total amounf of 829 USD is under the budget of 843 USD.
+
+|#|Parts|Vendor|Price (USD)|
+| ---: | :--- | :--- | ---: |
+|1|CPU: Ryzen 5 1600 AF|AMD|94|
+|2|Mother board: B450M Pro|Asrock|69|
+|3|DRAM: 16GBx2|Skhynix|135|
+|4|SSD: 500GB, M.2 NVMe|Micron|77|
+|5|Graphic card: GeForce RTX 2060|Kuroutoshikou|307|
+|6|Case: Q300L|Cooler Master|46|
+|7|Funs: 120mmx3|Novonest|9|
+|8|PSU: 80Plus Bronze, 550W|Kuroutoshikou|51|
+|9|Wireless keyboard and mouse|Elecom|25|
+|10|HDMI cable|Amazon|9|
+|11|USB memory|Toshiba|4|
+|12|Ball grip driver|Vessel|3|
+|-|Total|-|829|
+
+: Parts I purchased {#tbl-parts}
+
+[Paul's Hardware](https://www.youtube.com/channel/UCvWWf-LYjaujE50iYai8WgQ) says Ryzen 5 1600 AF is a buy, if sold under 100 USD. [Hardware Unboxed](https://www.youtube.com/channel/UCI8iQa1hv7oV_Z8D35vVuSg) selects Asrock B450M Pro as the best B450 Micro ATX mother board. I followed their recommendations.
+
+The hardest work in building a PC was to connect cables between the mother board and the PC case. I had to remove the graphic card to do so. That was the most dangerous moment. I nearly broke the mother board and/or the graphic card, as I didn't know there is a lock mechanism in PCIe x16 slot. I should have connected cables, before I insert the graphic card into PCIe x16 slot, in the first place. Somehow I found how to unlock PCIe x16 slot, and could safely remove the graphic card. It took six hours for me to build a PC. When I restart and hit F2 button timely, I could enter UEFI settings. So far, so good.
+
+## Install Pop!_OS
+
+Ubuntu 20.04 LTS is just released, and Ubuntu-based System 76 Pop!_OS 20.04 is now available. Which distro should I choose? Jay in [LearnLinux.tv](https://www.learnlinux.tv/) is a fan of Pop!_OS, reviews Pop!_OS 20.04 positively, but has not yet confirmed its stability. In the pre-reseach, I have found Pop!_OS 20.04 has more polished user interface, and is easier to install Nvidia driver. So I chose Pop!_OS 20.04.
+
+### Make a bootable USB memory
+
+As connection to USB memory is disabled in my company PC for security reason, the only machine I can use is my old iBook G4, of which browser is TenFourFox. I downloaded an ISO file, Nvidia version, from [System 76](https://pop.system76.com/). Then, I followed the instructions in [a seemingly promising page of how-to](https://genjiapp.com/blog/2014/10/13/booting-and-installing-lubuntu-14.04-from-usb-flash-drive-on-ibook-g4.html) (Japanese).
+
+- Insert the USB memory to iBook G4
+- In the Terminal, type `$ diskutil list`, and confirm the USB memory is recognized as `/dev/disk1`
+- `$ diskutil unmountDisk /dev/disk1`
+- `$ cd ~/Downloads`
+- `$ sudo dd if=pop-os_20.04_amd64_nvidia_6.iso of=/dev/disk1 bs=1m`
+- When the writing is finished, pull out the USB memory
+
+### Boot from a USB memory
+
+I inserted the USB memory to my new PC, restart, hit F2 button, and entered UEFI settings. In the Boot section, I selected the USB memory as Boot option priority. In the Exit section, I saved changes and exit. Reboot, and voila! Pop!_OS started.
+
+### Install Pop!_OS
+
+It was pretty easy to install. I just followed the installer. Although I selected "Japanese" in keyboard layout, I selected "English" in language, as searching in English hits more helpful pages than in Japanese. Pop!_OS 20.04 is working. So far, so good.
+
+## Install Git, and set up SSH connection with GitHub
+
+Looking at [Linux Terminal Basics](https://support.system76.com/articles/terminal-basics/), I typed in the Terminal.
+
+```
+$ sudo apt update
+$ sudo apt full-upgrade
+```
+
+Taking some advice in [this page](https://qiita.com/kenji-miyake/items/06b8c3807bef0ba5c451) (Japanese), I installed git and curl.
+
+```
+$ sudo apt install git curl
+```
+
+And I generated a new SSH key, and added it to the ssh-agent and to my GitHub account, basically following the instructions in the [GitHub help page](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent).
+
+## Install R and RStudio
+
+As I found ["How to install RStudio on Ubuntu 20.04 Focal Fossa Linux "](https://linuxconfig.org/how-to-install-rstudio-on-ubuntu-20-04-focal-fossa-linux) in linuxconfig.org, I followed the instructions.
+
+But I failed to install "tidyverse". I apt install nearly all modules in [this shell script](https://gist.github.com/luispuerto/a247301bc4337cccb04d9e4abd24fba8). Then I could install "tidyverse". 
+
+RStudio Version 1.3.959 sometimes hangs in my environment. Nothing appears in the panels, and the menu does not respond. ["How to force quit an hanging application in Pop OS"](https://www.reddit.com/r/pop_os/comments/adhqs4/how_to_force_quit_an_hanging_application_in_pop_os/) helped me. I pushed alt+f2, and xkill.
+
+This is a known issue, and 1.3-patch will come, according to [this page](https://github.com/rstudio/rstudio/issues/6782). I added the line below to .bashrc as a workaround. Now I type `rstudio` in the Terminal to start RStudio.
+
+```
+export RSTUDIO_CHROMIUM_ARGUMENTS="--disable-seccomp-filter-sandbox"
+```
+
+Still, "Failed to load module appmenu-gtk-module" message appeared in the Terminal. So I apt install modules below, following [this page](https://askubuntu.com/questions/1074926/failed-to-load-module-appmenu-gtk-module-canberra-gtk-module).
+
+```
+$ sudo apt install appmenu-gtk2-module appmenu-gtk3-module
+```
+
+There always is a small issue. After I installed maps library, I was asked to install mapproj library.
+
+As a whole, it looks OK now. 
+
+Yesterday and today, I successfully updated [my covid repository](https://github.com/mitsuoxv/covid) and [my related shiny app](https://mitsuoxv.shinyapps.io/covid/) from my new PC. And this is the first post from my new PC. So far, so good.
+
+I hope this machine will serve me long and well.
+
+PS
+[I replaced Ryzen 5 1600 AF with Ryzen 5 5600 in May 2022.](https://mitsuoxv.rbind.io/2022/05/15/i-updated-bios-and-installed-a-new-cpu-in-my-pc/)

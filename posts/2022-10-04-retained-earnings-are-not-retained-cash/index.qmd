@@ -1,0 +1,16 @@
+---
+title: Retained earnings are not retained cash
+author: Mitsuo Shiota
+date: '2022-10-04'
+categories:
+  - economics
+  - NHK
+---
+
+NHK caster Maho Kuwako, Mr. Shunsuke Kobayashi, Chief Economist of Mizuho Securities, and others talked about inflation and wage in the evening NHK program ["Close-up Gendai" on October 4](https://www.nhk.or.jp/gendai/articles/4709/).
+
+They talked about how to make businesses pay more wages and invest more from the accumulated retained earnings. Ms Kuwako introduced retained earnings as "money businesses save at hand", and showed it has increased to 516 trillion yen, which is 8 times of annual government tax revenues. Being asked why retained earnings increased to this level, Mr Kobayashi answered one reason is that businesses which hold plenty of cash have survived through the past four crises.  
+
+I was surprised that they misunderstand retained earnings are retained cash. They should learn accounting. Retained earnings are in the right side of the balance sheet, while cash is in the left side. Businesses which have large retained earnings do not always hold large cash. After they invest more and pay cash, they still hold the same amount of retained earnings. Retained earnings can be reduced by paying more dividends, but not by investing more. Even if businesses paid more wages in the past, retained earnings might have increased to the same level by cutting dividends, as composition of the right side of the balance sheet is determined by the strategy about how to best finance capital.
+
+If they think businesses are too greedy to pay more wages, they should talk about income share between labor and capital, instead of retained earnings.
