@@ -1,0 +1,39 @@
+---
+title: Migrated to Quarto
+author: Mitsuo Shiota
+date: '2023-06-15'
+categories:
+  - personal
+  - tips
+---
+
+Today, I migrated from Blogdown/Hugo to Quarto.
+I basically followed [an article by Art Steinmetz in r-bloggers](https://www.r-bloggers.com/2022/01/switching-to-quarto-from-blogdown/).
+Thank you, Art.
+
+What pushed me for migration was `code-fold` and `code-tools` options.
+To echo, or not to echo, that is no longer a question.
+Great!
+I added the lines below to _metadata.yml in posts.
+
+```
+code-fold: true
+code-tools: true
+
+fig-width: 6
+fig-height: 3.708
+```
+
+I also added the lines below to yaml header of each post which includes figures to make figures look consistent.
+
+```
+knitr: 
+  opts_chunk: 
+    out.width: '70%'
+```
+
+It took me four days to migrate my 13 Rmd posts and 77 md posts.
+md posts were easy: just delete `tags:` and `slug:` lines. 
+Rmd posts were hard, as I changed them into qmd and re-rendered.
+I also added 'fig-' and 'tbl-' prefix to figure and table label.
+I believe migration was the right choice, as Quarto is the future.
