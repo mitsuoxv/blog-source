@@ -1,0 +1,16 @@
+{
+  "hash": "def4b3e55edd4810b40eb7cd736403f4",
+  "result": {
+    "markdown": "---\ntitle: Add social transfer in kind to household consumption in Japan\nauthor: Mitsuo Shiota\ndate: '2024-04-13'\ncategories:\n  - economics\n  - R\nknitr: \n  opts_chunk: \n    out.width: '70%'\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(readxl)\n\ntheme_set(theme_light())\n```\n:::\n\n\n## Does consumption tax hurt household consumption?\n\nSome people say \"Consumption tax rate hikes have reduced household consumption in the long-run. So, if we cut consumption tax rate, which is currently 10 precent, household consumption will grow, and higher economic growth follows.\"\nI doubt their assertion.\nAs the society is aging, social transfer in kind, such as public insurance payment in medicine and care, has to increase.\nThis increase in social transfer in kind may be a confound, which increases consumption tax rates, and decreases household consumption, as social transfer in kind is included in government consumption, not household consumption under the current SNA (2008SNA).\n\n## Get the SNA data\n\nI download the relevant data from [Cabinet Office site](https://www.esri.cao.go.jp/jp/sna/data/data_list/kakuhou/files/2022/2022_kaku_top.html), and put them in `data` folder. Values are nominal, not real.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nX2022ffm1n_jp <- read_excel(\"data/2022ffm1n_jp.xlsx\", \n    skip = 6)\n\nX2022s9_jp <- read_excel(\"data/2022s9_jp.xlsx\", \n    skip = 4)\n\nconsumption <- tibble(\n  year = names(X2022ffm1n_jp)[-1],\n  household = t(X2022ffm1n_jp)[,1][-1] |> unname(),\n  govt = t(X2022ffm1n_jp)[,11][-1] |> unname(),\n  social_trsf_in_kind = t(X2022s9_jp)[(1:29)*3, 39] |> unname()\n) |> \n  mutate(across(everything(), as.numeric))\n```\n:::\n\n\n## Plot\n\nHere, I add social transfer in kind to household income. I confirm social transfer in kind is increasing steadily.\n\n\n::: {.cell layout-align=\"center\" fig.asp='1'}\n\n```{.r .cell-code}\nconsumption |> \n  select(-govt) |> \n  pivot_longer(-year) |> \n  mutate(\n    name = factor(name, levels = c(\"social_trsf_in_kind\", \"household\"),\n                       labels = c(\"Social transfer in kind\",\n                                  \"Household consumption\")),\n    value = value / 1e3\n    ) |> \n  ggplot(aes(year, value)) +\n  geom_area(aes(fill = name)) +\n  labs(x = \"Fiscal year\", y = \"Trillion yen\", fill = NULL)\n```\n\n::: {.cell-output-display}\n![Household consumption plus social transfer in kind](index_files/figure-html/chart1-1.png){fig-align='center' width=70%}\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
