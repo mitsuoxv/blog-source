@@ -1,0 +1,175 @@
+---
+title: Duplication in membership
+author: Mitsuo Shiota
+date: '2024-06-20'
+categories:
+  - economics
+  - R
+knitr: 
+  opts_chunk: 
+    out.width: '70%'
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(rvest)
+library(pdftools)
+
+```
+
+## Is there too much duplication in membership to economics-related-groups in Japan?
+
+I mean groups, like "国際収支に関する懇談会", "財政制度等審議会 財政制度分科会", "令和臨調" and "経済財政諮問会議", by 'economics-related-groups.'
+
+## Get member data from 4 groups
+
+### 国際収支に関する懇談会
+
+```{r}
+#| label: read_mof_bop
+#| warning: false
+
+mof_bop <- read_html("https://www.mof.go.jp/policy/international_policy/councils/bop/notification.html")
+
+member_mof_bop <- mof_bop |> 
+  html_elements("table") |> 
+  pluck(1) |> 
+  html_table() |> 
+  slice(-1) |> 
+  set_names(c("name", "title")) |> 
+  mutate(name = str_remove_all(name, "\\s"))
+
+```
+
+### 財政制度等審議会 財政制度分科会
+
+```{r}
+#| label: read_mof_fiscal
+#| warning: false
+
+mof_fiscal <- read_html("https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_fiscal_system/member_fs.htm")
+
+member_mof_fiscal <- mof_fiscal |> 
+  html_elements("table") |> 
+  pluck(1) |> 
+  html_table() |> 
+  select(3, 4) |>
+  slice(-c(16, 37:39)) |> 
+  set_names(c("name", "title")) |> 
+  mutate(name = str_remove_all(name, "\\s"))
+
+```
+
+### 令和臨調
+
+```{r}
+#| label: read_pdf_reiwa_rincho
+
+# Split by line
+make_lines <- function(a_list) {
+  a_list |> 
+    str_split("\n") |> 
+    unlist()
+}
+
+# Extract text
+pdf_texts <- pdf_text("https://www.reiwarincho.jp/about/member/pdf/member_list.pdf?v=240401")
+
+# Split into lines
+pdf_lines <- pdf_texts  %>% 
+  make_lines()
+
+# Table
+member_lines <- pdf_lines[c(4:7, 9:18, 20, 22:37, 39:42, 44:79, 81:91, 93:94, 96:101, 103, 105:107, 109:117)]
+
+member_reiwa_rincho <- bind_rows(
+  tibble(
+    name = member_lines[-c(39, 46, 53, 57, 59)] |> 
+      str_trim() |> 
+      str_sub(1, 8) |> 
+      str_remove_all("\\s"),
+    title = member_lines[-c(39, 46, 53, 57, 59)] |> 
+      str_trim() |> 
+      str_sub(9, 50) |> 
+      str_trim()
+  ),
+  tibble(
+    name = member_lines[c(39, 46, 53, 57, 59)]|> 
+      str_sub(1, 9) |> 
+      str_remove_all("\\s"),
+    title = member_lines[c(39, 46, 53, 57, 59)]|> 
+      str_sub(12, 50)
+  )
+) |> 
+  mutate(title = str_remove(title, "（.*）"))
+
+```
+
+### 経済財政諮問会議
+
+```{r}
+#| label: read_pdf_cao
+
+# Extract text
+pdf_texts_cao <- pdf_text("https://www5.cao.go.jp/keizai-shimon/kaigi/about/member.pdf")
+
+# Split into lines
+pdf_lines_cao <- pdf_texts_cao  %>% 
+  make_lines()
+
+# Table
+member_lines_cao <- pdf_lines_cao[c(2:4, 6:11, 13:14)]
+
+member_cao <- tibble(
+  name = member_lines_cao |> 
+    str_sub(4, 10) |> 
+    str_remove_all("\\s"),
+  title = member_lines_cao |> 
+    str_sub(11, 50) |> 
+    str_trim()
+)
+
+```
+
+## Count duplication
+
+There are 14 persons who appear more than once in these 4 groups.
+
+```{r}
+#| label: table_duplication
+#| tbl-cap: 14 persons who appear more than once in these 4 groups
+#| tbl-colwidths: [10, 5, 6, 6, 6, 6, 20]
+#| warning: false
+
+member_combined <- bind_rows(
+  member_mof_bop |> mutate(group = "国際収支に関する懇談会"),
+  member_mof_fiscal |> mutate(group = "財政制度等審議会"),
+  member_reiwa_rincho |> mutate(group = "令和臨調"),
+  member_cao |> mutate(group = "経済財政諮問会議")
+)
+
+# moji is different, though my eye cannot catch it
+member_combined2 <- member_combined |> 
+  mutate(
+    name = if_else(name == "増田寛也", "増田寬也", name),
+    name = if_else(name == "小林慶一郞", "小林慶一郎", name)
+  )
+
+name_title <- member_combined2 |> 
+  select(!group) |> 
+  distinct(name, .keep_all = TRUE)
+
+member_combined2 |> 
+  select(!title) |> 
+  mutate(value = 1) |> 
+  pivot_wider(names_from = group, values_fill = 0) |> 
+  mutate(count = `国際収支に関する懇談会` + `財政制度等審議会` + `令和臨調` + `経済財政諮問会議`, .after = 1) |> 
+  filter(count > 1) |> 
+  mutate(across(`国際収支に関する懇談会`:`経済財政諮問会議`, \(x) if_else(x == 1, "✔", ""))) |> 
+  arrange(desc(count)) |> 
+  left_join(name_title, by = "name") |> 
+  knitr::kable(col.names = c("氏名", "回数", "国際収支に関する懇談会", "財政制度等審議会 財政制度分科会", "令和臨調", "経済財政諮問会議", "肩書"), align = c("l", rep("c",5), "l"))
+```
