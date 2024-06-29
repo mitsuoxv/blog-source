@@ -17,7 +17,7 @@ library(tidyverse)
 
 ## A tiny model before expansion
 
-I made a tiny model in [the previous post](https://mitsuoxv.rbind.io/2021/05/06/gov-t-debt-is-savings-of-the-workers-for-retirement/), and showed that government debt can be a tool to bring about windfall and damage by transferring buying power from future Generations to the current one, and that windfall and damage can also be caused by population bonus and onus, and productivity growth and stagnation through interest income from holding bonds.
+I made a tiny model in [the previous post](https://mitsuoxv.rbind.io/posts/2021-05-06-gov-t-debt-is-savings-of-the-workers-for-retirement/), and showed that government debt can be a tool to bring about windfall and damage by transferring buying power from future Generations to the current one, and that windfall and damage can also be caused by population bonus and onus, and productivity growth and stagnation through interest income from holding bonds.
 
 Assumptions were:
 

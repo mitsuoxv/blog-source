@@ -32,7 +32,7 @@ I tried the smallest model, "124M", in [gpt-2-try-and-error.ipynb](https://githu
 
 ## I tried Google Colab, and got an annoying result
 
-In [the previous post](https://mitsuoxv.rbind.io/2020/07/17/update-let-potus-speak/), my trial in Google Colab failed due to time out. In the retrospect, I may have forgotten to enable GPU by Edit > Notebook settings. This time I enabled GPU. It took about one and half hour to finetune the model. The result is [gpt_2_colab.ipynb](https://github.com/mitsuoxv/erp/blob/master/gpt_2_colab.ipynb).
+In [the previous post](https://mitsuoxv.rbind.io/posts/2020-07-17-update-let-potus-speak/), my trial in Google Colab failed due to time out. In the retrospect, I may have forgotten to enable GPU by Edit > Notebook settings. This time I enabled GPU. It took about one and half hour to finetune the model. The result is [gpt_2_colab.ipynb](https://github.com/mitsuoxv/erp/blob/master/gpt_2_colab.ipynb).
 
 I seeded the text, "I have some proposals to the Congress." The finetuned model continued:
 

@@ -11,7 +11,7 @@ Yesterday I noticed [my analysis on who pays tariffs in US imports from China](h
 
 Today I added correction to my analysis. I guess my mistake came from unit revision by Census bureau at the start of the year, which generated a lot of zero price indices.
 
-This is my second major correction. My first one was about [China retaliation values] (https://mitsuoxv.rbind.io/2019/06/21/correction-china-hits-back-as-much-as-the-size-of-its-claim/), and I learned that Harmonized Tariff Schedule is not harmonized at some level.
+This is my second major correction. My first one was about [China retaliation values] (https://mitsuoxv.rbind.io/posts/2019-06-21-correction-china-hits-back-as-much-as-the-size-of-its-claim/), and I learned that Harmonized Tariff Schedule is not harmonized at some level.
 
 This time I have learned unit in US trade data may be different over years. In added correction, I just removed zero values and zero price indices. This is tentative correction. I may have to find out how to keep unit consistency.
 

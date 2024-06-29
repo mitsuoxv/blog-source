@@ -10,7 +10,7 @@ categories:
 
 I read some parts of the book ["Look deep into the fiscal crisis" (Japanese)](https://www.amazon.co.jp/%E8%B2%A1%E6%94%BF%E5%8D%B1%E6%A9%9F%E3%81%AE%E6%B7%B1%E5%B1%A4-%E5%A2%97%E7%A8%8E%E3%83%BB%E5%B9%B4%E9%87%91%E3%83%BB%E8%B5%A4%E5%AD%97%E5%9B%BD%E5%82%B5%E3%82%92%E5%95%8F%E3%81%86-NHK%E5%87%BA%E7%89%88%E6%96%B0%E6%9B%B8-%E5%B0%8F%E9%BB%92-%E4%B8%80%E6%AD%A3/dp/4140884495) more closely, and I've got what separates the author, Prof. Kazumasa Oguro, and me. That is whether negative real interest rates by inflation is intolerable or not.
 
-I would like to show his position and mine in the context of the model I created in the last two posts ([here](https://mitsuoxv.rbind.io/2021/05/06/gov-t-debt-is-savings-of-the-workers-for-retirement/) and [here](https://mitsuoxv.rbind.io/2021/05/13/how-to-finance-war-against-godzilla/)).
+I would like to show his position and mine in the context of the model I created in the last two posts ([here](https://mitsuoxv.rbind.io/posts/2021-05-06-gov-t-debt-is-savings-of-the-workers-for-retirement/) and [here](https://mitsuoxv.rbind.io/posts/2021-05-13-how-to-finance-war-against-godzilla/)).
 
 ## Model assumptions
 
@@ -30,7 +30,7 @@ I repeat the assumptions of the model below.
 
 - to collect tax.
 
-## What I have learned from model simulations in the last two posts ([here](https://mitsuoxv.rbind.io/2021/05/06/gov-t-debt-is-savings-of-the-workers-for-retirement/) and [here](https://mitsuoxv.rbind.io/2021/05/13/how-to-finance-war-against-godzilla/)).
+## What I have learned from model simulations in the last two posts ([here](https://mitsuoxv.rbind.io/posts/2021-05-06-gov-t-debt-is-savings-of-the-workers-for-retirement/) and [here](https://mitsuoxv.rbind.io/posts/2021-05-13-how-to-finance-war-against-godzilla/)).
 
 Note that the values in the model are not nominal, but real, and denominated in Period 1 price level yen. 
 
@@ -46,9 +46,9 @@ OK, I am ready to present his position and mine in the context of my model below
 
 - Negative interest rates mean that Government fails to pay back fully what it received 30 years ago in real terms, i.e. buying power terms. We should call this situation fiscal collapse. Debt default, hyperinflation and any other type of negative interest rates is intolerable.
 
-- The U.K. employed "financial repression" to make interest rates artificially low by regulation and to make them less than inflation after the World War II ([Government debt to GDP ratio in the U.K. in my past post](https://mitsuoxv.rbind.io/2020/10/28/my-first-pull-request-imfr/)). This should be regarded as fiscal collapse.
+- The U.K. employed "financial repression" to make interest rates artificially low by regulation and to make them less than inflation after the World War II ([Government debt to GDP ratio in the U.K. in my past post](https://mitsuoxv.rbind.io/posts/2020-10-28-my-first-pull-request-imfr/)). This should be regarded as fiscal collapse.
 
-- As GDP other than defense spending, i.e. the pie to share, is likely to shrink in the next Period 5 (2030-60, according to [my previous post](https://mitsuoxv.rbind.io/2021/05/06/gov-t-debt-is-savings-of-the-workers-for-retirement/)), Generation 5, who is working in the current Period 4 (2000-30) and will be retired in the next Period 5, must save less to avoid negative interest rates in next Period 5. It is equivalent to say that Generation 4, who is retired now, must consume less in the current Period 4 and/or Government have less deficits. So, tax Generation 4 and reduce Government deficits, now.
+- As GDP other than defense spending, i.e. the pie to share, is likely to shrink in the next Period 5 (2030-60, according to [my previous post](https://mitsuoxv.rbind.io/posts/2021-05-06-gov-t-debt-is-savings-of-the-workers-for-retirement/)), Generation 5, who is working in the current Period 4 (2000-30) and will be retired in the next Period 5, must save less to avoid negative interest rates in next Period 5. It is equivalent to say that Generation 4, who is retired now, must consume less in the current Period 4 and/or Government have less deficits. So, tax Generation 4 and reduce Government deficits, now.
 
 - The Abe administration's decision to postpone the consumption tax increase scheduled in October, 2015 was a big mistake. It made fiscal collapse more likely.
 

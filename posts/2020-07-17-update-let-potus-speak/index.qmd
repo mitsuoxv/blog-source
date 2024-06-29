@@ -56,7 +56,7 @@ And it worked! To allow GPU grow was the key.
 
 The file in [the same repository](https://github.com/mitsuoxv/erp),  [let_em_speak_retry.ipynb](https://github.com/mitsuoxv/erp/blob/master/let_em_speak_retry.ipynb), is the result I've got.
 
-To my surprise, docker working in [my machine](https://mitsuoxv.rbind.io/2020/05/31/i-built-a-pc-installed-pop-os-and-am-running-rstudio/) was 4 times faster than Google Colab. It took approximately 8 hours.
+To my surprise, docker working in [my machine](https://mitsuoxv.rbind.io/posts/2020-05-30-i-built-a-pc-installed-pop-os-and-am-running-rstudio/) was 4 times faster than Google Colab. It took approximately 8 hours.
 
 Then I seeded the text, "I have some proposals to the Congress". The model continued:
 

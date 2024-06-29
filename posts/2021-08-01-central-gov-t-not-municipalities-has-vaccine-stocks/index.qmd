@@ -21,7 +21,7 @@ library(lubridate)
 theme_set(theme_light())
 ```
 
-[My previous post](https://mitsuoxv.rbind.io/2021/07/17/do-some-municipalities-have-superfluous-stocks-of-pfizer-vaccines/) was about the vaccine stock mystery. Central government says there must be 40M shots stocks, and [FNN reports](https://www.fnn.jp/articles/-/211144) 40M shots stocks are 25M reserved for the second boost shots, 5M not-yet-reported shots, and 10M missing for unknown reasons. At that time, I thought at least 8M shots were not delivered to municipalities, if ["Prospects for Pfizer vaccine supplies" by MHLW (Ministry of Health, Labour and Welfare) (japanese)](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/vaccine_supply.html) is correct.
+[My previous post](https://mitsuoxv.rbind.io/posts/2021-07-17-do-some-municipalities-have-superfluous-stocks-of-pfizer-vaccines/) was about the vaccine stock mystery. Central government says there must be 40M shots stocks, and [FNN reports](https://www.fnn.jp/articles/-/211144) 40M shots stocks are 25M reserved for the second boost shots, 5M not-yet-reported shots, and 10M missing for unknown reasons. At that time, I thought at least 8M shots were not delivered to municipalities, if ["Prospects for Pfizer vaccine supplies" by MHLW (Ministry of Health, Labour and Welfare) (japanese)](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/vaccine_supply.html) is correct.
 
 And Nikkei reports [Minister Kono says municipalities have 25M shots of vaccine stocks, which are equivalent to one week shots (Japanese)](https://www.nikkei.com/article/DGXZQOUA314080R30C21A7000000/) today (August 1, 2021). This is strange. One week shots are 1.2M per day times 7 days = 8.4M, far smaller than 25M.
 

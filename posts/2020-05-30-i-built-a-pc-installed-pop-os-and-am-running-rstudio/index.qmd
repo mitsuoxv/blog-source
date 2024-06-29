@@ -123,4 +123,4 @@ Yesterday and today, I successfully updated [my covid repository](https://github
 I hope this machine will serve me long and well.
 
 PS
-[I replaced Ryzen 5 1600 AF with Ryzen 5 5600 in May 2022.](https://mitsuoxv.rbind.io/2022/05/15/i-updated-bios-and-installed-a-new-cpu-in-my-pc/)
+[I replaced Ryzen 5 1600 AF with Ryzen 5 5600 in May 2022.](https://mitsuoxv.rbind.io/posts/2022-05-15-i-updated-bios-and-installed-a-new-cpu-in-my-pc/)

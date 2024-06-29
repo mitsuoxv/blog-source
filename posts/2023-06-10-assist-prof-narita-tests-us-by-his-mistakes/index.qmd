@@ -252,4 +252,4 @@ lm_1fe_summary[51, ] |>
 
 While I try to reproduce his work, I find that he wrongly recognized the data came from a natural experiment, and that he failed to do DiD, probably due to a coding error. Is he so careless? Maybe. Or maybe not. I suspect he may have tested us. If we are easily deceived by statistical junks, EBPM can be harmful. After all, he titled his article as "Wish Death of EBPM!"
 
-This is my second post to criticize Assist. Prof. Narita's work. First one is [here](https://mitsuoxv.rbind.io/2022/10/08/does-democracy-cause-slower-economic-growth-in-the-21st-century/).
+This is my second post to criticize Assist. Prof. Narita's work. First one is [here](https://mitsuoxv.rbind.io/posts/2022-10-08-does-democracy-cause-slower-economic-growth-in-the-21st-century/).

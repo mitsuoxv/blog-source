@@ -7,7 +7,7 @@ categories:
   - tips
 ---
 
-I have been using Pop!_OS 20.04 since [I built my PC 14 months ago](https://mitsuoxv.rbind.io/2020/05/31/i-built-a-pc-installed-pop-os-and-am-running-rstudio/). It worked fine until it didn't yesterday.
+I have been using Pop!_OS 20.04 since [I built my PC 14 months ago](https://mitsuoxv.rbind.io/posts/2020-05-31-i-built-a-pc-installed-pop-os-and-am-running-rstudio/). It worked fine until it didn't yesterday.
 
 I pushed Super key, and clicked an application icon as usual, but an application didn't appear on the screen. Instead, icons didn't go away from the screen, even if I pushed Super key again.
 

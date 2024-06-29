@@ -7,7 +7,7 @@ categories:
   - NHK
 ---
 
-I watch NHK News at evening almost every day. And I sometimes feel uneasy at the way NHK delivers news. One example is [suicide-cases-increase-news which I complained about](https://mitsuoxv.rbind.io/2020/12/19/are-suicide-cases-rapidly-surging-in-japan/). Another example is when NHK showed Covid-19 confirmed cases in France and Germany side by side in two charts, whose y axes are scaled differently. 
+I watch NHK News at evening almost every day. And I sometimes feel uneasy at the way NHK delivers news. One example is [suicide-cases-increase-news which I complained about](https://mitsuoxv.rbind.io/posts/2020-12-19-are-suicide-cases-rapidly-surging-in-japan/). Another example is when NHK showed Covid-19 confirmed cases in France and Germany side by side in two charts, whose y axes are scaled differently. 
 
 Today's news is more annoying. NHK said "The U.S. changes its course to increase corporate tax rates to finance Covid-19 measures". It is not true.
 
