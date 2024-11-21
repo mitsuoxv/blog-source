@@ -1,0 +1,140 @@
+---
+title: "Suntory Toku-cha"
+author: "Mitsuo Shiota"
+date: '2024-11-21'
+categories:
+  - R
+knitr: 
+  opts_chunk: 
+    out.width: '70%'
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(tidytuesdayR)
+
+theme_set(
+  theme_light() +
+  theme(
+    legend.position = "none",
+    plot.background = element_rect(fill = "darkgreen"),
+    panel.background = element_rect(fill = "darkgreen"),
+    panel.border = element_blank(),
+    plot.title = element_text(color = "white", size = 16),
+    axis.title = element_text(color = "white", size = 8),
+    axis.text = element_text(color = "white"),
+    axis.ticks.length = unit(-1, "mm"),
+    axis.line = element_line(color = "white", linewidth = 0.3),
+    axis.ticks = element_line(linewidth = 0.5),
+    plot.caption = element_text(color = "white", size = 8),
+    panel.grid = element_blank()
+  )
+)
+```
+
+## Suntory Toku-cha
+
+Suntory is a beverage company. One of its products is Suntory Toku-cha. 'Toku' means food for specified health use, and 'Cha' means green tea. Suntory asserts this product helps reduce your body fat by showing a chart in [its advertisement](https://www.suntory.co.jp/softdrink/iyemon/tokucha/).
+
+## Jpn Pharmacol Ther, vol. 40, no. 6, 2012
+
+Ad chart is based on the research paper, 'Body Fat Reducing Effect and Safety Evaluation of Long-term Consumption of Green Tea Containing Quercetin Glucoside in Obese Subjects' published in Jpn Pharmacol Ther, vol. 40, no. 6, 2012.
+
+Authors are six researchers of Suntory Wellness Ltd., and one doctor of a clinic.
+
+They did RCT (Randomized Controlled Trial), and tested 36 outcomes related to abdomen fat area, body fat, and blood. 2 outcomes, abdomen fat area and blood HbA1c, are statistically significant, while other 34 outcomes, such as body fat ratio, are not significant. There is no mention about outcome pre-registration.
+
+[Jpn Pharmacol Ther is reported to be an unreliable source because of its weak peer review](https://bunshun.jp/denshiban/articles/b9456).
+
+```{r}
+#| label: read_data
+
+abdoment_fat_area <- tribble(
+  ~group, ~week, ~mean, ~sd,
+  "対照飲料", 0, 0, 0,
+  "ケルセチン配糖体配合緑茶", 0, 0, 0,
+  "対照飲料", 8, 5.45, 1.87,
+  "ケルセチン配糖体配合緑茶", 8, -5.13, 1.99,
+  "対照飲料", 12, 4.97, 2.34,
+  "ケルセチン配糖体配合緑茶", 12, -5.32, 2.42
+)
+
+body_fat_ratio <- tribble(
+  ~group, ~week, ~mean, ~sd,
+  "対照飲料", 0, 0, 0,
+  "ケルセチン配糖体配合緑茶", 0, 0, 0,
+  "対照飲料", 4, 0.49, 0.28,
+  "ケルセチン配糖体配合緑茶", 4, 0.32, 0.21,
+  "対照飲料", 8, 0.50, 0.33,
+  "ケルセチン配糖体配合緑茶", 8, 0.29, 0.26,
+  "対照飲料", 12, 0.55, 0.33,
+  "ケルセチン配糖体配合緑茶", 12, 0.21, 0.31,
+)
+```
+
+## Suntory ad chart (replicated)
+
+Suntory uses abdomen fat area to represent body fat.
+
+```{r}
+#| label: replicated_chart
+#| fig-cap: Suntory ad chart (replicated) 
+#| fig-align: center
+#| fig-asp: 1
+
+abdoment_fat_area |> 
+  ggplot(aes(week, mean, color = group)) +
+  geom_line(aes(linetype = group), linewidth = 1) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymax = mean + sd, ymin = mean - sd), width = 0.3) +
+  annotate("text", x = 1, y = 5, label = "対照飲料", color = "white",
+           hjust = 0) +
+  annotate("text", x = 1, y = -5, label = "ケルセチン配糖体\n配合緑茶", color = "yellow", hjust = 0) +
+  scale_color_manual(values = c("yellow", "white")) +
+  scale_x_continuous(limits = c(0, 13), breaks = 0:3 * 4,
+                     expand = expansion(add = c(0, 0))) +
+  scale_y_continuous(limits = c(-10, 10), breaks = -2:2 * 5,
+                     expand = expansion(add = c(0, 0))) +
+  labs(x = "摂取期間（週）",
+       y = "腹部全脂肪面積変化量 (cm2)",
+       title = "＜腹部全脂肪面積変化量の推移＞",
+       caption = "注：平均値 ± 標準偏差\n出典：薬理と治療40(6)495-503(2012)")
+  
+```
+
+## Body fat ratio chart
+
+Body fat ratio is the most commonly used measurement for body fat.
+
+```{r}
+#| label: body_fat_ratio_chart
+#| fig-cap: Body fat ratio change
+#| fig-align: center
+#| fig-asp: 1
+
+body_fat_ratio |> 
+  mutate(week2 = week + if_else(week != 0 & group == "対照飲料", -0.2, 0)) |> 
+  ggplot(aes(week2, mean, color = group)) +
+  geom_line(aes(linetype = group), linewidth = 1) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymax = mean + sd, ymin = mean - sd), width = 0.3) +
+  annotate("text", x = 1, y = 0.5, label = "対照飲料", color = "white",
+           hjust = 0) +
+  annotate("text", x = 1, y = -0.2, label = "ケルセチン配糖体\n配合緑茶", color = "yellow", hjust = 0) +
+  scale_color_manual(values = c("yellow", "white")) +
+  scale_x_continuous(limits = c(0, 13), breaks = 0:3 * 4,
+                     expand = expansion(add = c(0, 0))) +
+  scale_y_continuous(limits = c(-1, 1), breaks = -2:2 * 0.5,
+                     expand = expansion(add = c(0, 0))) +
+  labs(x = "摂取期間（週）",
+       y = "体脂肪率変化（％）",
+       title = "＜体脂肪率変化の推移＞",
+       caption = "注：平均値 ± 標準偏差\n出典：薬理と治療40(6)495-503(2012)")
+```
+
+## Conclusion
+
+[Takeshi Niinami, Representative Director, President & CEO, Suntory Holdings Limited, sees wider roles of the private sector for national health issues.](https://www.doyukai.or.jp/chairmansmsg/pressconf/2023/231003.html) If so, he should stop this ad.
