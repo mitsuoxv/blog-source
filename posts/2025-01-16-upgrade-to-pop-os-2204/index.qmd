@@ -1,0 +1,23 @@
+---
+title: I upgraded Pop!_OS from 20.04 (focal) to 22.04 (jammy)
+author: Mitsuo Shiota
+date: '2025-01-16'
+categories:
+  - personal
+  - R
+---
+
+## Upgrade in Settings failed
+
+I have been using [the PC which I built in 2020](https://mitsuoxv.rbind.io/posts/2020-05-30-i-built-a-pc-installed-pop-os-and-am-running-rstudio/). It ran on Pop!_OS 20.04 (focal), and worked great. However, 5 year security maintenance period of Ubuntu LTS would expire in April this year. So I decided to upgrade to Pop!_OS 22.04 (jammy). I read [System 76 article on upgrading](https://support.system76.com/articles/upgrade-pop/), and 
+pushed Download button in Settings > OS Upgrade & Recovery > OS Upgrade, though I had noticed OS Recovery was missing in my PC. It failed by saying my PC does not have standard /etc/apt/sources.list and /etc/fstab. I lost some deb package sources in sources.list and sources.list.d. After some research, I found fstab and missing OS Recovery was the same issue: my PC starts up from BIOS, not from UEFI.
+
+## Backup data, and clean install Pop!_OS 22.04 (jammy)
+
+So, I decided to [backup home directory data to USB drive by using Deja-dup](https://support.system76.com/articles/backup-files/), [clean install Pop!_OS 22.04 (jammy)](https://support.system76.com/articles/install-pop/), and restore home directory data. It took 3 hours to backup 60GB. As restoration stopped by saying some thing like illegitimate file name, I am not sure to have restored all files, though I have not noticed any lack of files yet. System 76 documents helped me a lot.
+
+## So far, so good on Pop!_OS 22.04 (jammy)
+
+I had to re-install applications, like R, R packages, Rstudio, Google Chrome, VS Code, and [Mozc (Japanese input method)](https://lilaboc.work/archives/29007972.html). For R and R packages installation, [r2u by eddelbuettel](https://github.com/eddelbuettel/r2u) was the most helpful.
+
+Although I had considered moving to Ubuntu 24.04 (noble), I stayed on Pop!_OS this time. So far, so good. I hope this new OS will serve me well.
