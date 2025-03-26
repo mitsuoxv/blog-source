@@ -1,0 +1,122 @@
+---
+title: Japan population male female ratio by age and by prefecture
+author: Mitsuo Shiota
+date: '2025-03-26'
+categories:
+  - economics
+  - R
+knitr: 
+  opts_chunk: 
+    out.width: '70%'
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(ggrepel)
+library(sf)
+
+theme_set(theme_light())
+```
+
+## Get data from e-stat
+
+```{r}
+#| label: get_data
+
+estat_api_key <- Sys.getenv("ESTAT_API_KEY")
+
+meta_info <- estatapi::estat_getMetaInfo(appId = estat_api_key,
+                               lang = "J",
+                               statsDataId = "0003448237")
+
+dat_2023 <- estatapi::estat_getStatsData(appId = estat_api_key,
+                          lang = "J",
+                          statsDataId = "0003448237",
+                          cdCat01 = c("001", "002"), # 男、女
+                          cdCat03 = "001", # 総人口 
+                          cdTime = "1801" # 2023年10月1日現在
+                          )
+```
+
+## Draw line charts
+
+```{r}
+#| label: line_charts
+#| fig-cap: 男／女比率（全国＝1で標準化）2023年10月1日現在
+#| fig-align: center
+#| fig-asp: 1.5
+
+dat_2023g <- dat_2023 |> 
+  select(sex = "男女別", age = "年齢5歳階級", area_code, prefecture = "全国・都道府県", value) |> 
+  mutate(
+    area_code = str_sub(area_code, 1L, 2L) |> as.numeric(),
+    region = case_when(
+      between(area_code, 1, 7) ~ "北海道・東北",
+      between(area_code, 8, 14) ~ "関東",
+      between(area_code, 15, 20) ~ "甲信越",
+      between(area_code, 21, 24) ~ "東海",
+      between(area_code, 25, 30) ~ "関西",
+      between(area_code, 31, 35) ~ "中国",
+      between(area_code, 36, 39) ~ "四国",
+      between(area_code, 40, 47) ~ "九州・沖縄",
+      .default = "全国"
+    )
+  ) |> 
+  pivot_wider(id_cols = c(age, area_code, prefecture, region),
+              names_from = sex, values_from = value) |> 
+  rename(male = "男", female = "女") |> 
+  mutate(ratio = male / female) |> 
+  mutate(ratio_std = ratio / ratio[1], .by = age) |> 
+  filter(region != "全国", age != "総数") |> 
+  mutate(
+    age = fct_reorder(age, parse_number(age)),
+    region = fct_reorder(region, area_code)
+  )
+
+dat_2023g |> 
+  ggplot(aes(age, ratio_std)) +
+  geom_hline(yintercept = 1, color = "gray30", lty = 3) +
+  geom_line(aes(color = prefecture, group = prefecture), show.legend = FALSE) +
+  geom_text_repel(aes(label = prefecture), data = dat_2023g |> filter(age == "25～29歳"), size = 2, max.overlaps = 20) +
+  facet_wrap(vars(region), ncol = 2) +
+  labs(x = NULL, y = "男／女比率（全国＝1で標準化）") +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+## Choropleth map
+
+```{r}
+#| label: choropleth_map
+#| fig-cap: 男／女比率（全国＝1で標準化）：25〜29歳
+#| fig-align: center
+
+prefectures_map <-
+  read_sf(system.file("shapes/jpn.shp", package = "NipponMap"))
+
+# inset Okinawa
+prefectures_map$geometry[[47]] <- prefectures_map$geometry[[47]] + c(7, 14)
+
+lines <- cbind(c(132, 135, 137, 137), c(38, 38, 40, 43)) |> 
+    st_linestring()
+
+prefectures_map |> 
+  mutate(jiscode = as.numeric(jiscode)) |> 
+  left_join(dat_2023g |> filter(age == "25～29歳"),
+            by = join_by(jiscode == area_code)) |> 
+  ggplot() +
+  geom_sf(aes(fill = ratio_std), color = "white") +
+  geom_sf(data = lines, color = "gray80") +
+  scale_fill_gradient2(low = "#559999", mid = "grey90", high = "#BB650B",
+                         midpoint = 1) +
+  labs(fill = "男／女比率（全国＝1で標準化）") +
+  coord_sf(xlim = c(130, 149), ylim = c(31, 45)) +
+  theme_void(base_size = 16) +
+  theme(legend.position = "bottom",
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 8))
+
+```
+
