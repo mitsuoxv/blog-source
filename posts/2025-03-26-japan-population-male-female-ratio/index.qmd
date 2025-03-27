@@ -7,7 +7,7 @@ categories:
   - R
 knitr: 
   opts_chunk: 
-    out.width: '70%'
+    out.width: '90%'
 ---
 
 ```{r}
@@ -90,8 +90,9 @@ dat_2023g |>
 
 ```{r}
 #| label: choropleth_map
-#| fig-cap: 男／女比率（全国＝1で標準化）：25〜29歳
+#| fig-cap: 男／女比率（全国＝1で標準化）
 #| fig-align: center
+#| fig-asp: 1
 
 prefectures_map <-
   read_sf(system.file("shapes/jpn.shp", package = "NipponMap"))
@@ -104,19 +105,21 @@ lines <- cbind(c(132, 135, 137, 137), c(38, 38, 40, 43)) |>
 
 prefectures_map |> 
   mutate(jiscode = as.numeric(jiscode)) |> 
-  left_join(dat_2023g |> filter(age == "25～29歳"),
+  left_join(dat_2023g,
             by = join_by(jiscode == area_code)) |> 
   ggplot() +
   geom_sf(aes(fill = ratio_std), color = "white") +
   geom_sf(data = lines, color = "gray80") +
   scale_fill_gradient2(low = "#559999", mid = "grey90", high = "#BB650B",
                          midpoint = 1) +
+  facet_wrap(vars(age), ncol = 4) +
   labs(fill = "男／女比率（全国＝1で標準化）") +
   coord_sf(xlim = c(130, 149), ylim = c(31, 45)) +
   theme_void(base_size = 16) +
   theme(legend.position = "bottom",
         legend.title = element_text(size = 10),
-        legend.text = element_text(size = 8))
+        legend.text = element_text(size = 6),
+        strip.text = element_text(size = 10))
 
 ```
 
