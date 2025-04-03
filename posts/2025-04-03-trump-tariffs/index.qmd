@@ -77,7 +77,8 @@ country_2024 <- country |>
   mutate(
     deficit = import - export,
     trade = export + import,
-    deficit_ratio = deficit / trade
+    deficit_ratio = deficit / trade,
+    deficit_ratio2 = deficit / import
   ) |> 
   mutate(
     area = if_else(area == "Korea, South", "South Korea", area)
@@ -105,7 +106,26 @@ country_2024_joined |>
   scale_x_continuous(labels = scales::percent_format()) +
   labs(x = "Ratios", y = NULL,
        title = "Trump estimates tariffs charged to the US, probably\nbased on US trade deficits in goods per trade volume",
-       subtitle = "Red points denote tariffs charged to the US which Trump estimates, and\npink points denote US trade deficits in goods per trade volume",
+       subtitle = "Red points denote tariffs charged to the US which Trump estimates, and\npink points denote US trade deficits in goods per trade volume in 2024",
        caption = "Source: US Census Bureau")
 ```
 
+Using imports, instead of trade volume (export + import), as a denominator looks closer.
+
+```{r}
+#| label: scatter_plot2
+#| fig-cap: Trump estimates look similar to US trade deficits in goods imports
+#| fig-align: center
+#| fig-asp: 1
+
+country_2024_joined |> 
+  mutate(area = fct_reorder(area, deficit_ratio2)) |> 
+  ggplot(aes(y = area)) +
+  geom_point(aes(x = tariffs), color = "red") +
+  geom_point(aes(x = deficit_ratio2), color = "pink") +
+  scale_x_continuous(labels = scales::percent_format()) +
+  labs(x = "Ratios", y = NULL,
+       title = "Trump estimates tariffs charged to the US, probably\nbased on US trade deficits in goods imports",
+       subtitle = "Red points denote tariffs charged to the US which Trump estimates, and\npink points denote US trade deficits in goods imports in 2024",
+       caption = "Source: US Census Bureau")
+```
