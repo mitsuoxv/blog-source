@@ -1,0 +1,111 @@
+---
+title: Trump tariffs
+author: Mitsuo Shiota
+date: '2025-04-03'
+categories:
+  - economics
+  - R
+knitr: 
+  opts_chunk: 
+    out.width: '70%'
+---
+
+```{r}
+#| label: setup
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+theme_set(theme_light())
+```
+
+## Tariffs charged to the US, according to Trump's assertion
+
+25 area are listed.
+
+```{r}
+#| label: trump_assertion
+
+tariffs_by_trump_assertion <- tribble(
+  ~area, ~tariffs,
+  "China", 0.67,
+  "European Union", 0.39,
+  "Vietnam", 0.90,
+  "Taiwan", 0.64,
+  "Japan", 0.46,
+  "India", 0.52,
+  "South Korea", 0.50,
+  "Thailand", 0.72,
+  "Switzerland", 0.61,
+  "Indonesia", 0.64,
+  "Malaysia", 0.47,
+  "Cambodia", 0.97,
+  "United Kingdom", 0.10,
+  "South Africa", 0.60,
+  "Brazil", 0.10,
+  "Bangladesh", 0.74,
+  "Singapore", 0.10,
+  "Israel", 0.33,
+  "Philippines", 0.34,
+  "Chile", 0.10,
+  "Australia", 0.10,
+  "Pakistan", 0.58,
+  "Turkey", 0.10,
+  "Sri Lanka", 0.88,
+  "Colombia", 0.10
+)
+
+```
+
+## Get goods trade data from Census bureau
+
+https://www.census.gov/foreign-trade/balance/index.html
+
+```{r}
+#| label: get_data_from_census
+
+temp_file <- tempfile()
+download.file("https://www.census.gov/foreign-trade/balance/country.xlsx", destfile = temp_file)
+
+country <- read_excel(temp_file) |> 
+  janitor::clean_names()
+
+country_2024 <- country |> 
+  filter(year == 2024) |> 
+  select(code = cty_code, area = ctyname, import= iyr, export = eyr) |> 
+  mutate(
+    deficit = import - export,
+    trade = export + import,
+    deficit_ratio = deficit / trade
+  ) |> 
+  mutate(
+    area = if_else(area == "Korea, South", "South Korea", area)
+  )
+
+country_2024_joined <- country_2024 |> 
+  inner_join(tariffs_by_trump_assertion, by = "area")
+```
+
+## Compare
+
+Tariffs charged to the US which Trump estimates look very similar to the US deficits in goods per trade volume to each listed areas.
+
+```{r}
+#| label: scatter_plot
+#| fig-cap: Trump estimates look similar to US trade deficits in goods per trade volume
+#| fig-align: center
+#| fig-asp: 1
+
+country_2024_joined |> 
+  mutate(area = fct_reorder(area, deficit_ratio)) |> 
+  ggplot(aes(y = area)) +
+  geom_point(aes(x = tariffs), color = "red") +
+  geom_point(aes(x = deficit_ratio), color = "pink") +
+  scale_x_continuous(labels = scales::percent_format()) +
+  labs(x = "Ratios", y = NULL,
+       title = "Trump estimates tariffs charged to the US, probably\nbased on US trade deficits in goods per trade volume",
+       subtitle = "Red points denote tariffs charged to the US which Trump estimates, and\npink points denote US trade deficits in goods per trade volume",
+       caption = "Source: US Census Bureau")
+```
+

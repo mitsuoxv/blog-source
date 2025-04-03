@@ -1,0 +1,17 @@
+{
+  "hash": "137410acd8b129f635423932cc543ab9",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: Trump tariffs\nauthor: Mitsuo Shiota\ndate: '2025-04-03'\ncategories:\n  - economics\n  - R\nknitr: \n  opts_chunk: \n    out.width: '70%'\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(readxl)\n\ntheme_set(theme_light())\n```\n:::\n\n\n\n## Tariffs charged to the US, according to Trump's assertion\n\n25 area are listed.\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ntariffs_by_trump_assertion <- tribble(\n  ~area, ~tariffs,\n  \"China\", 0.67,\n  \"European Union\", 0.39,\n  \"Vietnam\", 0.90,\n  \"Taiwan\", 0.64,\n  \"Japan\", 0.46,\n  \"India\", 0.52,\n  \"South Korea\", 0.50,\n  \"Thailand\", 0.72,\n  \"Switzerland\", 0.61,\n  \"Indonesia\", 0.64,\n  \"Malaysia\", 0.47,\n  \"Cambodia\", 0.97,\n  \"United Kingdom\", 0.10,\n  \"South Africa\", 0.60,\n  \"Brazil\", 0.10,\n  \"Bangladesh\", 0.74,\n  \"Singapore\", 0.10,\n  \"Israel\", 0.33,\n  \"Philippines\", 0.34,\n  \"Chile\", 0.10,\n  \"Australia\", 0.10,\n  \"Pakistan\", 0.58,\n  \"Turkey\", 0.10,\n  \"Sri Lanka\", 0.88,\n  \"Colombia\", 0.10\n)\n```\n:::\n\n\n\n## Get goods trade data from Census bureau\n\nhttps://www.census.gov/foreign-trade/balance/index.html\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ntemp_file <- tempfile()\ndownload.file(\"https://www.census.gov/foreign-trade/balance/country.xlsx\", destfile = temp_file)\n\ncountry <- read_excel(temp_file) |> \n  janitor::clean_names()\n\ncountry_2024 <- country |> \n  filter(year == 2024) |> \n  select(code = cty_code, area = ctyname, import= iyr, export = eyr) |> \n  mutate(\n    deficit = import - export,\n    trade = export + import,\n    deficit_ratio = deficit / trade\n  ) |> \n  mutate(\n    area = if_else(area == \"Korea, South\", \"South Korea\", area)\n  )\n\ncountry_2024_joined <- country_2024 |> \n  inner_join(tariffs_by_trump_assertion, by = \"area\")\n```\n:::\n\n\n\n## Compare\n\nTariffs charged to the US which Trump estimates look very similar to the US deficits in goods per trade volume to each listed areas.\n\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ncountry_2024_joined |> \n  mutate(area = fct_reorder(area, deficit_ratio)) |> \n  ggplot(aes(y = area)) +\n  geom_point(aes(x = tariffs), color = \"red\") +\n  geom_point(aes(x = deficit_ratio), color = \"pink\") +\n  scale_x_continuous(labels = scales::percent_format()) +\n  labs(x = \"Ratios\", y = NULL,\n       title = \"Trump estimates tariffs charged to the US, probably\\nbased on US trade deficits in goods per trade volume\",\n       subtitle = \"Red points denote tariffs charged to the US which Trump estimates, and\\npink points denote US trade deficits in goods per trade volume\",\n       caption = \"Source: US Census Bureau\")\n```\n\n::: {.cell-output-display}\n![Trump estimates look similar to US trade deficits in goods per trade volume](index_files/figure-html/scatter_plot-1.png){fig-align='center' width=70%}\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
